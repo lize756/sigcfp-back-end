@@ -1,13 +1,13 @@
-package com.sigcfpbackendbusiness;
+package com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SigcfpBackEndBusinessApplication {
+public class PersistenceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SigcfpBackEndBusinessApplication.class, args);
+        SpringApplication.run(PersistenceApplication.class, args);
     }
 
 }
