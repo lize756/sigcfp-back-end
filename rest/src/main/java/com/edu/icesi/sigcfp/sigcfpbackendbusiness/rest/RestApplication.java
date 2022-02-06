@@ -1,10 +1,11 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@ComponentScan(basePackages = {"'com.edu.icesi.sigcfp.sigcfpbackendbusiness"})
 public class RestApplication {
 
     public static void main(String[] args) {

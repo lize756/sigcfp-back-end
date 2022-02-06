@@ -1,9 +1,9 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.implementations;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Career;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.implementations.CareerService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.ICareerService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.ICareerController;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,7 @@ import java.util.List;
 public class CareerController implements ICareerController {
 
     @Autowired
-    CareerService careerService ;
+    ICareerService CareerService;
 
     @Override
     @PostMapping("/add")
