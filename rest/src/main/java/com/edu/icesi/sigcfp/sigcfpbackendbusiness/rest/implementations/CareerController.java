@@ -15,8 +15,12 @@ import java.util.List;
 //@PreAuthorize("")
 public class CareerController implements ICareerController {
 
-    @Autowired
     ICareerService CareerService;
+
+    @Autowired
+    public CareerController(ICareerService CareerService) {
+        this.CareerService = CareerService;
+    }
 
     @Override
     @PostMapping("/add")
