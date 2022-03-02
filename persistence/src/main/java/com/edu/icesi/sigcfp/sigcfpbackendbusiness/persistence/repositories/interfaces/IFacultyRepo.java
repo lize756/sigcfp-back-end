@@ -1,11 +1,11 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Ethnicgroup;
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Faculty;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface IEthnicgroup extends JpaRepository<Ethnicgroup,Long> {
+public interface IFacultyRepo extends JpaRepository<Faculty,Long> {
     @Override
-    List<Ethnicgroup> findAll();
+    List<Faculty> findAll();
 }

@@ -7,6 +7,7 @@ import java.util.List;
 
 @Service
 public interface ICompanyService {
+
     Company addCompany(Company company);
 
     Company updateCompany(Company company);

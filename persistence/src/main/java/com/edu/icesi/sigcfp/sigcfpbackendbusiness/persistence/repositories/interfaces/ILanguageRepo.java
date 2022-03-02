@@ -4,7 +4,7 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Language;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
-public interface ILanguage extends JpaRepository<Language,Long> {
-
+public interface ILanguageRepo extends JpaRepository<Language,Long> {
+    @Override
     List<Language> findAll();
 }
