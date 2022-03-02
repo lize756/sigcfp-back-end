@@ -24,25 +24,25 @@ public class CareerController implements ICareerController {
 
     @Override
     @PostMapping("/add")
-    public ResponseEntity<String> addCareer(@RequestBody Career career) {
+    public ResponseEntity<Career> addCareer(@RequestBody Career career) {
         return null;
     }
 
     @Override
     @PutMapping("/update")
-    public ResponseEntity<String> updateCareer(@RequestBody Career career, @PathVariable long careId) {
+    public ResponseEntity<Career> updateCareer(@PathVariable long careId, @RequestBody Career career) {
         return null;
     }
 
     @Override
     @GetMapping("/{careId}")
-    public ResponseEntity<String> getCareer(@PathVariable long careId) {
+    public ResponseEntity<Career> getCareer(@PathVariable long careId) {
         return null;
     }
 
     @Override
     @DeleteMapping("/{careId}")
-    public ResponseEntity<String> deleteCareer(@PathVariable long careId) {
+    public ResponseEntity<Career> deleteCareer(@PathVariable long careId) {
         return null;
     }
 

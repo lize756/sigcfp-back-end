@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface ICareerController {
 
-    ResponseEntity<String> addCareer(Career career);
+    ResponseEntity<Career> addCareer(Career career);
 
-    ResponseEntity<String> updateCareer(Career career, long careId);
+    ResponseEntity<Career> updateCareer(long careId, Career career);
 
-    ResponseEntity<String> getCareer(long careId);
+    ResponseEntity<Career> getCareer(long careId);
 
-    ResponseEntity<String> deleteCareer(long careId);
+    ResponseEntity<Career> deleteCareer(long careId);
 
     ResponseEntity<List<Career>> getCareers();
 
