@@ -1,7 +1,7 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities;
 
-import javax.persistence.*;
 import java.io.Serializable;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -9,184 +9,227 @@ import java.util.List;
 
 /**
  * The persistent class for the CURRICULUM database table.
+ * 
  */
 @Entity
-@Table(name = "CURRICULUM")
-@NamedQuery(name = "Curriculum.findAll", query = "SELECT c FROM Curriculum c")
+@Table(name="CURRICULUM")
+@NamedQuery(name="Curriculum.findAll", query="SELECT c FROM Curriculum c")
 public class Curriculum implements Serializable {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CURR_ID", unique = true, nullable = false, precision = 10)
-    private long currId;
+	@Id
+	@SequenceGenerator(name="CURRICULUM_CURRID_GENERATOR" )
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CURRICULUM_CURRID_GENERATOR")
+	@Column(name="CURR_ID", unique=true, nullable=false, precision=10)
+	private long currId;
 
-    @Column(name = "CURR_CITY", nullable = false, length = 255)
-    private String currCity;
+	@Temporal(TemporalType.DATE)
+	@Column(name="CURR_CREATE_DATE", nullable=false)
+	private Date currCreateDate;
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "CURR_CREATE_DATE", nullable = false)
-    private Date currCreateDate;
+	@Column(name="CURR_EXPERIENCE", nullable=false, precision=3)
+	private BigDecimal currExperience;
 
-    @Column(name = "CURR_EXPERIENCE", nullable = false, length = 255)
-    private String currExperience;
+	@Column(name="CURR_SALARY", nullable=false, precision=9)
+	private BigDecimal currSalary;
 
-    @Column(name = "CURR_SALARY", nullable = false, precision = 9)
-    private BigDecimal currSalary;
+	//bi-directional many-to-one association to Academicstudy
+	@OneToMany(mappedBy="curriculum")
+	private List<Academicstudy> academicstudies;
 
-    //bi-directional many-to-many association to Career
-    @ManyToMany
-    @JoinTable(
-            name = "CURR_CAREER"
-            , joinColumns = {
-            @JoinColumn(name = "CURRICULUM_CURR_ID", nullable = false)
-    }
-            , inverseJoinColumns = {
-            @JoinColumn(name = "CAREER_CARE_ID", nullable = false)
-    }
-    )
-    private List<Career> careers;
+	//bi-directional many-to-many association to Career
+	@ManyToMany
+	@JoinTable(
+		name="CURR_CARE"
+		, joinColumns={
+			@JoinColumn(name="CURRICULUM_CURR_ID", nullable=false)
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="CAREER_CARE_ID", nullable=false)
+			}
+		)
+	private List<Career> careers;
 
-    //bi-directional many-to-one association to Company
-    @ManyToOne
-    @JoinColumn(name = "COMPANY_COMP_ID", nullable = false)
-    private Company company;
+	//bi-directional many-to-one association to Company
+	@ManyToOne
+	@JoinColumn(name="COMPANY_COMP_ID")
+	private Company company;
 
-    //bi-directional many-to-one association to CurriculumPdf
-    @ManyToOne
-    @JoinColumn(name = "CURRICULUM_PDF_CU_PDF_ID", nullable = false)
-    private CurriculumPdf curriculumPdf;
+	//bi-directional many-to-one association to CurriculumPdf
+	@ManyToOne
+	@JoinColumn(name="CURRICULUM_PDF_CU_PDF_ID")
+	private CurriculumPdf curriculumPdf;
 
-    //bi-directional many-to-one association to Person
-    @ManyToOne
-    @JoinColumn(name = "PERSON_PERS_ID", nullable = false)
-    private Person person;
+	//bi-directional many-to-one association to Person
+	@ManyToOne
+	@JoinColumn(name="PERSON_PERS_ID")
+	private Person person;
 
-    //bi-directional many-to-one association to CurriculumPdf
-    @OneToMany(mappedBy = "curriculum")
-    private List<CurriculumPdf> curriculumPdfs;
+	//bi-directional many-to-one association to CurriculumPdf
+	@OneToMany(mappedBy="curriculum")
+	private List<CurriculumPdf> curriculumPdfs;
 
-    //bi-directional many-to-one association to Skill
-    @OneToMany(mappedBy = "curriculum")
-    private List<Skill> skills;
+	//bi-directional many-to-one association to Person
+	@OneToMany(mappedBy="curriculum")
+	private List<Person> persons;
 
-    public Curriculum() {
-    }
+	//bi-directional many-to-one association to Skill
+	@OneToMany(mappedBy="curriculum")
+	private List<Skill> skills;
 
-    public long getCurrId() {
-        return this.currId;
-    }
+	public Curriculum() {
+	}
 
-    public void setCurrId(long currId) {
-        this.currId = currId;
-    }
+	public long getCurrId() {
+		return this.currId;
+	}
 
-    public String getCurrCity() {
-        return this.currCity;
-    }
+	public void setCurrId(long currId) {
+		this.currId = currId;
+	}
 
-    public void setCurrCity(String currCity) {
-        this.currCity = currCity;
-    }
+	public Date getCurrCreateDate() {
+		return this.currCreateDate;
+	}
 
-    public Date getCurrCreateDate() {
-        return this.currCreateDate;
-    }
+	public void setCurrCreateDate(Date currCreateDate) {
+		this.currCreateDate = currCreateDate;
+	}
 
-    public void setCurrCreateDate(Date currCreateDate) {
-        this.currCreateDate = currCreateDate;
-    }
+	public BigDecimal getCurrExperience() {
+		return this.currExperience;
+	}
 
-    public String getCurrExperience() {
-        return this.currExperience;
-    }
+	public void setCurrExperience(BigDecimal currExperience) {
+		this.currExperience = currExperience;
+	}
 
-    public void setCurrExperience(String currExperience) {
-        this.currExperience = currExperience;
-    }
+	public BigDecimal getCurrSalary() {
+		return this.currSalary;
+	}
 
-    public BigDecimal getCurrSalary() {
-        return this.currSalary;
-    }
+	public void setCurrSalary(BigDecimal currSalary) {
+		this.currSalary = currSalary;
+	}
 
-    public void setCurrSalary(BigDecimal currSalary) {
-        this.currSalary = currSalary;
-    }
+	public List<Academicstudy> getAcademicstudies() {
+		return this.academicstudies;
+	}
 
-    public List<Career> getCareers() {
-        return this.careers;
-    }
+	public void setAcademicstudies(List<Academicstudy> academicstudies) {
+		this.academicstudies = academicstudies;
+	}
 
-    public void setCareers(List<Career> careers) {
-        this.careers = careers;
-    }
+	public Academicstudy addAcademicstudy(Academicstudy academicstudy) {
+		getAcademicstudies().add(academicstudy);
+		academicstudy.setCurriculum(this);
 
-    public Company getCompany() {
-        return this.company;
-    }
+		return academicstudy;
+	}
 
-    public void setCompany(Company company) {
-        this.company = company;
-    }
+	public Academicstudy removeAcademicstudy(Academicstudy academicstudy) {
+		getAcademicstudies().remove(academicstudy);
+		academicstudy.setCurriculum(null);
 
-    public CurriculumPdf getCurriculumPdf() {
-        return this.curriculumPdf;
-    }
+		return academicstudy;
+	}
 
-    public void setCurriculumPdf(CurriculumPdf curriculumPdf) {
-        this.curriculumPdf = curriculumPdf;
-    }
+	public List<Career> getCareers() {
+		return this.careers;
+	}
 
-    public Person getPerson() {
-        return this.person;
-    }
+	public void setCareers(List<Career> careers) {
+		this.careers = careers;
+	}
 
-    public void setPerson(Person person) {
-        this.person = person;
-    }
+	public Company getCompany() {
+		return this.company;
+	}
 
-    public List<CurriculumPdf> getCurriculumPdfs() {
-        return this.curriculumPdfs;
-    }
+	public void setCompany(Company company) {
+		this.company = company;
+	}
 
-    public void setCurriculumPdfs(List<CurriculumPdf> curriculumPdfs) {
-        this.curriculumPdfs = curriculumPdfs;
-    }
+	public CurriculumPdf getCurriculumPdf() {
+		return this.curriculumPdf;
+	}
 
-    public CurriculumPdf addCurriculumPdf(CurriculumPdf curriculumPdf) {
-        getCurriculumPdfs().add(curriculumPdf);
-        curriculumPdf.setCurriculum(this);
+	public void setCurriculumPdf(CurriculumPdf curriculumPdf) {
+		this.curriculumPdf = curriculumPdf;
+	}
 
-        return curriculumPdf;
-    }
+	public Person getPerson() {
+		return this.person;
+	}
 
-    public CurriculumPdf removeCurriculumPdf(CurriculumPdf curriculumPdf) {
-        getCurriculumPdfs().remove(curriculumPdf);
-        curriculumPdf.setCurriculum(null);
+	public void setPerson(Person person) {
+		this.person = person;
+	}
 
-        return curriculumPdf;
-    }
+	public List<CurriculumPdf> getCurriculumPdfs() {
+		return this.curriculumPdfs;
+	}
 
-    public List<Skill> getSkills() {
-        return this.skills;
-    }
+	public void setCurriculumPdfs(List<CurriculumPdf> curriculumPdfs) {
+		this.curriculumPdfs = curriculumPdfs;
+	}
 
-    public void setSkills(List<Skill> skills) {
-        this.skills = skills;
-    }
+	public CurriculumPdf addCurriculumPdf(CurriculumPdf curriculumPdf) {
+		getCurriculumPdfs().add(curriculumPdf);
+		curriculumPdf.setCurriculum(this);
 
-    public Skill addSkill(Skill skill) {
-        getSkills().add(skill);
-        skill.setCurriculum(this);
+		return curriculumPdf;
+	}
 
-        return skill;
-    }
+	public CurriculumPdf removeCurriculumPdf(CurriculumPdf curriculumPdf) {
+		getCurriculumPdfs().remove(curriculumPdf);
+		curriculumPdf.setCurriculum(null);
 
-    public Skill removeSkill(Skill skill) {
-        getSkills().remove(skill);
-        skill.setCurriculum(null);
+		return curriculumPdf;
+	}
 
-        return skill;
-    }
+	public List<Person> getPersons() {
+		return this.persons;
+	}
+
+	public void setPersons(List<Person> persons) {
+		this.persons = persons;
+	}
+
+	public Person addPerson(Person person) {
+		getPersons().add(person);
+		person.setCurriculum(this);
+
+		return person;
+	}
+
+	public Person removePerson(Person person) {
+		getPersons().remove(person);
+		person.setCurriculum(null);
+
+		return person;
+	}
+
+	public List<Skill> getSkills() {
+		return this.skills;
+	}
+
+	public void setSkills(List<Skill> skills) {
+		this.skills = skills;
+	}
+
+	public Skill addSkill(Skill skill) {
+		getSkills().add(skill);
+		skill.setCurriculum(this);
+
+		return skill;
+	}
+
+	public Skill removeSkill(Skill skill) {
+		getSkills().remove(skill);
+		skill.setCurriculum(null);
+
+		return skill;
+	}
 
 }

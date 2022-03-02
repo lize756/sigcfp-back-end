@@ -1,80 +1,95 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities;
 
-import javax.persistence.*;
 import java.io.Serializable;
+import javax.persistence.*;
 import java.util.List;
 
 
 /**
  * The persistent class for the CAREER database table.
+ * 
  */
 @Entity
-@Table(name = "CAREER")
-@NamedQuery(name = "Career.findAll", query = "SELECT c FROM Career c")
+@Table(name="CAREER")
+@NamedQuery(name="Career.findAll", query="SELECT c FROM Career c")
 public class Career implements Serializable {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CARE_ID", unique = true, nullable = false, precision = 10)
-    private long careId;
+	@Id
+	@SequenceGenerator(name="CAREER_CAREID_GENERATOR" )
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CAREER_CAREID_GENERATOR")
+	@Column(name="CARE_ID", unique=true, nullable=false, precision=10)
+	private long careId;
 
-    @Column(name = "CARE_FACULTY", length = 255)
-    private String careFaculty;
+	@Column(name="CARE_DESCRIPTION", length=1000)
+	private String careDescription;
 
-    @Column(name = "CARE_NAME", nullable = false, length = 255)
-    private String careName;
+	@Column(name="CARE_NAME", nullable=false, length=255)
+	private String careName;
 
-    //bi-directional many-to-one association to InternRequest
-    @ManyToOne
-    @JoinColumn(name = "INTERN_REQUEST_INTE_REQU_ID")
-    private InternRequest internRequest;
+	//bi-directional many-to-one association to Faculty
+	@ManyToOne
+	@JoinColumn(name="FACULTY_FACU_ID")
+	private Faculty faculty;
 
-    //bi-directional many-to-many association to Curriculum
-    @ManyToMany(mappedBy = "careers")
-    private List<Curriculum> curriculums;
+	//bi-directional many-to-one association to InternRequest
+	@ManyToOne
+	@JoinColumn(name="INTERN_REQUEST_INTE_REQU_ID")
+	private InternRequest internRequest;
 
-    public Career() {
-    }
+	//bi-directional many-to-many association to Curriculum
+	@ManyToMany(mappedBy="careers")
+	private List<Curriculum> curriculums;
 
-    public long getCareId() {
-        return this.careId;
-    }
+	public Career() {
+	}
 
-    public void setCareId(long careId) {
-        this.careId = careId;
-    }
+	public long getCareId() {
+		return this.careId;
+	}
 
-    public String getCareFaculty() {
-        return this.careFaculty;
-    }
+	public void setCareId(long careId) {
+		this.careId = careId;
+	}
 
-    public void setCareFaculty(String careFaculty) {
-        this.careFaculty = careFaculty;
-    }
+	public String getCareDescription() {
+		return this.careDescription;
+	}
 
-    public String getCareName() {
-        return this.careName;
-    }
+	public void setCareDescription(String careDescription) {
+		this.careDescription = careDescription;
+	}
 
-    public void setCareName(String careName) {
-        this.careName = careName;
-    }
+	public String getCareName() {
+		return this.careName;
+	}
 
-    public InternRequest getInternRequest() {
-        return this.internRequest;
-    }
+	public void setCareName(String careName) {
+		this.careName = careName;
+	}
 
-    public void setInternRequest(InternRequest internRequest) {
-        this.internRequest = internRequest;
-    }
+	public Faculty getFaculty() {
+		return this.faculty;
+	}
 
-    public List<Curriculum> getCurriculums() {
-        return this.curriculums;
-    }
+	public void setFaculty(Faculty faculty) {
+		this.faculty = faculty;
+	}
 
-    public void setCurriculums(List<Curriculum> curriculums) {
-        this.curriculums = curriculums;
-    }
+	public InternRequest getInternRequest() {
+		return this.internRequest;
+	}
+
+	public void setInternRequest(InternRequest internRequest) {
+		this.internRequest = internRequest;
+	}
+
+	public List<Curriculum> getCurriculums() {
+		return this.curriculums;
+	}
+
+	public void setCurriculums(List<Curriculum> curriculums) {
+		this.curriculums = curriculums;
+	}
 
 }

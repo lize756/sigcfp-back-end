@@ -5,8 +5,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
-public interface ITriggerrRepo extends CrudRepository<Triggerr, Long> {
+public interface ITriggerrRepo extends JpaRepository<Triggerr, Long> {
     List<Triggerr> findAll();
 }

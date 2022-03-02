@@ -1,70 +1,58 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities;
 
-import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+import javax.persistence.*;
 
 
 /**
  * The persistent class for the NOTI_TYPE database table.
+ * 
  */
 @Entity
-@Table(name = "NOTI_TYPE")
-@NamedQuery(name = "NotiType.findAll", query = "SELECT n FROM NotiType n")
+@Table(name="NOTI_TYPE")
+@NamedQuery(name="NotiType.findAll", query="SELECT n FROM NotiType n")
 public class NotiType implements Serializable {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "NOTI_TYPE_ID", unique = true, nullable = false)
-    private long notiTypeId;
+	@Id
+	@SequenceGenerator(name="NOTI_TYPE_NOTITYPEID_GENERATOR" )
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="NOTI_TYPE_NOTITYPEID_GENERATOR")
+	@Column(name="NOTI_TYPE_ID", unique=true, nullable=false, precision=10)
+	private long notiTypeId;
 
-    @Column(name = "NOTI_TYPE_NAME", nullable = false, length = 255)
-    private String notiTypeName;
+	@Column(name="NOTI_TYPE_NAME", nullable=false, length=255)
+	private String notiTypeName;
 
-    //bi-directional many-to-one association to Noti
-    @OneToMany(mappedBy = "notiType")
-    private List<Noti> notis;
+	//bi-directional many-to-one association to Noti
+	@ManyToOne
+	@JoinColumn(name="NOTI_NOTI_ID")
+	private Noti noti;
 
-    public NotiType() {
-    }
+	public NotiType() {
+	}
 
-    public long getNotiTypeId() {
-        return this.notiTypeId;
-    }
+	public long getNotiTypeId() {
+		return this.notiTypeId;
+	}
 
-    public void setNotiTypeId(long notiTypeId) {
-        this.notiTypeId = notiTypeId;
-    }
+	public void setNotiTypeId(long notiTypeId) {
+		this.notiTypeId = notiTypeId;
+	}
 
-    public String getNotiTypeName() {
-        return this.notiTypeName;
-    }
+	public String getNotiTypeName() {
+		return this.notiTypeName;
+	}
 
-    public void setNotiTypeName(String notiTypeName) {
-        this.notiTypeName = notiTypeName;
-    }
+	public void setNotiTypeName(String notiTypeName) {
+		this.notiTypeName = notiTypeName;
+	}
 
-    public List<Noti> getNotis() {
-        return this.notis;
-    }
+	public Noti getNoti() {
+		return this.noti;
+	}
 
-    public void setNotis(List<Noti> notis) {
-        this.notis = notis;
-    }
-
-    public Noti addNoti(Noti noti) {
-        getNotis().add(noti);
-        noti.setNotiType(this);
-
-        return noti;
-    }
-
-    public Noti removeNoti(Noti noti) {
-        getNotis().remove(noti);
-        noti.setNotiType(null);
-
-        return noti;
-    }
+	public void setNoti(Noti noti) {
+		this.noti = noti;
+	}
 
 }

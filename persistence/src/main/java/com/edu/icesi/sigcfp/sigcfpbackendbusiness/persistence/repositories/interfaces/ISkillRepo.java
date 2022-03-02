@@ -5,8 +5,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
-public interface ISkillRepo extends CrudRepository<Skill, Long> {
+public interface ISkillRepo extends JpaRepository<Skill, Long> {
     List<Skill> findAll();
 }

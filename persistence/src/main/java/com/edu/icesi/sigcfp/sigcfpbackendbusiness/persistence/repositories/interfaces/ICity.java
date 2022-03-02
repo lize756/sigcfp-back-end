@@ -1,14 +1,12 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Career;
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.City;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public interface ICareerRepo extends JpaRepository<Career, Long> {
-    List<Career> findAll();
+public interface ICity extends JpaRepository<City,Long> {
+    List<City> findAll();
 }

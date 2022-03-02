@@ -5,8 +5,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
-public interface INotiTypeRepo extends CrudRepository<NotiType, Long> {
+public interface INotiTypeRepo extends JpaRepository<NotiType, Long> {
     List<NotiType> findAll();
 }

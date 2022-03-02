@@ -5,8 +5,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
-public interface IPermmissionRepo extends CrudRepository<Permmission, Long> {
+public interface IPermmissionRepo extends JpaRepository<Permmission, Long> {
     List<Permmission> findAll();
 }

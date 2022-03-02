@@ -5,8 +5,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
-public interface IUserrRepo extends CrudRepository<Userr, Long> {
+public interface IUserrRepo extends JpaRepository<Userr, Long> {
     List<Userr> findAll();
 }
