@@ -9,5 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
 public interface IPermmissionRepo extends JpaRepository<Permmission, Long> {
+    @Override
     List<Permmission> findAll();
 }

@@ -9,5 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
 public interface ITriggerrRepo extends JpaRepository<Triggerr, Long> {
+    @Override
     List<Triggerr> findAll();
 }

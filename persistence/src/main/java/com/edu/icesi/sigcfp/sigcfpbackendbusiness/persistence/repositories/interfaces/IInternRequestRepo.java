@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 @Repository
 public interface IInternRequestRepo extends JpaRepository<InternRequest, Long> {
 
+    @Override
     List<InternRequest> findAll();
-
     List<InternRequest> findInternRequestsByInteRequIsinprocess(String isInProcess);
 }

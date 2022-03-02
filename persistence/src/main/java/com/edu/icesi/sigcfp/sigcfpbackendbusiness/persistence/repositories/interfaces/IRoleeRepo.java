@@ -9,5 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
 public interface IRoleeRepo extends JpaRepository<Rolee, Long> {
+    @Override
     List<Rolee> findAll();
 }

@@ -7,5 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface IAcademicstudyRepo extends JpaRepository<Academicstudy, Long> {
+    @Override
     List<Academicstudy> findAll();
 }

@@ -10,5 +10,6 @@ import java.util.List;
 
 @Repository
 public interface ICareerRepo extends JpaRepository<Career, Long> {
+    @Override
     List<Career> findAll();
 }

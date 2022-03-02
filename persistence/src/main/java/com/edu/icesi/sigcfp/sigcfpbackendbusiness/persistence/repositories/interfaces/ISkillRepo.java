@@ -9,5 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
 public interface ISkillRepo extends JpaRepository<Skill, Long> {
+    @Override
     List<Skill> findAll();
 }

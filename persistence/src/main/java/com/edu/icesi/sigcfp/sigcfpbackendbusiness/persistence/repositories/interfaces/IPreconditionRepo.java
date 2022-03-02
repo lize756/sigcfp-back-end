@@ -9,5 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
 public interface IPreconditionRepo extends JpaRepository<Precondition, Long> {
+    @Override
     List<Precondition> findAll();
 }

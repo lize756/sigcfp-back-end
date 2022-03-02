@@ -9,5 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ICompanyRepo extends JpaRepository<Company, Long> {
+    @Override
     List<Company> findAll();
 }

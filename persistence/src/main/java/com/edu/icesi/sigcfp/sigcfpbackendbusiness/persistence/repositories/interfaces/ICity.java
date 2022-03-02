@@ -8,5 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ICity extends JpaRepository<City,Long> {
+    @Override
     List<City> findAll();
 }

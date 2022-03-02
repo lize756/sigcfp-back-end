@@ -9,5 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
 public interface ICurriculumRepo extends JpaRepository<Curriculum, Long> {
+    @Override
     List<Curriculum> findAll();
 }

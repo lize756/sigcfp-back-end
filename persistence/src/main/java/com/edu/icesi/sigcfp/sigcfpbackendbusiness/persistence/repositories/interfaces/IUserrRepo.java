@@ -9,5 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
 public interface IUserrRepo extends JpaRepository<Userr, Long> {
+    @Override
     List<Userr> findAll();
 }

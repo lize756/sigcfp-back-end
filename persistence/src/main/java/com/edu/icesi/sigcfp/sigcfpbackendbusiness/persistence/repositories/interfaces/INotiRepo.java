@@ -9,5 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
 public interface INotiRepo extends JpaRepository<Noti, Long> {
+    @Override
     List<Noti> findAll();
 }
