@@ -1,6 +1,5 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Contact;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Ethnicgroup;
 import org.springframework.http.ResponseEntity;
 

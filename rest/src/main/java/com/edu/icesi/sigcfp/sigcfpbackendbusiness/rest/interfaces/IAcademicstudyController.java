@@ -1,7 +1,6 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Academicstudy;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Career;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

@@ -18,7 +18,7 @@ public class InternRequest implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="INTERN_REQUEST_INTEREQUID_GENERATOR" )
+	@SequenceGenerator(name="INTERN_REQUEST_INTEREQUID_GENERATOR" , sequenceName = "INTERN_REQUEST_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="INTERN_REQUEST_INTEREQUID_GENERATOR")
 	@Column(name="INTE_REQU_ID", unique=true, nullable=false, precision=10)
 	private long inteRequId;

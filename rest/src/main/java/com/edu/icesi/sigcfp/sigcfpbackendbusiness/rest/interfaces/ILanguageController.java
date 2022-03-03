@@ -1,6 +1,5 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Faculty;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Language;
 import org.springframework.http.ResponseEntity;
 

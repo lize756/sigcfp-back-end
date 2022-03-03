@@ -1,6 +1,5 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Company;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Contact;
 import org.springframework.http.ResponseEntity;
 

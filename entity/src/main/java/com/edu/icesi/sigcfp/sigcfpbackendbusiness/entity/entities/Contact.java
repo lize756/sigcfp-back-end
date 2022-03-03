@@ -26,7 +26,7 @@ public class Contact implements Serializable {
 	@Column(name="CONT_NAME", nullable=false, length=255)
 	private String contName;
 
-	@Column(name="CONT_PHONE", length=10)
+	@Column(name="CONT_PHONE", length=20)
 	private String contPhone;
 
 	@Column(name="CONT_POSITION", nullable=false, length=255)

@@ -1,7 +1,7 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Career;
-import org.springframework.stereotype.Service;
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.exceptions.ExistException;
 
 import java.util.List;
 

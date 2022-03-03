@@ -1,6 +1,5 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Faculty;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Language;
 
 import java.util.List;

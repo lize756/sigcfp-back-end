@@ -1,7 +1,6 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Academicstudy;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Career;
 
 import java.util.List;
 

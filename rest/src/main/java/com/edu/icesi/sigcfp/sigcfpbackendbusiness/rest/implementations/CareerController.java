@@ -1,6 +1,7 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.implementations;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Career;
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.exceptions.ExistException;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.ICareerService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.ICareerController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/careers")
+@RestController()
+@RequestMapping("/careers")
 @CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class CareerController implements ICareerController {
@@ -25,7 +27,7 @@ public class CareerController implements ICareerController {
     @Override
     @PostMapping("/add")
     public ResponseEntity<Career> addCareer(@RequestBody Career career) {
-        return new ResponseEntity<Career>(iCareerService.addCareer(career), HttpStatus.CREATED);
+            return new ResponseEntity<Career>(iCareerService.addCareer(career), HttpStatus.CREATED);
     }
 
     @Override
@@ -47,7 +49,7 @@ public class CareerController implements ICareerController {
     }
 
     @Override
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<List<Career>> getCareers() {
         return new ResponseEntity<List<Career>>(iCareerService.careers(), HttpStatus.OK);
     }
