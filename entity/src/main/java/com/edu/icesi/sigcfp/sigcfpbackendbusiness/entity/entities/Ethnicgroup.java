@@ -15,7 +15,7 @@ public class Ethnicgroup implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="ETHNICGROUP_ETGRID_GENERATOR" )
+	@SequenceGenerator(name="ETHNICGROUP_ETGRID_GENERATOR", sequenceName = "ETHNICGROUP_SEQ", allocationSize = 1  )
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ETHNICGROUP_ETGRID_GENERATOR")
 	@Column(name="ETGR_ID", unique=true, nullable=false, precision=10)
 	private long etgrId;

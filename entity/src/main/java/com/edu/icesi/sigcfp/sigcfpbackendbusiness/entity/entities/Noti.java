@@ -17,7 +17,7 @@ public class Noti implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="NOTI_NOTIID_GENERATOR" )
+	@SequenceGenerator(name="NOTI_NOTIID_GENERATOR", sequenceName = "NOTI_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="NOTI_NOTIID_GENERATOR")
 	@Column(name="NOTI_ID", unique=true, nullable=false, precision=10)
 	private long notiId;

@@ -16,7 +16,7 @@ public class Person implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="PERSON_PERSID_GENERATOR" )
+	@SequenceGenerator(name="PERSON_PERSID_GENERATOR", sequenceName = "PERSON_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="PERSON_PERSID_GENERATOR")
 	@Column(name="PERS_ID", unique=true, nullable=false, precision=10)
 	private long persId;

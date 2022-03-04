@@ -16,7 +16,7 @@ public class Academicstudy implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="ACADEMICSTUDY_ACADSTUDID_GENERATOR" ,sequenceName = "ACADEMY_SEQ", allocationSize = 1)
+	@SequenceGenerator(name="ACADEMICSTUDY_ACADSTUDID_GENERATOR" ,sequenceName = "ACADEMICSTUDY_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ACADEMICSTUDY_ACADSTUDID_GENERATOR")
 	@Column(name="ACAD_STUD_ID", unique=true, nullable=false, precision=10)
 	private long acadStudId;

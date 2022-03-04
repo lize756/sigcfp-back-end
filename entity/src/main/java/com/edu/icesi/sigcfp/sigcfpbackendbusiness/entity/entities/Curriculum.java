@@ -18,7 +18,7 @@ public class Curriculum implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="CURRICULUM_CURRID_GENERATOR" )
+	@SequenceGenerator(name="CURRICULUM_CURRID_GENERATOR", sequenceName = "CURRICULUM_SEQ", allocationSize = 1  )
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CURRICULUM_CURRID_GENERATOR")
 	@Column(name="CURR_ID", unique=true, nullable=false, precision=10)
 	private long currId;
