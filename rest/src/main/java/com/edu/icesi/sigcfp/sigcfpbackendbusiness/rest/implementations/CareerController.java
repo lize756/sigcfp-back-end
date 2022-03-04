@@ -49,7 +49,7 @@ public class CareerController implements ICareerController {
     }
 
     @Override
-    @GetMapping("")
+    @GetMapping()
     public ResponseEntity<List<Career>> getCareers() {
         return new ResponseEntity<List<Career>>(iCareerService.careers(), HttpStatus.OK);
     }
