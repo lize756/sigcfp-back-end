@@ -10,7 +10,7 @@ public interface ICompanyService {
 
     Company addCompany(Company company);
 
-    Company updateCompany(Company company);
+    Company updateCompany(long compId, Company company);
 
     Company searchCompany(long compId);
 

@@ -1,5 +1,6 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.implementations;
 
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Company;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Contact;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.IContactService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.IContactRepo;
@@ -20,26 +21,45 @@ public class ContactService implements IContactService {
 
     @Override
     public Contact addContact(Contact contact) {
-        return null;
+        if (!iContactRepo.existsById(contact.getContId())){
+            return iContactRepo.save(contact);
+        }else {
+            return null;
+        }
     }
 
     @Override
-    public Contact updateContact(Contact contact) {
-        return null;
+    public Contact updateContact(long contId, Contact contact) {
+        if (iContactRepo.existsById(contId)){
+            return iContactRepo.save(contact);
+        }else {
+            return null;
+        }
     }
 
     @Override
     public Contact searchContact(long contId) {
-        return null;
+        if (iContactRepo.existsById(contId)){
+            return iContactRepo.getById(contId);
+        }else {
+            return null;
+        }
     }
 
     @Override
     public Contact deleteContact(long contId) {
-        return null;
+        Contact contactToDelete = null;
+        if (iContactRepo.existsById(contId)){
+            contactToDelete = iContactRepo.findById(contId).get();
+            iContactRepo.delete(iContactRepo.getById(contId));
+        }else{
+            return null;
+        }
+        return contactToDelete;
     }
 
     @Override
     public List<Contact> contacts() {
-        return null;
+        return iContactRepo.findAll();
     }
 }
