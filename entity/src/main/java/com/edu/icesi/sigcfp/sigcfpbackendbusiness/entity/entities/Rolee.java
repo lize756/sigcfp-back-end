@@ -16,7 +16,7 @@ public class Rolee implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="ROLEE_ROLEID_GENERATOR" )
+	@SequenceGenerator(name="ROLEE_ROLEID_GENERATOR", sequenceName = "ROLEE_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ROLEE_ROLEID_GENERATOR")
 	@Column(name="ROLE_ID", unique=true, nullable=false, precision=10)
 	private long roleId;

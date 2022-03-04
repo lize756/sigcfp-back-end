@@ -16,7 +16,7 @@ public class Faculty implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="FACULTY_FACUID_GENERATOR" )
+	@SequenceGenerator(name="FACULTY_FACUID_GENERATOR", sequenceName = "FACULTY_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="FACULTY_FACUID_GENERATOR")
 	@Column(name="FACU_ID", unique=true, nullable=false, precision=10)
 	private long facuId;

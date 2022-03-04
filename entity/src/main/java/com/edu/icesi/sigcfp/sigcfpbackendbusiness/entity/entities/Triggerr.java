@@ -16,7 +16,7 @@ public class Triggerr implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="TRIGGERR_TRIGID_GENERATOR" )
+	@SequenceGenerator(name="TRIGGERR_TRIGID_GENERATOR", sequenceName = "TRIGGERR_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TRIGGERR_TRIGID_GENERATOR")
 	@Column(name="TRIG_ID", unique=true, nullable=false, precision=10)
 	private long trigId;

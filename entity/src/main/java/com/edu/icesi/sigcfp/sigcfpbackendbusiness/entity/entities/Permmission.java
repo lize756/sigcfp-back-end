@@ -15,7 +15,7 @@ public class Permmission implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="PERMMISSION_PERMID_GENERATOR" )
+	@SequenceGenerator(name="PERMMISSION_PERMID_GENERATOR", sequenceName = "PERMISSION_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="PERMMISSION_PERMID_GENERATOR")
 	@Column(name="PERM_ID", unique=true, nullable=false)
 	private long permId;
