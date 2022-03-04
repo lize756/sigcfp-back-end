@@ -50,11 +50,11 @@ public class CareerService implements ICareerService {
     public Career deleteCareer(long careId) {
         Career careerToDelete = null;
         if (iCareerRepo.existsById(careId)){
-            iCareerRepo.deleteById(careId);
+            careerToDelete = iCareerRepo.findById(careId).get();
+            iCareerRepo.delete(iCareerRepo.getById(careId));
         }else{
              return null;
         }
-        careerToDelete = iCareerRepo.getById(careId);
         return careerToDelete;
     }
 
