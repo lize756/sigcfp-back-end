@@ -1,7 +1,6 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.implementations;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Career;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.exceptions.ExistException;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.ICareerService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.ICareerRepo;
 import org.springframework.beans.factory.annotation.Autowired;

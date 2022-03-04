@@ -18,15 +18,15 @@ public class AcademicstudyService implements IAcademicstudyService {
         this.iAcademicstudyRepo = iAcademicstudyRepo;
     }
 
+    
+    
+    
+    
     @Override
     public Academicstudy addAcademicstudy(Academicstudy academicstudy) {
         return null;
     }
 
-    @Override
-    public Academicstudy updateAcademicstudy(Academicstudy academicstudy) {
-        return null;
-    }
 
     @Override
     public Academicstudy searchAcademicstudy(long acadStudId) {
@@ -42,4 +42,11 @@ public class AcademicstudyService implements IAcademicstudyService {
     public List<Academicstudy> academicstudies() {
         return null;
     }
+
+	@Override
+	public Academicstudy updateAcademicstudy(Academicstudy academicstudy) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
