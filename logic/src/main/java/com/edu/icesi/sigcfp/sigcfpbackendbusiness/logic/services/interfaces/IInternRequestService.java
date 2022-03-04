@@ -7,6 +7,7 @@ import java.util.List;
 
 @Service
 public interface IInternRequestService {
+
     InternRequest addInternRequest(InternRequest internRequest);
 
     InternRequest updateInternRequest(InternRequest internRequest);

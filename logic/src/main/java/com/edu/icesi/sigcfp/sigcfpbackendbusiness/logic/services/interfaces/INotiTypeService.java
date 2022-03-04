@@ -7,6 +7,7 @@ import java.util.List;
 
 @Service
 public interface INotiTypeService {
+
     NotiType addNotiType(NotiType notiType);
 
     NotiType updateNotiType(NotiType notiType);

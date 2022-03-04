@@ -16,7 +16,7 @@ public class Career implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="CAREER_CAREID_GENERATOR" )
+	@SequenceGenerator(name="CAREER_CAREID_GENERATOR" , sequenceName = "CAREER_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CAREER_CAREID_GENERATOR")
 	@Column(name="CARE_ID", unique=true, nullable=false, precision=10)
 	private long careId;

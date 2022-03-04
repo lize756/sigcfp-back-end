@@ -16,7 +16,7 @@ public class Company implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="COMPANY_COMPID_GENERATOR" )
+	@SequenceGenerator(name="COMPANY_COMPID_GENERATOR", sequenceName = "COMPANY_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="COMPANY_COMPID_GENERATOR")
 	@Column(name="COMP_ID", unique=true, nullable=false, precision=10)
 	private long compId;
