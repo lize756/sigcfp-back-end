@@ -18,13 +18,14 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Academicstudy;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.IAcademicstudyService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.IAcademicstudyController;
 
+
 @RestController()
 @RequestMapping("/academicStudy")
 @CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class AcademicStudyController implements IAcademicstudyController {
 
-	IAcademicstudyService iAcademicstudyService;
+	private IAcademicstudyService iAcademicstudyService;
 
 	@Autowired
 	public AcademicStudyController(IAcademicstudyService iAcademicstudyService) {
@@ -69,7 +70,7 @@ public class AcademicStudyController implements IAcademicstudyController {
 
 	@Override
 	@DeleteMapping("/{acadStudId}")
-	public ResponseEntity<Academicstudy> deleteAcademicstudy(@PathVariable("acadStudId") long acadStudId) {
+	public ResponseEntity<HttpStatus> deleteAcademicstudy(@PathVariable("acadStudId") long acadStudId) {
 		try {
 			iAcademicstudyService.deleteAcademicstudy(acadStudId);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
