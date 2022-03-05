@@ -8,7 +8,7 @@ public interface IEthnicgroupService {
 
     Ethnicgroup addEthnicgroup(Ethnicgroup ethnicgroup);
 
-    Ethnicgroup updateEthnicgroup(Ethnicgroup ethnicgroup);
+    Ethnicgroup updateEthnicgroup(long etgrId, Ethnicgroup ethnicgroup);
 
     Ethnicgroup searchEthnicgroup(long etgrId);
 

@@ -9,7 +9,7 @@ public interface IFacultyController {
 
     ResponseEntity<Faculty> addFaculty(Faculty faculty);
 
-    ResponseEntity<Faculty> updateFaculty( long facuId, Faculty faculty);
+    ResponseEntity<Faculty> updateFaculty(long facuId, Faculty faculty);
 
     ResponseEntity<Faculty> getFaculty(long facuId);
 

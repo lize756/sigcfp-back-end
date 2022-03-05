@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 
-public interface IContactRepo extends JpaRepository<Contact,Long> {
+public interface IContactRepo extends JpaRepository<Contact, Long> {
     @Override
     List<Contact> findAll();
 }

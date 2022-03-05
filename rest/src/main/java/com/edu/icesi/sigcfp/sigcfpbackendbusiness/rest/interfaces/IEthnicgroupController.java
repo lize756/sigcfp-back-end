@@ -9,7 +9,7 @@ public interface IEthnicgroupController {
 
     ResponseEntity<Ethnicgroup> addEthnicgroup(Ethnicgroup ethnicgroup);
 
-    ResponseEntity<Ethnicgroup> updateEthnicgroup( long etgrId, Ethnicgroup contact);
+    ResponseEntity<Ethnicgroup> updateEthnicgroup(long etgrId, Ethnicgroup contact);
 
     ResponseEntity<Ethnicgroup> getEthnicgroup(long etgrId);
 

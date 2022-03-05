@@ -1,6 +1,6 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.exceptions;
 
-public class BadRequestException extends Exception{
+public class BadRequestException extends Exception {
     /**
      * Constructs a new exception with the specified detail message.  The
      * cause is not initialized, and may subsequently be initialized by

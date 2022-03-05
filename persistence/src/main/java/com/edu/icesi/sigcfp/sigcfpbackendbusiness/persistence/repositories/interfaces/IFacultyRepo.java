@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface IFacultyRepo extends JpaRepository<Faculty,Long> {
+public interface IFacultyRepo extends JpaRepository<Faculty, Long> {
     @Override
     List<Faculty> findAll();
 }
