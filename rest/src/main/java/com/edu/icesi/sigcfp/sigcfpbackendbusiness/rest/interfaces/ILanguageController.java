@@ -9,7 +9,7 @@ public interface ILanguageController {
 
     ResponseEntity<Language> addLanguage(Language language);
 
-    ResponseEntity<Language> updateLanguage( long languId, Language language);
+    ResponseEntity<Language> updateLanguage(long languId, Language language);
 
     ResponseEntity<Language> getLanguage(long languId);
 

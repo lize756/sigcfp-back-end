@@ -6,6 +6,7 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.inter
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -14,32 +15,56 @@ public class CityService implements ICityService {
     ICityRepo iCityRepo;
 
     @Autowired
-    public CityService(ICityRepo iCityRepo){
+    public CityService(ICityRepo iCityRepo) {
         this.iCityRepo = iCityRepo;
     }
 
     @Override
+    @Transactional
     public City addCity(City city) {
-        return null;
+        if (!iCityRepo.existsById(city.getCityId())) {
+            return iCityRepo.save(city);
+        } else {
+            return null;
+        }
     }
 
     @Override
-    public City updateCity(City city) {
-        return null;
+    @Transactional
+    public City updateCity(long cityId, City city) {
+        if (iCityRepo.existsById(cityId)) {
+            return iCityRepo.save(city);
+        } else {
+            return null;
+        }
     }
 
     @Override
+    @Transactional
     public City searchCity(long cityId) {
-        return null;
+        if (iCityRepo.existsById(cityId)) {
+            return iCityRepo.getById(cityId);
+        } else {
+            return null;
+        }
     }
 
     @Override
+    @Transactional
     public City deleteCity(long cityId) {
-        return null;
+        City cityToDelete = null;
+        if (iCityRepo.existsById(cityId)) {
+            cityToDelete = iCityRepo.findById(cityId).get();
+            iCityRepo.delete(iCityRepo.getById(cityId));
+        } else {
+            return null;
+        }
+        return cityToDelete;
     }
 
     @Override
+    @Transactional
     public List<City> cities() {
-        return null;
+        return iCityRepo.findAll();
     }
 }

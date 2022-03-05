@@ -2,7 +2,6 @@ package com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.inte
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Career;
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

@@ -10,7 +10,7 @@ public interface INotiService {
 
     Noti addNoti(Noti noti);
 
-    Noti updateNoti(Noti noti);
+    Noti updateNoti(long notiId, Noti noti);
 
     Noti searchNoti(long notiId);
 

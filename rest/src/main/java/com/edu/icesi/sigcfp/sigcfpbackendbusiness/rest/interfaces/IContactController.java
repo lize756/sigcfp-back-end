@@ -9,7 +9,7 @@ public interface IContactController {
 
     ResponseEntity<Contact> addContact(Contact contact);
 
-    ResponseEntity<Contact> updateContact( long contId, Contact contact);
+    ResponseEntity<Contact> updateContact(long contId, Contact contact);
 
     ResponseEntity<Contact> getContact(long compId);
 

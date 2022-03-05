@@ -6,6 +6,7 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.inter
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -19,27 +20,51 @@ public class EthnicgroupService implements IEthnicgroupService {
     }
 
     @Override
+    @Transactional
     public Ethnicgroup addEthnicgroup(Ethnicgroup ethnicgroup) {
-        return null;
+        if (!iEthnicgroupRepo.existsById(ethnicgroup.getEtgrId())) {
+            return iEthnicgroupRepo.save(ethnicgroup);
+        } else {
+            return null;
+        }
     }
 
     @Override
-    public Ethnicgroup updateEthnicgroup(Ethnicgroup ethnicgroup) {
-        return null;
+    @Transactional
+    public Ethnicgroup updateEthnicgroup(long etgrId, Ethnicgroup ethnicgroup) {
+        if (iEthnicgroupRepo.existsById(etgrId)) {
+            return iEthnicgroupRepo.save(ethnicgroup);
+        } else {
+            return null;
+        }
     }
 
     @Override
+    @Transactional
     public Ethnicgroup searchEthnicgroup(long etgrId) {
-        return null;
+        if (iEthnicgroupRepo.existsById(etgrId)) {
+            return iEthnicgroupRepo.getById(etgrId);
+        } else {
+            return null;
+        }
     }
 
     @Override
+    @Transactional
     public Ethnicgroup deleteEthnicgroup(long etgrId) {
-        return null;
+        Ethnicgroup ethnicgroupToDelete = null;
+        if (iEthnicgroupRepo.existsById(etgrId)) {
+            ethnicgroupToDelete = iEthnicgroupRepo.findById(etgrId).get();
+            iEthnicgroupRepo.delete(iEthnicgroupRepo.getById(etgrId));
+        } else {
+            return null;
+        }
+        return ethnicgroupToDelete;
     }
 
     @Override
+    @Transactional
     public List<Ethnicgroup> ethnicgroups() {
-        return null;
+        return iEthnicgroupRepo.findAll();
     }
 }

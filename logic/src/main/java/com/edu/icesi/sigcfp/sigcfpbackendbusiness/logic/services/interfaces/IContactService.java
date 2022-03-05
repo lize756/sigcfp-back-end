@@ -8,7 +8,7 @@ public interface IContactService {
 
     Contact addContact(Contact contact);
 
-    Contact updateContact(Contact contact);
+    Contact updateContact(long contId, Contact contact);
 
     Contact searchContact(long contId);
 

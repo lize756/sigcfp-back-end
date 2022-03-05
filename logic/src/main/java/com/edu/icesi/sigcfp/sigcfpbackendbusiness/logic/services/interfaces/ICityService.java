@@ -8,7 +8,7 @@ public interface ICityService {
 
     City addCity(City city);
 
-    City updateCity(City city);
+    City updateCity(long cityId, City city);
 
     City searchCity(long cityId);
 
