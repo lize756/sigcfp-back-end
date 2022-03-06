@@ -31,12 +31,8 @@ public class CityService implements ICityService {
 
     @Override
     @Transactional
-    public City updateCity(long cityId, City city) {
-        if (iCityRepo.existsById(cityId)) {
-            return iCityRepo.save(city);
-        } else {
-            return null;
-        }
+    public City updateCity(City city) {
+    	return iCityRepo.save(city);
     }
 
     @Override

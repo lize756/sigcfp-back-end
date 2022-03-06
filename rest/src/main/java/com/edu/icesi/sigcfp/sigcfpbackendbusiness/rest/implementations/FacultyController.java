@@ -44,11 +44,10 @@ public class FacultyController implements IFacultyController {
 
 	@Override
 	@PutMapping("/update/{facuId}")
-	public ResponseEntity<Faculty> updateFaculty(@PathVariable("facuId") long facuId) {
+	public ResponseEntity<Faculty> updateFaculty(@PathVariable("facuId") long facuId,@RequestBody Faculty faculty) {
 		Optional<Faculty> facultyOpt = Optional.of(iFacultyService.searchFaculty(facuId));
 		if (facultyOpt.isPresent()) {
-			Faculty _faculty = facultyOpt.get();
-			return new ResponseEntity<>(iFacultyService.updateFaculty(_faculty), HttpStatus.OK);
+			return new ResponseEntity<>(iFacultyService.updateFaculty(faculty), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}

@@ -8,7 +8,7 @@ public interface ILanguageService {
 
     Language addLanguage(Language language);
 
-    Language updateLanguage(long languId, Language language);
+    Language updateLanguage(Language language);
 
     Language searchLanguage(long languId);
 

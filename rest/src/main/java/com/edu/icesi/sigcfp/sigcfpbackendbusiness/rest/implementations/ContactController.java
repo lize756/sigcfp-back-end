@@ -46,7 +46,7 @@ public class ContactController implements IContactController {
 
 	@Override
 	@PutMapping("/update/{contId}")
-	public ResponseEntity<Contact> updateContact(@PathVariable("contId") long contId) {
+	public ResponseEntity<Contact> updateContact(@PathVariable("contId") long contId, @RequestBody Contact contact) {
 		Optional<Contact> contactOpt = Optional.of(iContactService.searchContact(contId));
 		if (contactOpt.isPresent()) {
 			Contact _contact = contactOpt.get();

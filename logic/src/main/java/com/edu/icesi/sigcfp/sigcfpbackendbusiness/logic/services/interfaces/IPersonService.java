@@ -10,7 +10,7 @@ public interface IPersonService {
 
     Person addPerson(Person person);
 
-    Person updatePerson(long persId, Person person);
+    Person updatePerson(Person person);
 
     Person searchPerson(long persId);
 

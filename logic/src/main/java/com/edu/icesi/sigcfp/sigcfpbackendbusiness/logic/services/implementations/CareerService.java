@@ -31,12 +31,8 @@ public class CareerService implements ICareerService {
 
     @Override
     @Transactional
-    public Career updateCareer(long careId, Career career) {
-        if (iCareerRepo.existsById(careId)) {
-            return iCareerRepo.save(career);
-        } else {
-            return null;
-        }
+    public Career updateCareer(Career career) {
+         return iCareerRepo.save(career);
     }
 
     @Override

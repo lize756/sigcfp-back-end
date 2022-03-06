@@ -46,11 +46,10 @@ public class CompanyController implements ICompanyController {
 
 	@Override
 	@PutMapping("/update/{compId}")
-	public ResponseEntity<Company> updateCompany(@PathVariable("compId") long compId) {
+	public ResponseEntity<Company> updateCompany(@PathVariable("compId") long compId, @RequestBody Company company){
 		Optional<Company> companyOpt = Optional.of(iCompanyService.searchCompany(compId));
 		if (companyOpt.isPresent()) {
-			Company _company = companyOpt.get();
-			return new ResponseEntity<>(iCompanyService.updateCompany(_company), HttpStatus.OK);
+			return new ResponseEntity<>(iCompanyService.updateCompany(company), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}

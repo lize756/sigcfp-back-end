@@ -31,12 +31,8 @@ public class EthnicgroupService implements IEthnicgroupService {
 
     @Override
     @Transactional
-    public Ethnicgroup updateEthnicgroup(long etgrId, Ethnicgroup ethnicgroup) {
-        if (iEthnicgroupRepo.existsById(etgrId)) {
+    public Ethnicgroup updateEthnicgroup(Ethnicgroup ethnicgroup) {
             return iEthnicgroupRepo.save(ethnicgroup);
-        } else {
-            return null;
-        }
     }
 
     @Override

@@ -46,11 +46,10 @@ public class EthnicgroupController implements IEthnicgroupController {
 
 	@Override
 	@PutMapping("/update/{etgrId}")
-	public ResponseEntity<Ethnicgroup> updateEthnicgroup(@PathVariable("etgrId") long etgrId) {
+	public ResponseEntity<Ethnicgroup> updateEthnicgroup(@PathVariable("etgrId") long etgrId, @RequestBody Ethnicgroup ethnicgroup) {
 		Optional<Ethnicgroup> ethnicGrouptOpt = Optional.of(iEthnicgroupService.searchEthnicgroup(etgrId));
 		if (ethnicGrouptOpt.isPresent()) {
-			Ethnicgroup _ethnicgroup = ethnicGrouptOpt.get();
-			return new ResponseEntity<>(iEthnicgroupService.updateEthnicgroup(_ethnicgroup), HttpStatus.OK);
+			return new ResponseEntity<>(iEthnicgroupService.updateEthnicgroup(ethnicgroup), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}

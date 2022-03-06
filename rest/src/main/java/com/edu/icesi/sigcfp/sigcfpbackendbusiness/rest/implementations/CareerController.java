@@ -33,7 +33,7 @@ public class CareerController implements ICareerController {
     @Override
     @PutMapping("/update")
     public ResponseEntity<Career> updateCareer(@PathVariable long careId, @RequestBody Career career) {
-        return new ResponseEntity<Career>(iCareerService.updateCareer(careId, career), HttpStatus.OK);
+        return new ResponseEntity<Career>(iCareerService.updateCareer(career), HttpStatus.OK);
     }
 
 	@Override

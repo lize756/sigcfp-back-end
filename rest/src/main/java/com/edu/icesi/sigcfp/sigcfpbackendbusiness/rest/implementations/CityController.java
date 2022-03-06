@@ -46,11 +46,10 @@ public class CityController implements ICityController {
 
 	@Override
 	@PutMapping("/update/{cityId}")
-	public ResponseEntity<City> updateCity(@PathVariable("cityId") long cityId) {
+	public ResponseEntity<City> updateCity(@PathVariable("cityId") long cityId,@RequestBody City city) {
 		Optional<City> cityOpt = Optional.of(iCityService.searchCity(cityId));
 		if (cityOpt.isPresent()) {
-			City _city = cityOpt.get();
-			return new ResponseEntity<>(iCityService.updateCity(_city), HttpStatus.OK);
+			return new ResponseEntity<>(iCityService.updateCity(city), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}

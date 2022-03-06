@@ -24,7 +24,7 @@ public interface ICareerController {
 	 * @return a responseEntity that represent the whole HTTP response: status code,
 	 *         headers, and body.
 	 */
-    ResponseEntity<Career> updateCareer(long careId);
+    ResponseEntity<Career> updateCareer(long careId, Career career);
 
     /**
 	 * Allows to obtain a career through you id.

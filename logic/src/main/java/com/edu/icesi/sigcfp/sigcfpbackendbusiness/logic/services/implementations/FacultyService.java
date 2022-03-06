@@ -31,12 +31,8 @@ public class FacultyService implements IFacultyService {
 
     @Override
     @Transactional
-    public Faculty updateFaculty(long facuId, Faculty faculty) {
-        if (iFacultyRepo.existsById(facuId)) {
+    public Faculty updateFaculty(Faculty faculty) {
             return iFacultyRepo.save(faculty);
-        } else {
-            return null;
-        }
     }
 
     @Override

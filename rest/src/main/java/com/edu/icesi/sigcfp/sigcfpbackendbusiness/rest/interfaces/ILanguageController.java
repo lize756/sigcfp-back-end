@@ -23,7 +23,7 @@ public interface ILanguageController {
    	 * @return a responseEntity that represent the whole HTTP response: status code,
    	 *         headers, and body.
    	 */
-    ResponseEntity<Language> updateLanguage( long languId);
+    ResponseEntity<Language> updateLanguage( long languId, Language language);
 
     /**
    	 * Allows to obtain a language for your id.

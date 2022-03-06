@@ -24,7 +24,7 @@ public interface IPersonController {
 	 * @return a responseEntity that represent the whole HTTP response: status code,
 	 *         headers, and body.
 	 */
-    ResponseEntity<Person> updatePerson(long persId);
+    ResponseEntity<Person> updatePerson(long persId, Person person);
     
     /**
 	 * Allows to obtain a person through you id.

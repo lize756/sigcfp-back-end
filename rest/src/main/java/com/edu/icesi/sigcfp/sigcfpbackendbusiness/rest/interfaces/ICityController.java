@@ -21,7 +21,7 @@ public interface ICityController {
 	 * @param cityId cityId to update.
 	 * @return a responseEntity that represent the whole HTTP response: status code, headers, and body. 
 	 */
-    ResponseEntity<City> updateCity(long cityId);
+    ResponseEntity<City> updateCity(long cityId,City city);
 
     /**
      * Allows to obtain a city through you id.

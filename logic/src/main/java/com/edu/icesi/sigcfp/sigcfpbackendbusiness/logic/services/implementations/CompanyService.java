@@ -31,12 +31,8 @@ public class CompanyService implements ICompanyService {
 
     @Override
     @Transactional
-    public Company updateCompany(long compId, Company company) {
-        if (iCompanyRepo.existsById(compId)) {
-            return iCompanyRepo.save(company);
-        } else {
-            return null;
-        }
+    public Company updateCompany(Company company) {
+         return iCompanyRepo.save(company);
     }
 
     @Override

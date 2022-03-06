@@ -47,11 +47,10 @@ public class PersonController implements IPersonController {
 
 	@Override
 	@PutMapping("/update/{persId}")
-	public ResponseEntity<Person> updatePerson(@PathVariable("persId") long persId) {
+	public ResponseEntity<Person> updatePerson(@PathVariable("persId") long persId,@RequestBody Person person) {
 		Optional<Person> personOptional = Optional.of(iPersonService.searchPerson(persId));
 		if (personOptional.isPresent()) {
-			Person _person = personOptional.get();
-			return new ResponseEntity<>(iPersonService.updatePerson(_person), HttpStatus.OK);
+			return new ResponseEntity<>(iPersonService.updatePerson(person), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}

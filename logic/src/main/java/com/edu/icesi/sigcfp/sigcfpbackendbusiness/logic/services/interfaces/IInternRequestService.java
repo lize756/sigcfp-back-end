@@ -10,7 +10,7 @@ public interface IInternRequestService {
 
     InternRequest addInternRequest(InternRequest internRequest);
 
-    InternRequest updateInternRequest(long inteRequId, InternRequest internRequest);
+    InternRequest updateInternRequest(InternRequest internRequest);
 
     InternRequest searchInternRequest(long inteRequId);
 

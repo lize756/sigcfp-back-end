@@ -47,11 +47,10 @@ public class LanguageController implements ILanguageController {
 
 	@Override
 	@PutMapping("/update/{languId}")
-	public ResponseEntity<Language> updateLanguage(@PathVariable("languId") long languId) {
+	public ResponseEntity<Language> updateLanguage(@PathVariable("languId") long languId,@RequestBody Language language) {
 		Optional<Language> languageOptional = Optional.of(ilanguageService.searchLanguage(languId));
 		if (languageOptional.isPresent()) {
-			Language _language = languageOptional.get();
-			return new ResponseEntity<>(ilanguageService.updateLanguage(_language), HttpStatus.OK);
+			return new ResponseEntity<>(ilanguageService.updateLanguage(language), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}

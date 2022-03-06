@@ -24,7 +24,7 @@ public interface IInternRequestController {
 	 * @return a responseEntity that represent the whole HTTP response: status code,
 	 *         headers, and body.
 	 */
-    ResponseEntity<InternRequest> updateInternRequest(long inteRequId);
+    ResponseEntity<InternRequest> updateInternRequest(long inteRequId,InternRequest internRequest);
 
     /**
 	 * Allows to obtain a intern request you id.

@@ -25,7 +25,7 @@ public interface ICompanyController {
 	 * @return a responseEntity that represent the whole HTTP response: status code,
 	 *         headers, and body.
 	 */
-	ResponseEntity<Company> updateCompany(long compId);
+	ResponseEntity<Company> updateCompany(long compId,Company company);
 
 	/**
 	 * Allows to obtain a company through you id.

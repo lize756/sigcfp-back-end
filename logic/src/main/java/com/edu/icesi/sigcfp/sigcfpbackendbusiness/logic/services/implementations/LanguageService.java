@@ -12,59 +12,55 @@ import java.util.List;
 @Service
 public class LanguageService implements ILanguageService {
 
-    ILanguageRepo iLanguageRepo;
+	ILanguageRepo iLanguageRepo;
 
-    @Autowired
-    public LanguageService(ILanguageRepo iLanguageRepo) {
-        this.iLanguageRepo = iLanguageRepo;
-    }
+	@Autowired
+	public LanguageService(ILanguageRepo iLanguageRepo) {
+		this.iLanguageRepo = iLanguageRepo;
+	}
 
-    @Override
-    @Transactional
-    public Language addLanguage(Language language) {
-        if (!iLanguageRepo.existsById(language.getLanguId())) {
-            return iLanguageRepo.save(language);
-        } else {
-            return null;
-        }
-    }
+	@Override
+	@Transactional
+	public Language addLanguage(Language language) {
+		if (!iLanguageRepo.existsById(language.getLanguId())) {
+			return iLanguageRepo.save(language);
+		} else {
+			return null;
+		}
+	}
 
-    @Override
-    @Transactional
-    public Language updateLanguage(long languId, Language language) {
-        if (iLanguageRepo.existsById(languId)) {
-            return iLanguageRepo.save(language);
-        } else {
-            return null;
-        }
-    }
+	@Override
+	@Transactional
+	public Language updateLanguage(Language language) {
+		return iLanguageRepo.save(language);
+	}
 
-    @Override
-    @Transactional
-    public Language searchLanguage(long languId) {
-        if (iLanguageRepo.existsById(languId)) {
-            return iLanguageRepo.getById(languId);
-        } else {
-            return null;
-        }
-    }
+	@Override
+	@Transactional
+	public Language searchLanguage(long languId) {
+		if (iLanguageRepo.existsById(languId)) {
+			return iLanguageRepo.getById(languId);
+		} else {
+			return null;
+		}
+	}
 
-    @Override
-    @Transactional
-    public Language deleteLanguage(long languId) {
-        Language languageToDelete = null;
-        if (iLanguageRepo.existsById(languId)) {
-            languageToDelete = iLanguageRepo.findById(languId).get();
-            iLanguageRepo.delete(iLanguageRepo.getById(languId));
-        } else {
-            return null;
-        }
-        return languageToDelete;
-    }
+	@Override
+	@Transactional
+	public Language deleteLanguage(long languId) {
+		Language languageToDelete = null;
+		if (iLanguageRepo.existsById(languId)) {
+			languageToDelete = iLanguageRepo.findById(languId).get();
+			iLanguageRepo.delete(iLanguageRepo.getById(languId));
+		} else {
+			return null;
+		}
+		return languageToDelete;
+	}
 
-    @Override
-    @Transactional
-    public List<Language> languages() {
-        return iLanguageRepo.findAll();
-    }
+	@Override
+	@Transactional
+	public List<Language> languages() {
+		return iLanguageRepo.findAll();
+	}
 }

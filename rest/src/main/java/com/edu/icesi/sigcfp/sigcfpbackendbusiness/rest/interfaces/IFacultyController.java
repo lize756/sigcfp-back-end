@@ -24,7 +24,7 @@ public interface IFacultyController {
 	 * @return a responseEntity that represent the whole HTTP response: status code,
 	 *         headers, and body.
 	 */
-	ResponseEntity<Faculty> updateFaculty(long facuId);
+	ResponseEntity<Faculty> updateFaculty(long facuId,Faculty faculty);
 
 	/**
 	 * Allows to obtain a faculty you id.

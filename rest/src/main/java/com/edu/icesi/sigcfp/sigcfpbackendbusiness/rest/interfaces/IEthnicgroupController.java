@@ -4,6 +4,7 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Ethnicgroup;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -24,9 +25,9 @@ public interface IEthnicgroupController {
 	 * @return a responseEntity that represent the whole HTTP response: status code,
 	 *         headers, and body.
 	 */
-	ResponseEntity<Ethnicgroup> updateEthnicgroup(long etgrId);
+	ResponseEntity<Ethnicgroup> updateEthnicgroup(long etgrId,Ethnicgroup ethnicgroup);
 
-    ResponseEntity<Ethnicgroup> updateEthnicgroup(long etgrId, Ethnicgroup contact);
+    ResponseEntity<Ethnicgroup> getEthnicgroup(long etgrId);
 
 	/**
 	 * Allows delete a ethnic group through you id

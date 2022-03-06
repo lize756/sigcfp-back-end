@@ -8,7 +8,7 @@ public interface IFacultyService {
 
     Faculty addFaculty(Faculty faculty);
 
-    Faculty updateFaculty(long facuId, Faculty faculty);
+    Faculty updateFaculty(Faculty faculty);
 
     Faculty searchFaculty(long facuId);
 

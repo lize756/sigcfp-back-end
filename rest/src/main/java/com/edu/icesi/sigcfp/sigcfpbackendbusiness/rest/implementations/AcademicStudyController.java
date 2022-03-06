@@ -49,8 +49,7 @@ public class AcademicStudyController implements IAcademicstudyController {
 			@RequestBody Academicstudy academicstudy) {
 		Optional<Academicstudy> academicstudyOpt = Optional.of(iAcademicstudyService.searchAcademicstudy(acadStudId));
 		if (academicstudyOpt.isPresent()) {
-			Academicstudy _academicstudy = academicstudyOpt.get();
-			return new ResponseEntity<>(iAcademicstudyService.updateAcademicstudy(_academicstudy), HttpStatus.OK);
+			return new ResponseEntity<>(iAcademicstudyService.updateAcademicstudy(academicstudy), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
