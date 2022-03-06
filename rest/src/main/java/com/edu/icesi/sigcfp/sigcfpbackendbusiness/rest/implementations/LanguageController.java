@@ -22,7 +22,7 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.ILanguageContr
 
 
 @RestController()
-@RequestMapping("/language")
+@RequestMapping("/languages")
 @CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class LanguageController implements ILanguageController {
@@ -81,7 +81,7 @@ public class LanguageController implements ILanguageController {
 	}
 
 	@Override
-	@GetMapping("/languages")
+	@GetMapping()
 	public ResponseEntity<List<Language>> getLanguages() {
 		try {
 			List<Language> languages = ilanguageService.languages();

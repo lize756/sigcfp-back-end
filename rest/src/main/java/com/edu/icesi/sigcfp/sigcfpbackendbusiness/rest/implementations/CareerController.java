@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController()
-@RequestMapping("/career")
+@RequestMapping("/careers")
 @CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class CareerController implements ICareerController {
@@ -59,7 +59,7 @@ public class CareerController implements ICareerController {
 	}
 
 	@Override
-	@GetMapping("/careers")
+	@GetMapping()
 	public ResponseEntity<List<Career>> getCareers() {
 		try {
 			List<Career> careers = iCareerService.careers();

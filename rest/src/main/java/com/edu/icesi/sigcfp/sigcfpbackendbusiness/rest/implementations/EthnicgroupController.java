@@ -21,7 +21,7 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.IEth
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.IEthnicgroupController;
 
 @RestController()
-@RequestMapping("/ethnicGroup")
+@RequestMapping("/ethnicGroups")
 @CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class EthnicgroupController implements IEthnicgroupController {
@@ -78,7 +78,7 @@ public class EthnicgroupController implements IEthnicgroupController {
 	}
 
 	@Override
-	@GetMapping("/ethnicGroups")
+	@GetMapping()
 	public ResponseEntity<List<Ethnicgroup>> getEthnicgroups() {
 		try {
 			List<Ethnicgroup> ethnicgroups = iEthnicgroupService.ethnicgroups();

@@ -21,7 +21,7 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.ICit
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.ICityController;
 
 @RestController()
-@RequestMapping("/city")
+@RequestMapping("/cities")
 @CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class CityController implements ICityController {
@@ -78,7 +78,7 @@ public class CityController implements ICityController {
 	}
 
 	@Override
-	@GetMapping("/cities")
+	@GetMapping()
 	public ResponseEntity<List<City>> getCities() {
 		try {
 			List<City> cities = iCityService.cities();

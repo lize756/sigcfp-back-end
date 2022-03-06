@@ -22,7 +22,7 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.IPersonControl
 
 
 @RestController()
-@RequestMapping("/person")
+@RequestMapping("/persons")
 @CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class PersonController implements IPersonController {
@@ -79,7 +79,7 @@ public class PersonController implements IPersonController {
 	}
 
 	@Override
-	@GetMapping("/persons")
+	@GetMapping()
 	public ResponseEntity<List<Person>> getPersons() {
 		try {
 			List<Person> persons = iPersonService.persons();

@@ -21,7 +21,7 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.ICon
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.IContactController;
 
 @RestController()
-@RequestMapping("/contact")
+@RequestMapping("/contacts")
 @CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class ContactController implements IContactController {
@@ -79,7 +79,7 @@ public class ContactController implements IContactController {
 	}
 
 	@Override
-	@GetMapping("/contacts")
+	@GetMapping()
 	public ResponseEntity<List<Contact>> getContacts() {
 		try {
 			List<Contact> contacts = iContactService.contacts();

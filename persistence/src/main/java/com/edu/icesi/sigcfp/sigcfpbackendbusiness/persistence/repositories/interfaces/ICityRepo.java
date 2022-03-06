@@ -8,4 +8,7 @@ import java.util.List;
 public interface ICityRepo extends JpaRepository<City, Long> {
     @Override
     List<City> findAll();
+
+
+
 }

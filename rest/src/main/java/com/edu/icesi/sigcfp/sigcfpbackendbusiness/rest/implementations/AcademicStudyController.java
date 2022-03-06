@@ -20,7 +20,7 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.IAcademicstudy
 
 
 @RestController()
-@RequestMapping("/academicStudy")
+@RequestMapping("/academicStudies")
 @CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class AcademicStudyController implements IAcademicstudyController {
@@ -79,7 +79,7 @@ public class AcademicStudyController implements IAcademicstudyController {
 	}
 
 	@Override
-	@GetMapping("/academicStudies")
+	@GetMapping()
 	public ResponseEntity<List<Academicstudy>> getAcademicstudies() {
 		try {
 			List<Academicstudy> academicstudies = iAcademicstudyService.academicstudies();

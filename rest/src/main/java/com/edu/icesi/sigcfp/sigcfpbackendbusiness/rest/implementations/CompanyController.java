@@ -21,7 +21,7 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.ICom
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.ICompanyController;
 
 @RestController()
-@RequestMapping("/company")
+@RequestMapping("/companies")
 @CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class CompanyController implements ICompanyController {
@@ -78,7 +78,7 @@ public class CompanyController implements ICompanyController {
 	}
 
 	@Override
-	@GetMapping("/companies")
+	@GetMapping()
 	public ResponseEntity<List<Company>> getCompanies() {
 		try {
 			List<Company> companies = iCompanyService.companies();

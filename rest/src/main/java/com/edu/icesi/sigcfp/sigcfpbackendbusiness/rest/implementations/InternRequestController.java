@@ -23,7 +23,7 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.IInternRequest
 
 
 @RestController()
-@RequestMapping("/internRequest")
+@RequestMapping("/internRequests")
 @CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class InternRequestController implements IInternRequestController {
@@ -84,7 +84,7 @@ public class InternRequestController implements IInternRequestController {
 	}
 
 	@Override
-	@GetMapping("/internRequests")
+	@GetMapping()
 	public ResponseEntity<List<InternRequest>> getInternRequests() {
 		try {
 			List<InternRequest> internRequests = iInternRequestService.internRequests();
