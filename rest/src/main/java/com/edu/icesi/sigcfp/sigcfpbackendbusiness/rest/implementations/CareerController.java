@@ -1,7 +1,6 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.implementations;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Career;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Person;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.ICareerService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.ICareerController;
 import org.springframework.beans.factory.annotation.Autowired;
