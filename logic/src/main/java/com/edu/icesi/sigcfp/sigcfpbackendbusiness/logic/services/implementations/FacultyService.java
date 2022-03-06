@@ -6,6 +6,7 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.inter
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -19,27 +20,51 @@ public class FacultyService implements IFacultyService {
     }
 
     @Override
+    @Transactional
     public Faculty addFaculty(Faculty faculty) {
-        return null;
+        if (!iFacultyRepo.existsById(faculty.getFacuId())) {
+            return iFacultyRepo.save(faculty);
+        } else {
+            return null;
+        }
     }
 
     @Override
-    public Faculty updateFaculty(Faculty faculty) {
-        return null;
+    @Transactional
+    public Faculty updateFaculty(long facuId, Faculty faculty) {
+        if (iFacultyRepo.existsById(facuId)) {
+            return iFacultyRepo.save(faculty);
+        } else {
+            return null;
+        }
     }
 
     @Override
+    @Transactional
     public Faculty searchFaculty(long facuId) {
-        return null;
+        if (iFacultyRepo.existsById(facuId)) {
+            return iFacultyRepo.getById(facuId);
+        } else {
+            return null;
+        }
     }
 
     @Override
+    @Transactional
     public Faculty deleteFaculty(long facuId) {
-        return null;
+        Faculty facultyToDelete = null;
+        if (iFacultyRepo.existsById(facuId)) {
+            facultyToDelete = iFacultyRepo.findById(facuId).get();
+            iFacultyRepo.delete(iFacultyRepo.getById(facuId));
+        } else {
+            return null;
+        }
+        return facultyToDelete;
     }
 
     @Override
+    @Transactional
     public List<Faculty> faculties() {
-        return null;
+        return iFacultyRepo.findAll();
     }
 }

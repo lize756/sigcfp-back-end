@@ -6,6 +6,7 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.inter
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -19,27 +20,51 @@ public class AcademicstudyService implements IAcademicstudyService {
     }
 
     @Override
+    @Transactional
     public Academicstudy addAcademicstudy(Academicstudy academicstudy) {
-        return null;
+        if (!iAcademicstudyRepo.existsById(academicstudy.getAcadStudId())) {
+            return iAcademicstudyRepo.save(academicstudy);
+        } else {
+            return null;
+        }
     }
 
     @Override
-    public Academicstudy updateAcademicstudy(Academicstudy academicstudy) {
-        return null;
+    @Transactional
+    public Academicstudy updateAcademicstudy(long acadStudId, Academicstudy academicstudy) {
+        if (iAcademicstudyRepo.existsById(acadStudId)) {
+            return iAcademicstudyRepo.save(academicstudy);
+        } else {
+            return null;
+        }
     }
 
     @Override
+    @Transactional
     public Academicstudy searchAcademicstudy(long acadStudId) {
-        return null;
+        if (iAcademicstudyRepo.existsById(acadStudId)) {
+            return iAcademicstudyRepo.getById(acadStudId);
+        } else {
+            return null;
+        }
     }
 
     @Override
+    @Transactional
     public Academicstudy deleteAcademicstudy(long acadStudId) {
-        return null;
+        Academicstudy academicstudyToDelete = null;
+        if (iAcademicstudyRepo.existsById(acadStudId)) {
+            academicstudyToDelete = iAcademicstudyRepo.findById(acadStudId).get();
+            iAcademicstudyRepo.delete(iAcademicstudyRepo.getById(acadStudId));
+        } else {
+            return null;
+        }
+        return academicstudyToDelete;
     }
 
     @Override
+    @Transactional
     public List<Academicstudy> academicstudies() {
-        return null;
+        return iAcademicstudyRepo.findAll();
     }
 }

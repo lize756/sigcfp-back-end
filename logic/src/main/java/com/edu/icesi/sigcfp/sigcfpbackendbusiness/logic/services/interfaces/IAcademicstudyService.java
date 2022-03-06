@@ -8,7 +8,7 @@ public interface IAcademicstudyService {
 
     Academicstudy addAcademicstudy(Academicstudy academicstudy);
 
-    Academicstudy updateAcademicstudy(Academicstudy academicstudy);
+    Academicstudy updateAcademicstudy(long acadStudId, Academicstudy academicstudy);
 
     Academicstudy searchAcademicstudy(long acadStudId);
 

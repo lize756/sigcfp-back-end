@@ -2,34 +2,69 @@ package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.implementation
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.InternRequest;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.IInternRequestService;
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.IInternRequestRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 public class InternRequestService implements IInternRequestService {
+
+    IInternRequestRepo iInternRequestRepo;
+
+    @Autowired
+    public InternRequestService(IInternRequestRepo iInternRequestRepo) {
+        this.iInternRequestRepo = iInternRequestRepo;
+    }
+
     @Override
+    @Transactional
     public InternRequest addInternRequest(InternRequest internRequest) {
-        return null;
+        if (!iInternRequestRepo.existsById(internRequest.getInteRequId())) {
+            return iInternRequestRepo.save(internRequest);
+        } else {
+            return null;
+        }
     }
 
     @Override
-    public InternRequest updateInternRequest(InternRequest internRequest) {
-        return null;
+    @Transactional
+    public InternRequest updateInternRequest(long inteRequId, InternRequest internRequest) {
+        if (iInternRequestRepo.existsById(inteRequId)) {
+            return iInternRequestRepo.save(internRequest);
+        } else {
+            return null;
+        }
     }
 
     @Override
+    @Transactional
     public InternRequest searchInternRequest(long inteRequId) {
-        return null;
+        if (iInternRequestRepo.existsById(inteRequId)) {
+            return iInternRequestRepo.getById(inteRequId);
+        } else {
+            return null;
+        }
     }
 
     @Override
+    @Transactional
     public InternRequest deleteInternRequest(long inteRequId) {
-        return null;
+        InternRequest internRequestToDelete = null;
+        if (iInternRequestRepo.existsById(inteRequId)) {
+            internRequestToDelete = iInternRequestRepo.findById(inteRequId).get();
+            iInternRequestRepo.delete(iInternRequestRepo.getById(inteRequId));
+        } else {
+            return null;
+        }
+        return internRequestToDelete;
     }
 
     @Override
+    @Transactional
     public List<InternRequest> internRequests() {
-        return null;
+        return iInternRequestRepo.findAll();
     }
 }

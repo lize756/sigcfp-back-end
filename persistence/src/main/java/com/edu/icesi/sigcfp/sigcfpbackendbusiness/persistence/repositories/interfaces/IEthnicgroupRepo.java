@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface IEthnicgroupRepo extends JpaRepository<Ethnicgroup,Long> {
+public interface IEthnicgroupRepo extends JpaRepository<Ethnicgroup, Long> {
     @Override
     List<Ethnicgroup> findAll();
 }

@@ -6,6 +6,7 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.inter
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -19,27 +20,51 @@ public class LanguageService implements ILanguageService {
     }
 
     @Override
+    @Transactional
     public Language addLanguage(Language language) {
-        return null;
+        if (!iLanguageRepo.existsById(language.getLanguId())) {
+            return iLanguageRepo.save(language);
+        } else {
+            return null;
+        }
     }
 
     @Override
-    public Language updateLanguage(Language language) {
-        return null;
+    @Transactional
+    public Language updateLanguage(long languId, Language language) {
+        if (iLanguageRepo.existsById(languId)) {
+            return iLanguageRepo.save(language);
+        } else {
+            return null;
+        }
     }
 
     @Override
+    @Transactional
     public Language searchLanguage(long languId) {
-        return null;
+        if (iLanguageRepo.existsById(languId)) {
+            return iLanguageRepo.getById(languId);
+        } else {
+            return null;
+        }
     }
 
     @Override
+    @Transactional
     public Language deleteLanguage(long languId) {
-        return null;
+        Language languageToDelete = null;
+        if (iLanguageRepo.existsById(languId)) {
+            languageToDelete = iLanguageRepo.findById(languId).get();
+            iLanguageRepo.delete(iLanguageRepo.getById(languId));
+        } else {
+            return null;
+        }
+        return languageToDelete;
     }
 
     @Override
+    @Transactional
     public List<Language> languages() {
-        return null;
+        return iLanguageRepo.findAll();
     }
 }

@@ -10,7 +10,7 @@ public interface INotiTypeService {
 
     NotiType addNotiType(NotiType notiType);
 
-    NotiType updateNotiType(NotiType notiType);
+    NotiType updateNotiType(long notiTypeId, NotiType notiType);
 
     NotiType searchNotiType(long notiTypeId);
 

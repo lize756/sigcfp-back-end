@@ -2,35 +2,69 @@ package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.implementation
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Company;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.ICompanyService;
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.ICompanyRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 public class CompanyService implements ICompanyService {
 
+    ICompanyRepo iCompanyRepo;
+
+    @Autowired
+    public CompanyService(ICompanyRepo iCompanyRepo) {
+        this.iCompanyRepo = iCompanyRepo;
+    }
+
     @Override
+    @Transactional
     public Company addCompany(Company company) {
-        return null;
+        if (!iCompanyRepo.existsById(company.getCompId())) {
+            return iCompanyRepo.save(company);
+        } else {
+            return null;
+        }
     }
 
     @Override
-    public Company updateCompany(Company company) {
-        return null;
+    @Transactional
+    public Company updateCompany(long compId, Company company) {
+        if (iCompanyRepo.existsById(compId)) {
+            return iCompanyRepo.save(company);
+        } else {
+            return null;
+        }
     }
 
     @Override
+    @Transactional
     public Company searchCompany(long compId) {
-        return null;
+        if (iCompanyRepo.existsById(compId)) {
+            return iCompanyRepo.getById(compId);
+        } else {
+            return null;
+        }
     }
 
     @Override
+    @Transactional
     public Company deleteCompany(long compId) {
-        return null;
+        Company companyToDelete = null;
+        if (iCompanyRepo.existsById(compId)) {
+            companyToDelete = iCompanyRepo.findById(compId).get();
+            iCompanyRepo.delete(iCompanyRepo.getById(compId));
+        } else {
+            return null;
+        }
+        return companyToDelete;
     }
 
     @Override
+    @Transactional
     public List<Company> companies() {
-        return null;
+        return iCompanyRepo.findAll();
     }
 }
