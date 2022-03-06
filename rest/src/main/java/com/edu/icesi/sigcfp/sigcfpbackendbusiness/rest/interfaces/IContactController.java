@@ -35,7 +35,7 @@ public interface IContactController {
 	 * @return a responseEntity that represent the whole HTTP response: status code,
 	 *         headers, and body.
 	 */
-    ResponseEntity<Contact> getContact(long contIdcontId);
+    ResponseEntity<Contact> getContact(long contId);
 
     /**
 	 * Allows delete a contact through you id
