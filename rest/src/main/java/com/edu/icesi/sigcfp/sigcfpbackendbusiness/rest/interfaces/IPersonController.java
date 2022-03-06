@@ -1,20 +1,55 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Person;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 public interface IPersonController {
+	/**
+	 * Allow add new person in the system.
+	 * 
+	 * @param person person to add.
+	 * @return a responseEntity that represent the whole HTTP response: status code,
+	 *         headers, and body.
+	 */
+    ResponseEntity<Person> addPerson(Person person);
+    
+    /**
+	 * Allow update a person.
+	 * 
+	 * @param persId id of person to update.
+	 * @return a responseEntity that represent the whole HTTP response: status code,
+	 *         headers, and body.
+	 */
+    ResponseEntity<Person> updatePerson(long persId);
+    
+    /**
+	 * Allows to obtain a person through you id.
+	 * 
+	 * @param persId id to search one person
+	 * @return a responseEntity that represent the whole HTTP response: status code,
+	 *         headers, and body.
+	 */
+    ResponseEntity<Person> getPerson(long persId);
 
-    ResponseEntity<String> addPerson(Person person);
+    /**
+	 * Allows delete a person through you id
+	 * 
+	 * @param persId id of the person that you want to delete
+	 * @return a responseEntity that represent the whole HTTP response: status code,
+	 *         headers, and body.
+	 */
+    ResponseEntity<HttpStatus> deletePerson(long persId);
 
-    ResponseEntity<String> updatePerson(Person person, long persId);
-
-    ResponseEntity<String> getPerson(long persId);
-
-    ResponseEntity<String> deletePerson(long persId);
-
+    /**
+	 * Allows to obtain the list of persons saved in the database.
+	 * 
+	 * @return a responseEntity that represent the whole HTTP response: status code,
+	 *         headers, and body.
+	 */
     ResponseEntity<List<Person>> getPersons();
 
 }

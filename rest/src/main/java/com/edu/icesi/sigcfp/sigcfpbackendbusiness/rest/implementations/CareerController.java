@@ -9,19 +9,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController()
-@RequestMapping("/careers")
+@RequestMapping("/career")
 @CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class CareerController implements ICareerController {
 
-    ICareerService iCareerService;
+	ICareerService iCareerService;
 
-    @Autowired
-    public CareerController(ICareerService iCareerService) {
-        this.iCareerService = iCareerService;
-    }
+	@Autowired
+	public CareerController(ICareerService iCareerService) {
+		this.iCareerService = iCareerService;
+	}
 
     @Override
     @PostMapping("/add")
@@ -35,21 +36,40 @@ public class CareerController implements ICareerController {
         return new ResponseEntity<Career>(iCareerService.updateCareer(careId, career), HttpStatus.OK);
     }
 
-    @Override
-    @GetMapping("/{careId}")
-    public ResponseEntity<Career> getCareer(@PathVariable long careId) {
-        return new ResponseEntity<Career>(iCareerService.searchCareer(careId), HttpStatus.OK);
-    }
+	@Override
+	@GetMapping("/{careId}")
+	public ResponseEntity<Career> getCareer(@PathVariable long careId) {
+		Optional<Career> carreOptional = Optional.of(iCareerService.searchCareer(careId));
+		if (carreOptional.isPresent()) {
+			return new ResponseEntity<>(carreOptional.get(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 
-    @Override
-    @DeleteMapping("/{careId}")
-    public ResponseEntity<Career> deleteCareer(@PathVariable long careId) {
-        return new ResponseEntity<Career>(iCareerService.searchCareer(careId), HttpStatus.OK);
-    }
+	@Override
+	@DeleteMapping("/{careId}")
+	public ResponseEntity<HttpStatus> deleteCareer(@PathVariable long careId) {
+		try {
+			iCareerService.deleteCareer(careId);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
-    @Override
-    @GetMapping()
-    public ResponseEntity<List<Career>> getCareers() {
-        return new ResponseEntity<List<Career>>(iCareerService.careers(), HttpStatus.OK);
-    }
+	@Override
+	@GetMapping("/careers")
+	public ResponseEntity<List<Career>> getCareers() {
+		try {
+			List<Career> careers = iCareerService.careers();
+			if (careers.isEmpty()) {
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
+			return new ResponseEntity<>(careers, HttpStatus.OK);
+
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 }

@@ -19,6 +19,10 @@ public class AcademicstudyService implements IAcademicstudyService {
         this.iAcademicstudyRepo = iAcademicstudyRepo;
     }
 
+    
+    
+    
+    
     @Override
     @Transactional
     public Academicstudy addAcademicstudy(Academicstudy academicstudy) {
@@ -29,15 +33,6 @@ public class AcademicstudyService implements IAcademicstudyService {
         }
     }
 
-    @Override
-    @Transactional
-    public Academicstudy updateAcademicstudy(long acadStudId, Academicstudy academicstudy) {
-        if (iAcademicstudyRepo.existsById(acadStudId)) {
-            return iAcademicstudyRepo.save(academicstudy);
-        } else {
-            return null;
-        }
-    }
 
     @Override
     @Transactional
@@ -67,4 +62,11 @@ public class AcademicstudyService implements IAcademicstudyService {
     public List<Academicstudy> academicstudies() {
         return iAcademicstudyRepo.findAll();
     }
+
+	@Override
+	public Academicstudy updateAcademicstudy(Academicstudy academicstudy) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

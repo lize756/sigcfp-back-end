@@ -8,7 +8,7 @@ public interface ICareerService {
 
     Career addCareer(Career career);
 
-    Career updateCareer(long careId, Career career);
+    Career updateCareer(Career career);
 
     Career searchCareer(long careId);
 
