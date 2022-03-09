@@ -1,6 +1,10 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 
 
@@ -10,6 +14,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "PERMMISSION")
 @NamedQuery(name = "Permmission.findAll", query = "SELECT p FROM Permmission p")
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
 public class Permmission implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -31,6 +36,7 @@ public class Permmission implements Serializable {
     //bi-directional many-to-one association to Rolee
     @ManyToOne
     @JoinColumn(name = "ROLEE_ROLE_ID")
+    @JsonIgnore
     private Rolee rolee;
 
     public Permmission() {

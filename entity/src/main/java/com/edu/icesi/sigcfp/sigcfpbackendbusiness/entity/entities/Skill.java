@@ -1,6 +1,10 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 
 
@@ -10,6 +14,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "SKILL")
 @NamedQuery(name = "Skill.findAll", query = "SELECT s FROM Skill s")
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
 public class Skill implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -28,11 +33,13 @@ public class Skill implements Serializable {
     //bi-directional many-to-one association to Curriculum
     @ManyToOne
     @JoinColumn(name = "CURRICULUM_CURR_ID")
+    @JsonIgnore
     private Curriculum curriculum;
 
     //bi-directional many-to-one association to InternRequest
     @ManyToOne
     @JoinColumn(name = "INTERN_REQUEST_INTE_REQU_ID")
+    @JsonIgnore
     private InternRequest internRequest;
 
     public Skill() {

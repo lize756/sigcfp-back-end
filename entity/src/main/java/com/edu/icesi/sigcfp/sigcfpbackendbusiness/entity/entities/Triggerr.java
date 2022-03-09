@@ -1,6 +1,10 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -11,6 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "TRIGGERR")
 @NamedQuery(name = "Triggerr.findAll", query = "SELECT t FROM Triggerr t")
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
 public class Triggerr implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -40,6 +45,7 @@ public class Triggerr implements Serializable {
             @JoinColumn(name = "NOTI_NOTI_ID", nullable = false)
     }
     )
+    @JsonIgnore
     private List<Noti> notis;
 
     public Triggerr() {
