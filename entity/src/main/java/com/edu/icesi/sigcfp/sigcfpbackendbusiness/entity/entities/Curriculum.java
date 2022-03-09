@@ -1,5 +1,8 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -13,6 +16,7 @@ import java.util.List;
 @Entity
 @Table(name = "CURRICULUM")
 @NamedQuery(name = "Curriculum.findAll", query = "SELECT c FROM Curriculum c")
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
 public class Curriculum implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -34,6 +38,7 @@ public class Curriculum implements Serializable {
 
     //bi-directional many-to-one association to Academicstudy
     @OneToMany(mappedBy = "curriculum")
+    @JsonIgnore
     private List<Academicstudy> academicstudies;
 
     //bi-directional many-to-many association to Career
@@ -47,33 +52,40 @@ public class Curriculum implements Serializable {
             @JoinColumn(name = "CAREER_CARE_ID", nullable = false)
     }
     )
+    @JsonIgnore
     private List<Career> careers;
 
     //bi-directional many-to-one association to Company
     @ManyToOne
     @JoinColumn(name = "COMPANY_COMP_ID")
+    @JsonIgnore
     private Company company;
 
     //bi-directional many-to-one association to CurriculumPdf
     @ManyToOne
     @JoinColumn(name = "CURRICULUM_PDF_CU_PDF_ID")
+    @JsonIgnore
     private CurriculumPdf curriculumPdf;
 
     //bi-directional many-to-one association to Person
     @ManyToOne
     @JoinColumn(name = "PERSON_PERS_ID")
+    @JsonIgnore
     private Person person;
 
     //bi-directional many-to-one association to CurriculumPdf
     @OneToMany(mappedBy = "curriculum")
+    @JsonIgnore
     private List<CurriculumPdf> curriculumPdfs;
 
     //bi-directional many-to-one association to Person
     @OneToMany(mappedBy = "curriculum")
+    @JsonIgnore
     private List<Person> persons;
 
     //bi-directional many-to-one association to Skill
     @OneToMany(mappedBy = "curriculum")
+    @JsonIgnore
     private List<Skill> skills;
 
     public Curriculum() {

@@ -1,6 +1,10 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 
 
@@ -10,6 +14,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "PRECONDITION")
 @NamedQuery(name = "Precondition.findAll", query = "SELECT p FROM Precondition p")
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
 public class Precondition implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -25,6 +30,7 @@ public class Precondition implements Serializable {
     //bi-directional many-to-one association to Noti
     @ManyToOne
     @JoinColumn(name = "NOTI_NOTI_ID")
+    @JsonIgnore
     private Noti noti;
 
     public Precondition() {

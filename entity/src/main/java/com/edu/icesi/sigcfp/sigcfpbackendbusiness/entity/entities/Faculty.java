@@ -1,5 +1,8 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -11,6 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "FACULTY")
 @NamedQuery(name = "Faculty.findAll", query = "SELECT f FROM Faculty f")
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
 public class Faculty implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -28,6 +32,7 @@ public class Faculty implements Serializable {
 
     //bi-directional many-to-one association to Career
     @OneToMany(mappedBy = "faculty")
+    @JsonIgnore
     private List<Career> careers;
 
     public Faculty() {

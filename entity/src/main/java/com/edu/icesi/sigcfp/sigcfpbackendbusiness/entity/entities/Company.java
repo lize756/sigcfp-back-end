@@ -1,5 +1,8 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -11,6 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "COMPANY")
 @NamedQuery(name = "Company.findAll", query = "SELECT c FROM Company c")
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
 public class Company implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -50,31 +54,38 @@ public class Company implements Serializable {
     //bi-directional many-to-one association to City
     @ManyToOne
     @JoinColumn(name = "CITY_CITY_ID", nullable = false)
+    @JsonIgnore
     private City city;
 
     //bi-directional many-to-one association to Userr
     @ManyToOne
     @JoinColumn(name = "USERR_USER_ID")
+    @JsonIgnore
     private Userr userr;
 
     //bi-directional many-to-one association to Contact
     @OneToMany(mappedBy = "company")
+    @JsonIgnore
     private List<Contact> contacts;
 
     //bi-directional many-to-one association to Curriculum
     @OneToMany(mappedBy = "company")
+    @JsonIgnore
     private List<Curriculum> curriculums;
 
     //bi-directional many-to-one association to InternRequest
     @OneToMany(mappedBy = "company")
+    @JsonIgnore
     private List<InternRequest> internRequests;
 
     //bi-directional many-to-many association to Noti
     @ManyToMany(mappedBy = "companies")
+    @JsonIgnore
     private List<Noti> notis;
 
     //bi-directional many-to-one association to Userr
     @OneToMany(mappedBy = "company")
+    @JsonIgnore
     private List<Userr> userrs;
 
     public Company() {

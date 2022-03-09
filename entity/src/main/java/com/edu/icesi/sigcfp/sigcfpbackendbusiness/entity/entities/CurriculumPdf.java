@@ -1,5 +1,8 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.net.URL;
@@ -12,6 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "CURRICULUM_PDF")
 @NamedQuery(name = "CurriculumPdf.findAll", query = "SELECT c FROM CurriculumPdf c")
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
 public class CurriculumPdf implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -26,11 +30,13 @@ public class CurriculumPdf implements Serializable {
 
     //bi-directional many-to-one association to Curriculum
     @OneToMany(mappedBy = "curriculumPdf")
+    @JsonIgnore
     private List<Curriculum> curriculums;
 
     //bi-directional many-to-one association to Curriculum
     @ManyToOne
     @JoinColumn(name = "CURRICULUM_CURR_ID")
+    @JsonIgnore
     private Curriculum curriculum;
 
     public CurriculumPdf() {
