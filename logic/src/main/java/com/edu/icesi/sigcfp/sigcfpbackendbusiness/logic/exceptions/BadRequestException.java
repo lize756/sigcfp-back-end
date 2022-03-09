@@ -1,5 +1,9 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.exceptions;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(HttpStatus.BAD_REQUEST)
 public class BadRequestException extends Exception {
     /**
      * Constructs a new exception with the specified detail message.  The
