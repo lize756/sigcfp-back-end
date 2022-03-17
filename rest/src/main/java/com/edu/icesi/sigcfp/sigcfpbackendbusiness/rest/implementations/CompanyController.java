@@ -20,10 +20,10 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Company;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.ICompanyService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.ICompanyController;
 
+//@PreAuthorize("")
 @RestController()
 @RequestMapping("/companies")
 @CrossOrigin(origins = "*")
-//@PreAuthorize("")
 public class CompanyController implements ICompanyController {
 
 	private ICompanyService iCompanyService;
@@ -40,6 +40,7 @@ public class CompanyController implements ICompanyController {
 			Company _company = iCompanyService.addCompany(company);
 			return new ResponseEntity<Company>(_company, HttpStatus.CREATED);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}

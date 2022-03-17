@@ -54,7 +54,7 @@ public class Company implements Serializable {
     //bi-directional many-to-one association to City
     @ManyToOne
     @JoinColumn(name = "CITY_CITY_ID", nullable = false)
-    @JsonIgnore
+    //@JsonIgnore
     private City city;
 
     //bi-directional many-to-one association to Userr
