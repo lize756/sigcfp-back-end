@@ -46,6 +46,13 @@
             <version>0.0.1</version>
             <scope>compile</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-web</artifactId>
+    <version>5.3.16</version>
+</dependency>
+        
     </dependencies>
 
     <build>
@@ -56,5 +63,6 @@
             </plugin>
         </plugins>
     </build>
+   
 
 </project>
