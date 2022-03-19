@@ -41,13 +41,38 @@ public class InternRequest implements Serializable {
 
     @Column(name = "INTE_REQU_NAME", nullable = false, length = 255)
     private String inteRequName;
-
+    
     @Column(name = "INTE_REQU_NUMBER", nullable = false, precision = 5)
     private BigDecimal inteRequNumber;
 
     @Column(name = "INTE_REQU_SALARY", nullable = false, precision = 9)
     private BigDecimal inteRequSalary;
+    
+    
+    //---------------New ---------------------------
+	@Column(name = "INTE_REQU_DEPARTMENT", nullable = true, length = 50)
+    private String inteRequDepartament;
 
+	@Column(name = "INTE_REQU_ST_DATE", nullable = true)
+    private Date inteRequStDate;
+    
+    @Column(name = "INTE_REQU_FUNCTIONS", nullable = true, length = 1000)
+    private String inteRequFunctions;
+    
+    
+    @Column(name = "INTE_REQU_COMPETENCIES", nullable = true, length = 1000)
+    private String inteRequCompetencies;
+    
+    
+    @Column(name = "INTE_REQU_BONDING_TYPE", nullable = true, length = 50)
+    private String inteRequBondingType;
+
+
+    @Column(name = "INTE_REQU_OTHER_BENEFITS", nullable = true, length = 50)
+    private String inteRequOtherBenefits; 
+    
+    
+    
     //bi-directional many-to-one association to Career
     @OneToMany(mappedBy = "internRequest")
     @JsonIgnore
@@ -130,6 +155,56 @@ public class InternRequest implements Serializable {
     public void setInteRequSalary(BigDecimal inteRequSalary) {
         this.inteRequSalary = inteRequSalary;
     }
+    
+    
+    public String getInteRequDepartament() {
+		return inteRequDepartament;
+	}
+
+	public void setInteRequDepartament(String inteRequDepartament) {
+		this.inteRequDepartament = inteRequDepartament;
+	}
+
+	public Date getInteRequStDate() {
+		return inteRequStDate;
+	}
+
+	public void setInteRequStDate(Date inteRequStDate) {
+		this.inteRequStDate = inteRequStDate;
+	}
+
+	public String getInteRequFunctions() {
+		return inteRequFunctions;
+	}
+
+	public void setInteRequFunctions(String inteRequFunctions) {
+		this.inteRequFunctions = inteRequFunctions;
+	}
+
+	public String getInteRequCompetencies() {
+		return inteRequCompetencies;
+	}
+
+	public void setInteRequCompetencies(String inteRequCompetencies) {
+		this.inteRequCompetencies = inteRequCompetencies;
+	}
+
+	public String getInteRequBondingType() {
+		return inteRequBondingType;
+	}
+
+	public void setInteRequBondingType(String inteRequBondingType) {
+		this.inteRequBondingType = inteRequBondingType;
+	}
+
+	public String getInteRequOtherBenefits() {
+		return inteRequOtherBenefits;
+	}
+
+	public void setInteRequOtherBenefits(String inteRequOtherBenefits) {
+		this.inteRequOtherBenefits = inteRequOtherBenefits;
+	}
+    
 
     public List<Career> getCareers() {
         return this.careers;
@@ -152,7 +227,7 @@ public class InternRequest implements Serializable {
 
         return career;
     }
-
+    
     public Company getCompany() {
         return this.company;
     }
