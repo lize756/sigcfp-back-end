@@ -28,7 +28,7 @@ public class InternRequest implements Serializable {
     private long inteRequId;
 
     @Temporal(TemporalType.DATE)
-    @JsonFormat(pattern="dd-MM-yyyy")
+    @JsonFormat(pattern="dd/MM/YY")
     @Column(name = "INTE_REQU_CREATE", nullable = false)
     private Date inteRequCreate;
 
@@ -56,7 +56,7 @@ public class InternRequest implements Serializable {
     private String inteRequDepartament;
 
 	@Column(name = "INTE_REQU_ST_DATE", nullable = true)
-	@JsonFormat(pattern="dd-MM-yyyy")
+	@JsonFormat(pattern="dd/MM/YY")
     private Date inteRequStDate;
     
     @Column(name = "INTE_REQU_FUNCTIONS", nullable = true, length = 1000)
