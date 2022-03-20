@@ -30,13 +30,13 @@ public class InternRequest implements Serializable {
     @Column(name = "INTE_REQU_CREATE", nullable = false)
     private Date inteRequCreate;
 
-    @Column(name = "INTE_REQU_DETAILS", nullable = false, length = 1000)
+    @Column(name = "INTE_REQU_DETAILS", nullable = true, length = 1000)
     private String inteRequDetails;
 
     @Column(name = "INTE_REQU_DURATION", nullable = false, length = 15)
     private String inteRequDuration;
 
-    @Column(name = "INTE_REQU_ISINPROCESS", nullable = false, length = 1)
+    @Column(name = "INTE_REQU_ISINPROCESS", nullable = true, length = 1)
     private String inteRequIsinprocess;
 
     @Column(name = "INTE_REQU_NAME", nullable = false, length = 255)
@@ -75,7 +75,7 @@ public class InternRequest implements Serializable {
     
     //bi-directional many-to-one association to Career
     @OneToMany(mappedBy = "internRequest")
-    @JsonIgnore
+    //@JsonIgnore
     private List<Career> careers;
 
     //bi-directional many-to-one association to Company
