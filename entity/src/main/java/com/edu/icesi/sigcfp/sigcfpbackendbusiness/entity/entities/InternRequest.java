@@ -42,8 +42,6 @@ public class InternRequest implements Serializable {
 	@Column(name="INTE_REQU_DEPARTMENT", length=50)
 	private String inteRequDepartment;
 
-	@Column(name="INTE_REQU_DETAILS", nullable=false, length=1000)
-	private String inteRequDetails;
 
 	@Column(name="INTE_REQU_DURATION", length=15)
 	private String inteRequDuration;
@@ -56,9 +54,6 @@ public class InternRequest implements Serializable {
 
 	@Column(name="INTE_REQU_NAME", nullable=false, length=255)
 	private String inteRequName;
-
-	@Column(name="INTE_REQU_NAME1", length=100)
-	private String inteRequName1;
 
 	@Column(name="INTE_REQU_NUMBER", precision=5)
 	private BigDecimal inteRequNumber;
@@ -179,14 +174,6 @@ public class InternRequest implements Serializable {
 
 	public void setInteRequName(String inteRequName) {
 		this.inteRequName = inteRequName;
-	}
-
-	public String getInteRequName1() {
-		return this.inteRequName1;
-	}
-
-	public void setInteRequName1(String inteRequName1) {
-		this.inteRequName1 = inteRequName1;
 	}
 
 	public BigDecimal getInteRequNumber() {
