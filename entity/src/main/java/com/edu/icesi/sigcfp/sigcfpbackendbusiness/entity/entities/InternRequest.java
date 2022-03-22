@@ -1,6 +1,5 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -207,7 +206,7 @@ public class InternRequest implements Serializable {
 		return this.careers;
 	}
 
-	public void setCareers1(List<Career> careers) {
+	public void setCareers(List<Career> careers) {
 		this.careers = careers;
 	}
 
