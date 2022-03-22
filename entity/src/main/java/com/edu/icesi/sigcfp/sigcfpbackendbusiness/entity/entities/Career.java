@@ -49,7 +49,7 @@ public class Career implements Serializable {
 	private List<Curriculum> curriculums;
 
 	//bi-directional many-to-many association to InternRequest
-	@ManyToMany(mappedBy="careers2")
+	@ManyToMany(mappedBy="careers")
 	@JsonIgnore
 	private List<InternRequest> internRequests;
 

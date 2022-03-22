@@ -68,11 +68,6 @@ public class InternRequest implements Serializable {
 	@Column(name="INTE_REQU_ST_DATE")
 	private Date inteRequStDate;
 
-	//bi-directional many-to-one association to Career
-	@OneToMany(mappedBy="internRequest")
-	@JsonIgnore
-	private List<Career> careers1;
-
 	//bi-directional many-to-many association to Career
 	@ManyToMany
 	@JoinTable(
@@ -85,7 +80,7 @@ public class InternRequest implements Serializable {
 			}
 		)
 	@JsonIgnore
-	private List<Career> careers2;
+	private List<Career> careers;
 
 	//bi-directional many-to-one association to Company
 	@ManyToOne
@@ -208,34 +203,25 @@ public class InternRequest implements Serializable {
 		this.inteRequStDate = inteRequStDate;
 	}
 
-	public List<Career> getCareers1() {
-		return this.careers1;
+	public List<Career> getCareers() {
+		return this.careers;
 	}
 
-	public void setCareers1(List<Career> careers1) {
-		this.careers1 = careers1;
+	public void setCareers1(List<Career> careers) {
+		this.careers = careers;
 	}
 
-	public Career addCareers1(Career careers1) {
-		getCareers1().add(careers1);
-		careers1.setInternRequest(this);
+	public Career addCareers1(Career careers) {
+		getCareers().add(careers);
+		careers.setInternRequest(this);
 
-		return careers1;
+		return careers;
 	}
 
-	public Career removeCareers1(Career careers1) {
-		getCareers1().remove(careers1);
-		careers1.setInternRequest(null);
-
-		return careers1;
-	}
-
-	public List<Career> getCareers2() {
-		return this.careers2;
-	}
-
-	public void setCareers2(List<Career> careers2) {
-		this.careers2 = careers2;
+	public Career removeCareers1(Career careers) {
+		getCareers().remove(careers);
+		careers.setInternRequest(null);
+		return careers;
 	}
 
 	public Company getCompany() {
