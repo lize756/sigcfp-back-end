@@ -1,5 +1,6 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -35,6 +36,7 @@ public class InternRequest implements Serializable {
 	private String inteRequCompetencies;
 
 	@Temporal(TemporalType.DATE)
+    @JsonFormat(pattern="dd/MM/YY")
 	@Column(name="INTE_REQU_CREATE")
 	private Date inteRequCreate;
 
@@ -64,6 +66,7 @@ public class InternRequest implements Serializable {
 	private BigDecimal inteRequSalary;
 
 	@Temporal(TemporalType.DATE)
+    @JsonFormat(pattern="dd/MM/YY")
 	@Column(name="INTE_REQU_ST_DATE")
 	private Date inteRequStDate;
 
@@ -78,7 +81,7 @@ public class InternRequest implements Serializable {
 			@JoinColumn(name="CAREER_CARE_ID", nullable=false)
 			}
 		)
-	@JsonIgnore
+	//@JsonIgnore
 	private List<Career> careers;
 
 	//bi-directional many-to-one association to Company
