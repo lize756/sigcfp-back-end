@@ -12,7 +12,7 @@ public interface ICityService {
 
     City searchCity(long cityId);
 
-    City deleteCity(long cityId);
+    void deleteCity(long cityId);
 
     List<City> cities();
 }

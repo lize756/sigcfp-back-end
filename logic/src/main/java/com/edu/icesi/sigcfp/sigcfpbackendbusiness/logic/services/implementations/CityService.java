@@ -47,15 +47,10 @@ public class CityService implements ICityService {
 
     @Override
     @Transactional
-    public City deleteCity(long cityId) {
-        City cityToDelete = null;
+    public void deleteCity(long cityId) {
         if (iCityRepo.existsById(cityId)) {
-            cityToDelete = iCityRepo.findById(cityId).get();
-            iCityRepo.delete(iCityRepo.getById(cityId));
-        } else {
-            return null;
+            iCityRepo.deleteById(cityId);
         }
-        return cityToDelete;
     }
 
     @Override
