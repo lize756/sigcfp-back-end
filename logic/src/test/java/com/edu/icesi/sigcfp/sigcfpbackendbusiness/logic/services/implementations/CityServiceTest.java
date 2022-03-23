@@ -2,108 +2,133 @@ package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.implementation
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.City;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.ICityRepo;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.junit.jupiter.api.*;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(MockitoExtension.class)
+@RunWith(SpringRunner.class)
+@SpringBootTest
 class CityServiceTest {
 
     final static long CITY_ID = 3434;
 
-    @Mock
+    @MockBean
     ICityRepo iCityRepo;
-    @InjectMocks
+    @Autowired
     CityService cityService;
-    City city;
+    //City city;
 
     @BeforeAll
     static void init(){
         System.out.println("|| ---- CityServiceTest Started ---- ||");
     }
 
-
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        this.cityService = new CityService(this.iCityRepo);
     }
-
 
     @Test
     void addCity() {
 
-        city = new City();
+        City city = new City();
         city.setCityId(CITY_ID);
         city.setCityName("Cali");
 
         Mockito.when(iCityRepo.save(city)).thenReturn(city);
-        City cityAdded = cityService.addCity(city);
-        Mockito.verify(iCityRepo).save(city);
 
-        assertNotNull(cityAdded);
-        assertEquals("Cali", cityAdded.getCityName());
-
+        assertThat(cityService.addCity(city))
+                .isNotNull()
+                .isEqualTo(city);
     }
 
     @Test
     void updateCity() {
 
-        city = new City();
+        City city = new City();
         city.setCityId(CITY_ID);
         city.setCityName("Medellín");
 
-        Mockito.when(iCityRepo.save(city)).thenReturn(city);
-        City cityAdded = cityService.updateCity(city);
-        Mockito.verify(iCityRepo).save(city);
+        Mockito.when(iCityRepo.getById(CITY_ID)).thenReturn(city);
 
-        assertNotNull(cityAdded);
-        assertEquals("Medellín", cityAdded.getCityName());
+        city.setCityName("Pasto");
+        Mockito.when(iCityRepo.save(city)).thenReturn(city);
+
+        assertThat(cityService.updateCity(city))
+                .isNotNull()
+                .isEqualTo(city);
+        assertEquals("Pasto", cityService.updateCity(city).getCityName());
     }
 
     @Test
     void searchCity() {
-        city = new City();
+
+        City city = new City();
         city.setCityId(CITY_ID);
         city.setCityName("Cartagena");
 
-        City cityAdded = cityService.addCity(city);
+        Mockito.when(iCityRepo.existsById(CITY_ID)).thenReturn(true);
+        Mockito.when(iCityRepo.getById(CITY_ID)).thenReturn(city);
 
-        Mockito.when(iCityRepo.getById(cityAdded.getCityId())).thenReturn(cityAdded);
-        City cityUpdated = cityService.searchCity(cityAdded.getCityId());
-        Mockito.verify(iCityRepo).getById(cityAdded.getCityId());
-
-        assertNotNull(cityUpdated);
-        assertEquals("Cartagena", cityUpdated.getCityName());
-
-
+        assertThat(cityService.searchCity(CITY_ID))
+                .isNotNull()
+                .isEqualTo(city);
+        assertEquals("Cartagena", cityService.searchCity(CITY_ID).getCityName());
     }
 
     @Test
     void deleteCity() {
 
-        city = new City();
+        City city = new City();
         city.setCityId(CITY_ID);
         city.setCityName("Bogotá");
 
-        cityService.deleteCity(CITY_ID);
-        Mockito.verify(iCityRepo, Mockito.times(1)).deleteById(CITY_ID);
+        Mockito.when(iCityRepo.getById(CITY_ID)).thenReturn(city);
+        Mockito.when(iCityRepo.existsById(CITY_ID)).thenReturn(false);
 
         assertNull(cityService.searchCity(CITY_ID));
-
-
     }
 
     @Test
     void cities() {
+
+        City city1 = new City();
+        city1.setCityId(CITY_ID);
+        city1.setCityName("Cali");
+
+        City city2 = new City();
+        city2.setCityId(CITY_ID);
+        city2.setCityName("Cartagena");
+
+        List<City> cityList = new ArrayList<>();
+        cityList.add(city1);
+        cityList.add(city2);
+
+        Mockito.when(iCityRepo.findAll()).thenReturn(cityList);
+
+        assertThat(cityService.cities())
+                .isNotNull()
+                .isEqualTo(cityList);
     }
+
+    @AfterEach
+    void tearDown() {}
+
+    @AfterAll
+    static void finish(){
+        System.out.println("|| ---- CityServiceTest Finished ---- ||");
+    }
+
+
 }
