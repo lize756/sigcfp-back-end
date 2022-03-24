@@ -27,7 +27,6 @@ class CityServiceTest {
     ICityRepo iCityRepo;
     @Autowired
     CityService cityService;
-    //City city;
 
     @BeforeAll
     static void init(){
@@ -41,7 +40,6 @@ class CityServiceTest {
 
     @Test
     void addCity() {
-
         City city = new City();
         city.setCityId(CITY_ID);
         city.setCityName("Cali");
@@ -55,7 +53,6 @@ class CityServiceTest {
 
     @Test
     void updateCity() {
-
         City city = new City();
         city.setCityId(CITY_ID);
         city.setCityName("Medellín");
@@ -73,7 +70,6 @@ class CityServiceTest {
 
     @Test
     void searchCity() {
-
         City city = new City();
         city.setCityId(CITY_ID);
         city.setCityName("Cartagena");
@@ -89,7 +85,6 @@ class CityServiceTest {
 
     @Test
     void deleteCity() {
-
         City city = new City();
         city.setCityId(CITY_ID);
         city.setCityName("Bogotá");
@@ -102,7 +97,6 @@ class CityServiceTest {
 
     @Test
     void cities() {
-
         City city1 = new City();
         city1.setCityId(CITY_ID);
         city1.setCityName("Cali");
