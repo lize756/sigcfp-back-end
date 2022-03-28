@@ -29,7 +29,7 @@ public class AcademicstudyService implements IAcademicstudyService {
     @Override
     @Transactional
     public Academicstudy updateAcademicstudy(Academicstudy academicstudy) {
-    	return null;
+    	return iAcademicstudyRepo.save(academicstudy);
     }
 
     

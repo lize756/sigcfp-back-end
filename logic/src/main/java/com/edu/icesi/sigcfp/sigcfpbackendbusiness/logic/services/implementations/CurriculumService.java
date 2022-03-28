@@ -32,12 +32,8 @@ public class CurriculumService implements ICurriculumService {
 
     @Override
     @Transactional
-    public Curriculum updateCurriculum(long currId, Curriculum curriculum) {
-        if (iCurriculumRepo.existsById(currId)) {
+    public Curriculum updateCurriculum(Curriculum curriculum) {
             return iCurriculumRepo.save(curriculum);
-        } else {
-            return null;
-        }
     }
 
     @Override

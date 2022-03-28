@@ -9,7 +9,7 @@ import java.util.List;
 public interface IPreconditionService {
     Precondition addPrecondition(Precondition precondition);
 
-    Precondition updatePrecondition(long precondId, Precondition precondition);
+    Precondition updatePrecondition(Precondition precondition);
 
     Precondition searchPrecondition(long precondId);
 

@@ -8,7 +8,7 @@ public interface IRoleeService {
 
     Rolee addRolee(Rolee rolee);
 
-    Rolee updateRolee(long roleId, Rolee rolee);
+    Rolee updateRolee(Rolee rolee);
 
     Rolee searchRolee(long roled);
 

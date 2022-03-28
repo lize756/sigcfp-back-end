@@ -8,7 +8,7 @@ public interface IUserrService {
 
     Userr addUserr(Userr userr);
 
-    Userr updateUserr(long userId, Userr userr);
+    Userr updateUserr(Userr userr);
 
     Userr searchUserr(long userId);
 

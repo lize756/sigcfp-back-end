@@ -32,12 +32,8 @@ public class CurriculumPdfService implements ICurriculumPdfService {
 
     @Override
     @Transactional
-    public CurriculumPdf updateCurriculumPdf(long cuPdfId, CurriculumPdf curriculumPdf) {
-        if (iCurriculumPdfRepo.existsById(cuPdfId)) {
+    public CurriculumPdf updateCurriculumPdf(CurriculumPdf curriculumPdf) {
             return iCurriculumPdfRepo.save(curriculumPdf);
-        } else {
-            return null;
-        }
     }
 
     @Override

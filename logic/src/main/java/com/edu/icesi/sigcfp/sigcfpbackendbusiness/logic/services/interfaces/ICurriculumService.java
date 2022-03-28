@@ -8,7 +8,7 @@ public interface ICurriculumService {
 
     Curriculum addCurriculum(Curriculum curriculum);
 
-    Curriculum updateCurriculum(long currId, Curriculum curriculum);
+    Curriculum updateCurriculum(Curriculum curriculum);
 
     Curriculum searchCurriculum(long currId);
 

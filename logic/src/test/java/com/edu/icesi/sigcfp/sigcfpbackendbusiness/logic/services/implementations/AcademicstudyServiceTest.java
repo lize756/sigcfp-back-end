@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
@@ -38,7 +38,7 @@ class AcademicstudyServiceTest {
 
     @BeforeAll
     static void init(){
-        System.out.println("|| ---- CityServiceTest Started ---- ||");
+        System.out.println("|| ---- AcademicstudyServiceTest Started ---- ||");
     }
 
     @BeforeEach
@@ -66,6 +66,7 @@ class AcademicstudyServiceTest {
 
     @Test
     void updateAcademicstudy() {
+
         Academicstudy academicstudy = new Academicstudy();
         academicstudy.setAcadStudId(ACAD_STUD_ID);
         academicstudy.setAcadStudLevel("PROFESIONAL");
@@ -76,14 +77,13 @@ class AcademicstudyServiceTest {
 
         Mockito.when(iAcademicstudyRepo.getById(ACAD_STUD_ID)).thenReturn(academicstudy);
 
-        academicstudy.setAcadStudStatus("CANCELADO");
-        academicstudy.setAcadStudLevel("TÉCNICO");
+        academicstudy.setAcadStudInsti("ICESI");
         Mockito.when(iAcademicstudyRepo.save(academicstudy)).thenReturn(academicstudy);
 
-        assertThat(academicstudyService.addAcademicstudy(academicstudy))
-s                .isEqualTo(academicstudy);
-        assertEquals("CANCELADO", academicstudyService.updateAcademicstudy(academicstudy).getAcadStudLevel());
-        assertEquals("TÉCNICO", academicstudyService.updateAcademicstudy(academicstudy).getAcadStudLevel());
+        assertThat(academicstudyService.updateAcademicstudy(academicstudy))
+                .isNotNull()
+                .isEqualTo(academicstudy);
+        assertEquals("ICESI", academicstudyService.updateAcademicstudy(academicstudy).getAcadStudInsti());
     }
 
     @Test
@@ -100,14 +100,24 @@ s                .isEqualTo(academicstudy);
         Mockito.when(iAcademicstudyRepo.existsById(ACAD_STUD_ID)).thenReturn(true);
         Mockito.when(iAcademicstudyRepo.getById(ACAD_STUD_ID)).thenReturn(academicstudy);
 
-        Academicstudy byId = academicstudyService.searchAcademicstudy(1);
-
-        assertEquals("EDI - SUPRESS", byId.getAcadStudInsti());
-        assertEquals("TERMINADO", byId.getAcadStudStatus());
+        assertThat(academicstudyService.searchAcademicstudy(ACAD_STUD_ID))
+                .isNotNull()
+                        .isEqualTo(academicstudy);
+        assertEquals("UnIcesi", academicstudyService.searchAcademicstudy(ACAD_STUD_ID).getAcadStudInsti());
     }
 
     @Test
     void deleteAcademicstudy() {
+
+        Academicstudy academicstudy = new Academicstudy();
+        academicstudy.setAcadStudId(ACAD_STUD_ID);
+        academicstudy.setAcadStudInsti("USB");
+
+        Mockito.when(iAcademicstudyRepo.getById(ACAD_STUD_ID)).thenReturn(academicstudy);
+        Mockito.when(iAcademicstudyRepo.existsById(ACAD_STUD_ID)).thenReturn(false);
+
+        assertNull(academicstudyService.searchAcademicstudy(ACAD_STUD_ID));
+
     }
 
     @Test
@@ -134,18 +144,22 @@ s                .isEqualTo(academicstudy);
         academicstudyList.add(academicstudy2);
         academicstudyList.add(academicstudy3);
 
-        when(iAcademicstudyRepo.findAll()).thenReturn(academicstudyList);
+        Mockito.when(iAcademicstudyRepo.findAll()).thenReturn(academicstudyList);
 
-        //test
-        List<Academicstudy> academicstudies = academicstudyService.academicstudies();
+        assertThat(academicstudyService.academicstudies())
+                .isNotNull()
+                .isEqualTo(academicstudyList);
+        assertFalse(academicstudyList.isEmpty());
 
-        assertEquals(3, academicstudies.size());
-        verify(iAcademicstudyRepo, times(1)).findAll();
     }
 
     @AfterEach
     void tearDown() {
-        System.out.println("----------- Finish -----------");
+    }
+
+    @AfterAll
+    static void finish(){
+        System.out.println("|| ---- AcademicstudyServiceTest Finished ---- ||");
     }
 
 

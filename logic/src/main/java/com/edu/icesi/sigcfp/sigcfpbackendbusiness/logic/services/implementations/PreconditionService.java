@@ -31,12 +31,8 @@ public class PreconditionService implements IPreconditionService {
 
     @Override
     @Transactional
-    public Precondition updatePrecondition(long precondId, Precondition precondition) {
-        if (iPreconditionRepo.existsById(precondId)) {
+    public Precondition updatePrecondition(Precondition precondition) {
             return iPreconditionRepo.save(precondition);
-        } else {
-            return null;
-        }
     }
 
     @Override

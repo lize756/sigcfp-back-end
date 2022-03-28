@@ -31,12 +31,8 @@ public class RoleeService implements IRoleeService {
 
     @Override
     @Transactional
-    public Rolee updateRolee(long roleId, Rolee rolee) {
-        if (iRoleeRepo.existsById(roleId)) {
+    public Rolee updateRolee(Rolee rolee) {
             return iRoleeRepo.save(rolee);
-        } else {
-            return null;
-        }
     }
 
     @Override

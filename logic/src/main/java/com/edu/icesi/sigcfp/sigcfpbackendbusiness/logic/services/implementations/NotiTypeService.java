@@ -31,12 +31,8 @@ public class NotiTypeService implements INotiTypeService {
 
     @Override
     @Transactional
-    public NotiType updateNotiType(long notiTypeId, NotiType notiType) {
-        if (iNotiTypeRepo.existsById(notiTypeId)) {
+    public NotiType updateNotiType(NotiType notiType) {
             return iNotiTypeRepo.save(notiType);
-        } else {
-            return null;
-        }
     }
 
     @Override
