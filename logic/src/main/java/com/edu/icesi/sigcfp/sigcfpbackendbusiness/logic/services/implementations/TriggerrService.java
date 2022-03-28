@@ -31,12 +31,8 @@ public class TriggerrService implements ITriggerrService {
 
     @Override
     @Transactional
-    public Triggerr updateTriggerr(long trigId, Triggerr triggerr) {
-        if (iTriggerrRepo.existsById(trigId)) {
+    public Triggerr updateTriggerr(Triggerr triggerr) {
             return iTriggerrRepo.save(triggerr);
-        } else {
-            return null;
-        }
     }
 
     @Override

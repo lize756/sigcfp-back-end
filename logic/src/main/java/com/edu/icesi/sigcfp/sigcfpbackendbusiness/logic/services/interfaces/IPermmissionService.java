@@ -8,7 +8,7 @@ public interface IPermmissionService {
 
     Permmission addPermmission(Permmission permmission);
 
-    Permmission updatePermmission(long permId, Permmission permmission);
+    Permmission updatePermmission(Permmission permmission);
 
     Permmission searchPermmission(long permId);
 

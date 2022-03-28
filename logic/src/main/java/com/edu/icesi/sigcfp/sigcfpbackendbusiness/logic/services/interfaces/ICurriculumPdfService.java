@@ -8,7 +8,7 @@ public interface ICurriculumPdfService {
 
     CurriculumPdf addCurriculumPdf(CurriculumPdf curriculumPdf);
 
-    CurriculumPdf updateCurriculumPdf(long cuPdfId, CurriculumPdf curriculumPdf);
+    CurriculumPdf updateCurriculumPdf(CurriculumPdf curriculumPdf);
 
     CurriculumPdf searchCurriculumPdf(long cuPdfId);
 

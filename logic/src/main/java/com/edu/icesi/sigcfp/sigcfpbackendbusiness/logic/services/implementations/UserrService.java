@@ -31,12 +31,8 @@ public class UserrService implements IUserrService {
 
     @Override
     @Transactional
-    public Userr updateUserr(long userId, Userr userr) {
-        if (iUserrRepo.existsById(userId)) {
+    public Userr updateUserr(Userr userr) {
             return iUserrRepo.save(userr);
-        } else {
-            return null;
-        }
     }
 
     @Override

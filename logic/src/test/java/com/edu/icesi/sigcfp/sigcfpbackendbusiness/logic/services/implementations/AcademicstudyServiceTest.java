@@ -1,67 +1,123 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.implementations;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Academicstudy;
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.City;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.IAcademicstudyRepo;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
-//@SpringBootTest
+@RunWith(SpringRunner.class)
+@SpringBootTest
 class AcademicstudyServiceTest {
 
-    @Mock
-    private IAcademicstudyRepo iAcademicstudyRepo;
+    final static long ACAD_STUD_ID = 9658;
 
-    @InjectMocks
+    @MockBean
+    private IAcademicstudyRepo iAcademicstudyRepo;
+    @Autowired
     private AcademicstudyService academicstudyService;
+
+    @BeforeAll
+    static void init(){
+        System.out.println("|| ---- AcademicstudyServiceTest Started ---- ||");
+    }
 
     @BeforeEach
     void setUp() {
-        System.out.println("----------- Init -----------");
         MockitoAnnotations.openMocks(this);
     }
 
 
     @Test
     void addAcademicstudy() {
+        Academicstudy academicstudy = new Academicstudy();
+        academicstudy.setAcadStudId(ACAD_STUD_ID);
+        academicstudy.setAcadStudLevel("PROFESIONAL");
+        academicstudy.setAcadStudStartDate(new Date());
+        academicstudy.setAcadStudEndDate(new Date());
+        academicstudy.setAcadStudInsti("UnIcesi");
+        academicstudy.setAcadStudStatus("TERMINADO");
+
+        Mockito.when(iAcademicstudyRepo.save(academicstudy)).thenReturn(academicstudy);
+
+        assertThat(academicstudyService.addAcademicstudy(academicstudy))
+                .isNotNull()
+                .isEqualTo(academicstudy);
     }
 
     @Test
     void updateAcademicstudy() {
+
+        Academicstudy academicstudy = new Academicstudy();
+        academicstudy.setAcadStudId(ACAD_STUD_ID);
+        academicstudy.setAcadStudLevel("PROFESIONAL");
+        academicstudy.setAcadStudStartDate(new Date());
+        academicstudy.setAcadStudEndDate(new Date());
+        academicstudy.setAcadStudInsti("UnIcesi");
+        academicstudy.setAcadStudStatus("TERMINADO");
+
+        Mockito.when(iAcademicstudyRepo.getById(ACAD_STUD_ID)).thenReturn(academicstudy);
+
+        academicstudy.setAcadStudInsti("ICESI");
+        Mockito.when(iAcademicstudyRepo.save(academicstudy)).thenReturn(academicstudy);
+
+        assertThat(academicstudyService.updateAcademicstudy(academicstudy))
+                .isNotNull()
+                .isEqualTo(academicstudy);
+        assertEquals("ICESI", academicstudyService.updateAcademicstudy(academicstudy).getAcadStudInsti());
     }
 
     @Test
     void searchAcademicstudy() {
 
-        Academicstudy academicstudy1 = new Academicstudy();
-        academicstudy1.setAcadStudId(1);
-        academicstudy1.setAcadStudInsti("EDI - SUPRESS");
-        academicstudy1.setAcadStudStatus("TERMINADO");
+        Academicstudy academicstudy = new Academicstudy();
+        academicstudy.setAcadStudId(ACAD_STUD_ID);
+        academicstudy.setAcadStudLevel("PROFESIONAL");
+        academicstudy.setAcadStudStartDate(new Date());
+        academicstudy.setAcadStudEndDate(new Date());
+        academicstudy.setAcadStudInsti("UnIcesi");
+        academicstudy.setAcadStudStatus("TERMINADO");
 
-        when(iAcademicstudyRepo.getById(1L)).thenReturn(academicstudy1);
+        Mockito.when(iAcademicstudyRepo.existsById(ACAD_STUD_ID)).thenReturn(true);
+        Mockito.when(iAcademicstudyRepo.getById(ACAD_STUD_ID)).thenReturn(academicstudy);
 
-        Academicstudy byId = academicstudyService.searchAcademicstudy(1);
-
-        assertEquals("EDI - SUPRESS", byId.getAcadStudInsti());
-        assertEquals("TERMINADO", byId.getAcadStudStatus());
+        assertThat(academicstudyService.searchAcademicstudy(ACAD_STUD_ID))
+                .isNotNull()
+                        .isEqualTo(academicstudy);
+        assertEquals("UnIcesi", academicstudyService.searchAcademicstudy(ACAD_STUD_ID).getAcadStudInsti());
     }
 
     @Test
     void deleteAcademicstudy() {
+
+        Academicstudy academicstudy = new Academicstudy();
+        academicstudy.setAcadStudId(ACAD_STUD_ID);
+        academicstudy.setAcadStudInsti("USB");
+
+        Mockito.when(iAcademicstudyRepo.getById(ACAD_STUD_ID)).thenReturn(academicstudy);
+        Mockito.when(iAcademicstudyRepo.existsById(ACAD_STUD_ID)).thenReturn(false);
+
+        assertNull(academicstudyService.searchAcademicstudy(ACAD_STUD_ID));
+
     }
 
     @Test
@@ -88,18 +144,22 @@ class AcademicstudyServiceTest {
         academicstudyList.add(academicstudy2);
         academicstudyList.add(academicstudy3);
 
-        when(iAcademicstudyRepo.findAll()).thenReturn(academicstudyList);
+        Mockito.when(iAcademicstudyRepo.findAll()).thenReturn(academicstudyList);
 
-        //test
-        List<Academicstudy> academicstudies = academicstudyService.academicstudies();
+        assertThat(academicstudyService.academicstudies())
+                .isNotNull()
+                .isEqualTo(academicstudyList);
+        assertFalse(academicstudyList.isEmpty());
 
-        assertEquals(3, academicstudies.size());
-        verify(iAcademicstudyRepo, times(1)).findAll();
     }
 
     @AfterEach
     void tearDown() {
-        System.out.println("----------- Finish -----------");
+    }
+
+    @AfterAll
+    static void finish(){
+        System.out.println("|| ---- AcademicstudyServiceTest Finished ---- ||");
     }
 
 

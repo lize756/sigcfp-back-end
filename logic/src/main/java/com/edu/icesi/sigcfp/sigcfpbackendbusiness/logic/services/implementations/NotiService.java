@@ -32,12 +32,8 @@ public class NotiService implements INotiService {
 
     @Override
     @Transactional
-    public Noti updateNoti(long notiId, Noti noti) {
-        if (iNotiRepo.existsById(notiId)) {
+    public Noti updateNoti(Noti noti) {
             return iNotiRepo.save(noti);
-        } else {
-            return null;
-        }
     }
 
     @Override

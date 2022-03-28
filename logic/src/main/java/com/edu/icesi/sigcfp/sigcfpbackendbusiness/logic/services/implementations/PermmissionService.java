@@ -32,12 +32,8 @@ public class PermmissionService implements IPermmissionService {
 
     @Override
     @Transactional
-    public Permmission updatePermmission(long permId, Permmission permmission) {
-        if (iPermmissionRepo.existsById(permId)) {
+    public Permmission updatePermmission(Permmission permmission) {
             return iPermmissionRepo.save(permmission);
-        } else {
-            return null;
-        }
     }
 
     @Override

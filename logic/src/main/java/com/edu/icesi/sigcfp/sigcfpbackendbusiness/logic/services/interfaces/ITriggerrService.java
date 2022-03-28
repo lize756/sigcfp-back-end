@@ -8,7 +8,7 @@ import java.util.List;
 public interface ITriggerrService {
     Triggerr addTriggerr(Triggerr triggerr);
 
-    Triggerr updateTriggerr(long trigId, Triggerr triggerr);
+    Triggerr updateTriggerr(Triggerr triggerr);
 
     Triggerr searchTriggerr(long trigId);
 
