@@ -12,7 +12,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="\"language\"")
+@Table(name="language")
 @NamedQuery(name="Language.findAll", query="SELECT l FROM Language l")
 @JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
 public class Language implements Serializable {

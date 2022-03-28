@@ -1,5 +1,7 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.implementations;
 
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Career;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.InternRequest;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.IInternRequestService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.IInternRequestController;
@@ -40,6 +43,14 @@ public class InternRequestController implements IInternRequestController {
 	public ResponseEntity<InternRequest> addInternRequest(@RequestBody InternRequest internRequest) {
 		try {
 			InternRequest _inteRequest = iInternRequestService.addInternRequest(internRequest);
+			List<Career> careers =internRequest.getCareers();
+			System.out.println("careers"+"#################################");
+			System.out.println("Identificador: "+ internRequest.getInteRequId());
+			for (Career career : careers) {
+				System.out.println(career.getCareName());
+				
+			}
+			_inteRequest.setCareers(careers);
 			return new ResponseEntity<InternRequest>(_inteRequest, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

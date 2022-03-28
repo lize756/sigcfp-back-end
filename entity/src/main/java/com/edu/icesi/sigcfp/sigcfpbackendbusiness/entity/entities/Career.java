@@ -34,7 +34,7 @@ public class Career implements Serializable {
 	//bi-directional many-to-one association to Faculty
 	@ManyToOne
 	@JoinColumn(name="FACULTY_FACU_ID")
-	@JsonIgnore
+	//@JsonIgnore
 	private Faculty faculty;
 
 	//bi-directional many-to-one association to InternRequest
@@ -49,7 +49,7 @@ public class Career implements Serializable {
 	private List<Curriculum> curriculums;
 
 	//bi-directional many-to-many association to InternRequest
-	@ManyToMany(mappedBy="careers2")
+	@ManyToMany(mappedBy="careers")
 	@JsonIgnore
 	private List<InternRequest> internRequests;
 
