@@ -35,4 +35,4 @@ build/
 /.metadata/
 
 ### Extras ###
-/.github
+/.github/**
