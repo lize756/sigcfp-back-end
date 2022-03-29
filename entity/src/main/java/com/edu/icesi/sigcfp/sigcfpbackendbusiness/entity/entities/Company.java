@@ -2,11 +2,9 @@ package com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
-
 
 /**
  * The persistent class for the COMPANY database table.
@@ -55,7 +53,7 @@ public class Company implements Serializable {
 	//bi-directional many-to-one association to City
 	@ManyToOne
 	@JoinColumn(name="CITY_CITY_ID", nullable=false)
-	@JsonIgnore
+	//@JsonIgnore
 	private City city;
 
 	//bi-directional many-to-one association to Userr
@@ -66,7 +64,7 @@ public class Company implements Serializable {
 
 	//bi-directional many-to-one association to Contact
 	@OneToMany(mappedBy="company")
-	@JsonIgnore
+	//@JsonIgnore
 	private List<Contact> contacts;
 
 	//bi-directional many-to-one association to Curriculum
