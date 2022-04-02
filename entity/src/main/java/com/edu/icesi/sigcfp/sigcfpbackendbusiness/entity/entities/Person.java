@@ -45,18 +45,18 @@ public class Person implements Serializable {
 
 	//bi-directional many-to-one association to Curriculum
 	@OneToMany(mappedBy="person")
-	@JsonIgnore
+	//@JsonIgnore
 	private List<Curriculum> curriculums;
 
 	//bi-directional many-to-one association to Ethnicgroup
 	@OneToMany(mappedBy="person")
-	@JsonIgnore
+	//@JsonIgnore
 	private List<Ethnicgroup> ethnicgroups;
 
 	//bi-directional many-to-one association to City
 	@ManyToOne
 	@JoinColumn(name="CITY_CITY_ID", nullable=false)
-	@JsonIgnore
+	//@JsonIgnore
 	private City city;
 
 	//bi-directional many-to-one association to Curriculum
@@ -76,13 +76,13 @@ public class Person implements Serializable {
 			@JoinColumn(name="LANGUAGE_LANGU_ID", nullable=false)
 			}
 		)
-	@JsonIgnore
+	//@JsonIgnore
 	private List<Language> languages;
 
 	//bi-directional many-to-one association to Userr
 	@ManyToOne
 	@JoinColumn(name="USERR_USER_ID")
-	@JsonIgnore
+	//@JsonIgnore
 	private Userr userr;
 
 	//bi-directional many-to-one association to Userr
