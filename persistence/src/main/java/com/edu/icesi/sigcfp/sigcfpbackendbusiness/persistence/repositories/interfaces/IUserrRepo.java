@@ -8,6 +8,4 @@ import java.util.List;
 
 @Repository
 public interface IUserrRepo extends JpaRepository<Userr, Long> {
-    @Override
-    List<Userr> findAll();
 }

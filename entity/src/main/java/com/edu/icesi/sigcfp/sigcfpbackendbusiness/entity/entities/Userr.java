@@ -2,7 +2,6 @@ package com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
@@ -44,11 +43,11 @@ public class Userr implements Serializable {
 	@JsonIgnore
 	private List<Person> persons;
 
-	//bi-directional many-to-one association to Rolee
+	//bi-directional many-to- one association to Rolee
 	@OneToMany(mappedBy="userr")
 	@JsonIgnore
 	private List<Rolee> rolees;
-
+ 
 	//bi-directional many-to-one association to Company
 	@ManyToOne
 	@JoinColumn(name="COMPANY_COMP_ID")
@@ -56,9 +55,10 @@ public class Userr implements Serializable {
 	private Company company;
 
 	//bi-directional many-to-one association to Person
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="PERSON_PERS_ID")
-	@JsonIgnore
+    //@NotFound(action=NotFoundAction.IGNORE)
+	//@JsonIgnore
 	private Person person;
 
 	public Userr() {

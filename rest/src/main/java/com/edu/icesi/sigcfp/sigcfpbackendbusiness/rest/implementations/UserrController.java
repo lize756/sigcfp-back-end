@@ -79,14 +79,15 @@ public class UserrController implements IUserrController{
 	@Override
 	@GetMapping()
 	public ResponseEntity<List<Userr>> getUserr() {
+		List<Userr> userrs = iUserrService.userrs();
 		try {
-			List<Userr> userrs = iUserrService.userrs();
 			if (userrs.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
 			return new ResponseEntity<>(userrs, HttpStatus.OK);
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
