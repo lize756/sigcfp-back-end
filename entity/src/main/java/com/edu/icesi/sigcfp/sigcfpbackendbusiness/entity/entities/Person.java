@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -80,16 +81,11 @@ public class Person implements Serializable {
 	private List<Language> languages;
 
 	//bi-directional many-to-one association to Userr
-	@ManyToOne
+	//@ManyToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="USERR_USER_ID")
 	//@JsonIgnore
 	private Userr userr;
-
-	//bi-directional many-to-one association to Userr
-	@OneToMany(mappedBy="person")
-	@JsonIgnore
-	private List<Userr> userrs;
-
 	
 	public Person() {
 	}
@@ -226,27 +222,9 @@ public class Person implements Serializable {
 		this.userr = userr;
 	}
 
-	public List<Userr> getUserrs() {
-		return this.userrs;
-	}
+	
 
-	public void setUserrs(List<Userr> userrs) {
-		this.userrs = userrs;
-	}
-
-	public Userr addUserr(Userr userr) {
-		getUserrs().add(userr);
-		userr.setPerson(this);
-
-		return userr;
-	}
-
-	public Userr removeUserr(Userr userr) {
-		getUserrs().remove(userr);
-		userr.setPerson(null);
-
-		return userr;
-	}
+	
 
 	
 
