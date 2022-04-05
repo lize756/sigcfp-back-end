@@ -73,8 +73,6 @@ class CityControllerTest {
         City city = new City();
         city.setCityId(CITY_ID);
         city.setCityName("Cali");
-
-        // when
         when(iCityRepo.save(city)).thenReturn(city);
 
         // then
