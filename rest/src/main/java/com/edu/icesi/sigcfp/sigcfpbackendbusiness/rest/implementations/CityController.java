@@ -59,11 +59,7 @@ public class CityController implements ICityController {
 	@GetMapping("/{cityId}")
 	public ResponseEntity<City> getCity(@PathVariable("cityId") long cityId) {
 		Optional<City> cityOpt = Optional.of(iCityService.searchCity(cityId));
-		if (cityOpt.isPresent()) {
-			return new ResponseEntity<>(cityOpt.get(), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+		return cityOpt.map(city -> new ResponseEntity<>(city, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
 
 	@Override
