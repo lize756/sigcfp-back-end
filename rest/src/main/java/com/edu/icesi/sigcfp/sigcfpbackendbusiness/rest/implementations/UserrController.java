@@ -2,7 +2,9 @@ package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.implementations;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
+import org.hibernate.annotations.common.util.impl.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +38,7 @@ public class UserrController implements IUserrController{
 	@Override
 	@PostMapping("/add")
 	public ResponseEntity<Userr> addUserr(@RequestBody Userr userr) {
+		System.out.println("Entré --  " + userr.getUserId());
 		try {
 			Userr _userr = iUserrService.addUserr(userr);
 			return new ResponseEntity<Userr>(_userr, HttpStatus.CREATED);

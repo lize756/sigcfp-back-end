@@ -2,6 +2,9 @@ package com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
@@ -33,23 +36,13 @@ public class Userr implements Serializable {
 	@Column(name="USER_PASSWORD", length=50)
 	private String userPassword;
 
-	//bi-directional many-to-one association to Company
-	@OneToMany(mappedBy="userr")
-	@JsonIgnore
-	private List<Company> companies;
-
-	//bi-directional many-to-one association to Person
-	@OneToMany(mappedBy="userr")
-	@JsonIgnore
-	private List<Person> persons;
-
 	//bi-directional many-to- one association to Rolee
 	@OneToMany(mappedBy="userr")
 	@JsonIgnore
 	private List<Rolee> rolees;
  
 	//bi-directional many-to-one association to Company
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="COMPANY_COMP_ID")
 	@JsonIgnore
 	private Company company;
@@ -57,7 +50,7 @@ public class Userr implements Serializable {
 	//bi-directional many-to-one association to Person
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="PERSON_PERS_ID")
-    //@NotFound(action=NotFoundAction.IGNORE)
+    //@NotFound(action= NotFoundAction.IGNORE)
 	//@JsonIgnore
 	private Person person;
 
@@ -94,50 +87,6 @@ public class Userr implements Serializable {
 
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
-	}
-
-	public List<Company> getCompanies() {
-		return this.companies;
-	}
-
-	public void setCompanies(List<Company> companies) {
-		this.companies = companies;
-	}
-
-	public Company addCompany(Company company) {
-		getCompanies().add(company);
-		company.setUserr(this);
-
-		return company;
-	}
-
-	public Company removeCompany(Company company) {
-		getCompanies().remove(company);
-		company.setUserr(null);
-
-		return company;
-	}
-
-	public List<Person> getPersons() {
-		return this.persons;
-	}
-
-	public void setPersons(List<Person> persons) {
-		this.persons = persons;
-	}
-
-	public Person addPerson(Person person) {
-		getPersons().add(person);
-		person.setUserr(this);
-
-		return person;
-	}
-
-	public Person removePerson(Person person) {
-		getPersons().remove(person);
-		person.setUserr(null);
-
-		return person;
 	}
 
 	public List<Rolee> getRolees() {
