@@ -1,19 +1,20 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Noti;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 public interface INotiController {
 
-    ResponseEntity<String> addNoti(Noti noti);
+    ResponseEntity<Noti> addNoti(Noti noti);
 
-    ResponseEntity<String> updateNoti(Noti noti, long notiId);
+    ResponseEntity<Noti> updateNoti(long notiId, Noti noti);
 
-    ResponseEntity<String> getNoti(long notiId);
+    ResponseEntity<Noti> getNoti(long notiId);
 
-    ResponseEntity<String> deleteNoti(long notiId);
+    ResponseEntity<HttpStatus> deleteNoti(long notiId);
 
     ResponseEntity<List<Noti>> getNotis();
 

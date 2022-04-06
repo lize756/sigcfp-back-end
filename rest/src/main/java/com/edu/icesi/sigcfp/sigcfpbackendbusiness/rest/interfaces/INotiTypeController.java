@@ -1,19 +1,20 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.NotiType;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 public interface INotiTypeController {
 
-    ResponseEntity<String> addNotiType(NotiType notiType);
+    ResponseEntity<NotiType> addNotiType(NotiType notiType);
 
-    ResponseEntity<String> updateNotiType(NotiType notiType, long notiTypeId);
+    ResponseEntity<NotiType> updateNotiType(long notiTypeId, NotiType notiType);
 
-    ResponseEntity<String> getNotiType(long notiTypeId);
+    ResponseEntity<NotiType> getNotiType(long notiTypeId);
 
-    ResponseEntity<String> deleteNotiType(long notiTypeId);
+    ResponseEntity<HttpStatus> deleteNotiType(long notiTypeId);
 
     ResponseEntity<List<NotiType>> getNotiTypes();
 

@@ -8,7 +8,6 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the USERR database table.
  * 
@@ -45,7 +44,6 @@ public class Userr implements Serializable {
 	@JoinColumn(name="COMPANY_COMP_ID")
 	@JsonIgnore
 	private Company company;
-
 
 	public Userr() {
 	}
