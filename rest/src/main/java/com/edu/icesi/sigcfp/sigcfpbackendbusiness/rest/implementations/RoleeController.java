@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController()
-@RequestMapping("/curriculums")
+@RequestMapping("/rolees")
 @CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class RoleeController implements IRoleeController {
