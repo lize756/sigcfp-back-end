@@ -1,6 +1,5 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.implementations;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Curriculum;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Rolee;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.IRoleeService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.IRoleeController;
@@ -13,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController()
-@RequestMapping("/curriculums")
+@RequestMapping("/rolees")
 @CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class RoleeController implements IRoleeController {

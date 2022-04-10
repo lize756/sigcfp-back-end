@@ -1,6 +1,5 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.implementations;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Curriculum;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.CurriculumPdf;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.ICurriculumPdfService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.ICurriculumPdfController;
