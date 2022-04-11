@@ -25,10 +25,10 @@ public class Userr implements Serializable {
 	@Column(name="USER_ID", unique=true, nullable=false, precision=10)
 	private long userId;
 
-	@Column(name="USER_EMAIL", length=255)
+	@Column(name="USER_EMAIL", length=255, unique = true)
 	private String userEmail;
 
-	@Column(name="USER_NAME", length=255)
+	@Column(name="USER_NAME", length=255, unique = true)
 	private String userName;
 
 	@Column(name="USER_PASSWORD", length=50)
