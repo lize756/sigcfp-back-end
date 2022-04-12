@@ -1,5 +1,6 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.security;
 
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.services.implementations.JWTService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,38 +29,43 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService myUserDetailsService;
+
     @Autowired
-    private JwtRequestFilter jwtRequestFilter;
+    private BCryptPasswordEncoder passwordEncoder;
+
+
+    @Autowired
+    private JWTService jwtService;
 
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(myUserDetailsService);
+        auth.userDetailsService(myUserDetailsService).passwordEncoder(passwordEncoder);
     }
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable() // Disabling csrf
+        httpSecurity
+                .csrf().disable() // Disabling csrf
                 .httpBasic().disable() // Disabling http basic
                 .cors() // Enabling cors
                 .and()
+
                 .authorizeHttpRequests() // Authorizing incoming requests
                 // Our public endpoints
-                .antMatchers("/api/auth/login/**").permitAll()
+                .antMatchers("/api/auth/login").permitAll()
                 // Our private endpoints
-
+                .anyRequest().authenticated()
 
                 .and()
-                .exceptionHandling()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtService))
+                .addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtService))
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public static BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -83,5 +89,6 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
+
 
 }

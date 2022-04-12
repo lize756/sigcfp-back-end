@@ -31,8 +31,11 @@ public class Userr implements Serializable {
 	@Column(name="USER_NAME", length=255, unique = true)
 	private String userName;
 
-	@Column(name="USER_PASSWORD", length=50)
+	@Column(name="USER_PASSWORD", length=1000)
 	private String userPassword;
+
+	@Column(name="ISENABLE", length=2)
+	private boolean isEnable;
 
 	//bi-directional many-to- one association to Rolee
 	@OneToMany(mappedBy="userr")
@@ -79,6 +82,15 @@ public class Userr implements Serializable {
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
+
+	public boolean isEnable() {
+		return isEnable;
+	}
+
+	public void setEnable(boolean enable) {
+		isEnable = enable;
+	}
+
 
 	public List<Rolee> getRolees() {
 		return this.rolees;

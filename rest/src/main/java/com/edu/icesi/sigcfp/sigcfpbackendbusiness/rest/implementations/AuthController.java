@@ -3,7 +3,7 @@ package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.implementations;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.model.AuthenticationRequest;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.model.AuthenticationResponse;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.security.MyUserDetailsService;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.util.JWTUtil;
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.services.implementations.JWTService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.IAuthController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*")
 public class AuthController implements IAuthController {
 
-    @Autowired private JWTUtil jwtUtil;
+    //@Autowired private JWTUtil jwtUtil;
+    @Autowired private JWTService jwtService;
     @Autowired private MyUserDetailsService userDetailsService;
     @Autowired private AuthenticationManager authenticationManager;
 
@@ -37,9 +38,14 @@ public class AuthController implements IAuthController {
 
         final UserDetails userDetails = userDetailsService
                 .loadUserByUsername(authenticationRequest.getUsername());
-        final String jwt = jwtUtil.generateToken(userDetails);
-        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+       // final String jwt = jwtUtil.generateToken(userDetails);
+        //return ResponseEntity.ok(new AuthenticationResponse(jwt));
+
+        return null;
+
     }
+
+
 
     @Override
     public ResponseEntity<?> login(String username, String password) {

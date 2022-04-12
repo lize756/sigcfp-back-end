@@ -63,4 +63,15 @@ public class UserrService implements IUserrService {
     public List<Userr> userrs() {
         return iUserrRepo.findAll();
     }
+
+
+    @Override
+    public Userr findUserrByUserEmail(String userEmail) {
+        return iUserrRepo.findUserrByUserEmail( userEmail);
+    }
+
+    @Override
+    public Userr findUserrByUserName(String userName) {
+        return iUserrRepo.findUserrByUserName( userName);
+    }
 }
