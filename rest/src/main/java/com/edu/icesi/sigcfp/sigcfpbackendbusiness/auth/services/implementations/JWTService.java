@@ -29,7 +29,6 @@ public class JWTService implements IJWTService {
     public static final String TOKEN_PREFIX = "Bearer ";
     public static final String HEADER_STRING = "Authorization";
 
-
     @Override
     public String create(Authentication auth) throws JsonProcessingException {
         String userName = ((User) auth.getPrincipal()).getUsername();

@@ -39,10 +39,8 @@ public class MyUserDetailsService implements UserDetailsService {
         }
 
         List<GrantedAuthority> rolees = new ArrayList<GrantedAuthority>();
-        for (Rolee rolee : userr.getRolees()) {
-            logger.info("Role: " + rolee.getRoleName());
-            rolees.add( new SimpleGrantedAuthority ( rolee.getRoleName() ) );
-        }
+        rolees.add( new SimpleGrantedAuthority ( userr.getRolee().getRoleName() ) );
+
 
         if (rolees.isEmpty()) {
             logger.error("Error: el usuario " + username + " no tiene roles asignados");

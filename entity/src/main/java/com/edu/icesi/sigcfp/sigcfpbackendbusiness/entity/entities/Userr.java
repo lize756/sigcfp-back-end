@@ -89,6 +89,8 @@ public class Userr implements Serializable {
 
 	public Rolee getRolee() {
 		return this.rolee;
+	}
+
 	public boolean isEnable() {
 		return isEnable;
 	}
