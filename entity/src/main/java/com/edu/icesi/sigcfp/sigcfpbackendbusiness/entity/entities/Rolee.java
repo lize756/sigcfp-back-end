@@ -37,10 +37,12 @@ public class Rolee implements Serializable {
 	private List<Permmission> permmissions;
 
 	//bi-directional many-to-one association to Userr
-	@ManyToOne
-	@JoinColumn(name="USERR_USER_ID")
+	//@ManyToOne
+	//@JoinColumn(name="USERR_USER_ID")
 	//@JsonIgnore
-	private Userr userr;
+	@OneToMany(mappedBy = "rolee")
+	@JsonIgnore
+	private List<Userr> userrs;
 
 	public Rolee() {
 	}
@@ -69,6 +71,29 @@ public class Rolee implements Serializable {
 		this.roleName = roleName;
 	}
 
+	public List<Userr> getUserrs() {
+		return userrs;
+	}
+
+	public void setUserrs(List<Userr> userrs) {
+		this.userrs = userrs;
+	}
+
+	public Userr addUserr(Userr userr) {
+		getUserrs().add(userr);
+		userr.setRolee(this);
+
+		return userr;
+	}
+
+	public Userr removeUserr(Userr userr) {
+		getUserrs().remove(userr);
+		userr.setRolee(null);
+
+		return userr;
+	}
+	
+	
 	public List<Permmission> getPermmissions() {
 		return this.permmissions;
 	}
@@ -91,12 +116,7 @@ public class Rolee implements Serializable {
 		return permmission;
 	}
 
-	public Userr getUserr() {
-		return this.userr;
-	}
 
-	public void setUserr(Userr userr) {
-		this.userr = userr;
-	}
+
 
 }

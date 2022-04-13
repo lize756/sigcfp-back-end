@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
-
 /**
  * The persistent class for the USERR database table.
  * 
@@ -37,12 +35,14 @@ public class Userr implements Serializable {
     @OneToOne(mappedBy = "userr")
     private Person person;
 	
-	
 	//bi-directional many-to- one association to Rolee
-	@OneToMany(mappedBy="userr")
+    //@OneToMany(mappedBy="userr")
 	//@JsonIgnore
-	private List<Rolee> rolees;
- 
+    //private List<Rolee> rolees;
+    @ManyToOne
+    @JoinColumn(name = "ROLE_ROLEE_ID")
+	private Rolee rolee;
+
 	//bi-directional many-to-one association to Company
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="COMPANY_COMP_ID")
@@ -84,27 +84,15 @@ public class Userr implements Serializable {
 		this.userPassword = userPassword;
 	}
 
-	public List<Rolee> getRolees() {
-		return this.rolees;
+	public Rolee getRolee() {
+		return this.rolee;
 	}
 
-	public void setRolees(List<Rolee> rolees) {
-		this.rolees = rolees;
+	public void setRolee(Rolee rolee) {
+		this.rolee = rolee;
 	}
 
-	public Rolee addRolee(Rolee rolee) {
-		getRolees().add(rolee);
-		rolee.setUserr(this);
-
-		return rolee;
-	}
-
-	public Rolee removeRolee(Rolee rolee) {
-		getRolees().remove(rolee);
-		rolee.setUserr(null);
-
-		return rolee;
-	}
+	
 
 	public Company getCompany() {
 		return this.company;
