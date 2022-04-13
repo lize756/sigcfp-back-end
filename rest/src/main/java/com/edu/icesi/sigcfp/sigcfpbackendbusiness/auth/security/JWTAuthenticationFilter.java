@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -28,13 +29,13 @@ import java.util.Map;
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private AuthenticationManager authenticationManager;
-    private JWTService jwtService;
+    @Autowired private JWTService jwtService;
 
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager, JWTService jwtService) {
         this.authenticationManager = authenticationManager;
         // TODO: Cambiar este path como una constante
         setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/api/auth/login", "POST"));
-        setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/api/auth/register", "POST"));
+        //setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/api/auth/register", "POST"));
         this.jwtService = jwtService;
     }
 

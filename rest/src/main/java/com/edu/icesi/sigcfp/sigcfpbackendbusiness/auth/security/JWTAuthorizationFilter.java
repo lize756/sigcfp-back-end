@@ -1,6 +1,7 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.security;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.services.implementations.JWTService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,7 +15,7 @@ import java.io.IOException;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
-    private JWTService jwtService;
+    @Autowired private JWTService jwtService;
 
     public JWTAuthorizationFilter(AuthenticationManager authenticationManager, JWTService jwtService) {
         super(authenticationManager);
