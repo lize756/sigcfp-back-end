@@ -23,14 +23,17 @@ public class Userr implements Serializable {
 	@Column(name="USER_ID", unique=true, nullable=false, precision=10)
 	private long userId;
 
-	@Column(name="USER_EMAIL", length=255)
+	@Column(name="USER_EMAIL", length=255, unique = true)
 	private String userEmail;
 
-	@Column(name="USER_NAME", length=255)
+	@Column(name="USER_NAME", length=255, unique = true)
 	private String userName;
 
-	@Column(name="USER_PASSWORD", length=50)
+	@Column(name="USER_PASSWORD", length=1000)
 	private String userPassword;
+
+	@Column(name="ISENABLE", length=2)
+	private boolean isEnable;
 
     @OneToOne(mappedBy = "userr")
     private Person person;
@@ -86,6 +89,14 @@ public class Userr implements Serializable {
 
 	public Rolee getRolee() {
 		return this.rolee;
+	}
+
+	public boolean isEnable() {
+		return isEnable;
+	}
+
+	public void setEnable(boolean enable) {
+		isEnable = enable;
 	}
 
 	public void setRolee(Rolee rolee) {

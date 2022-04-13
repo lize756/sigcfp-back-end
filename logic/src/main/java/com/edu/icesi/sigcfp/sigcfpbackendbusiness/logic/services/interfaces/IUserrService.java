@@ -15,4 +15,8 @@ public interface IUserrService {
     Userr deleteUserr(long userId);
 
     List<Userr> userrs();
+
+    Userr findUserrByUserEmail(String userEmail);
+
+    Userr findUserrByUserName(String userName);
 }
