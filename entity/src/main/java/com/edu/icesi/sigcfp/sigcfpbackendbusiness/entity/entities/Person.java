@@ -84,7 +84,6 @@ public class Person implements Serializable {
 	//@ManyToOne
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="USERR_USER_ID")
-	//@JsonIgnore
 	private Userr userr;
 	
 	public Person() {

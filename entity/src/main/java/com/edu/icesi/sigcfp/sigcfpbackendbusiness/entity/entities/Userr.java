@@ -34,9 +34,13 @@ public class Userr implements Serializable {
 	@Column(name="USER_PASSWORD", length=50)
 	private String userPassword;
 
+    @OneToOne(mappedBy = "userr")
+    private Person person;
+	
+	
 	//bi-directional many-to- one association to Rolee
 	@OneToMany(mappedBy="userr")
-	@JsonIgnore
+	//@JsonIgnore
 	private List<Rolee> rolees;
  
 	//bi-directional many-to-one association to Company
@@ -108,6 +112,14 @@ public class Userr implements Serializable {
 
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+
+	public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 
 

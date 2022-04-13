@@ -70,6 +70,7 @@ public class RoleeController implements IRoleeController {
     }
 
     @Override
+    @GetMapping()
     public ResponseEntity<List<Rolee>> getRolees() {
         try {
             List<Rolee> roleeList = iRoleeService.rolees();

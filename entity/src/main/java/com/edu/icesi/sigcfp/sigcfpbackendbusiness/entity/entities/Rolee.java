@@ -39,7 +39,7 @@ public class Rolee implements Serializable {
 	//bi-directional many-to-one association to Userr
 	@ManyToOne
 	@JoinColumn(name="USERR_USER_ID")
-	@JsonIgnore
+	//@JsonIgnore
 	private Userr userr;
 
 	public Rolee() {
