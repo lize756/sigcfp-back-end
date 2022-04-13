@@ -54,6 +54,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .authorizeHttpRequests() // Authorizing incoming requests
                 // Our public endpoints
                 .antMatchers("/api/auth/login").permitAll()
+                .antMatchers("/api/auth/register").permitAll()
                 // Our private endpoints
                 .anyRequest().authenticated()
 

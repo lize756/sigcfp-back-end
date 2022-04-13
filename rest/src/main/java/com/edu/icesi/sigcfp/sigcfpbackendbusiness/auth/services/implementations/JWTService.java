@@ -50,7 +50,6 @@ public class JWTService implements IJWTService {
 
     @Override
     public boolean validate(String token) {
-        boolean validToken;
         try {
              getClaims(token);
              return true;

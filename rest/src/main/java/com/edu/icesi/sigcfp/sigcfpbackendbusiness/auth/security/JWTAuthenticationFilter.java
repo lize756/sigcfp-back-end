@@ -34,6 +34,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         this.authenticationManager = authenticationManager;
         // TODO: Cambiar este path como una constante
         setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/api/auth/login", "POST"));
+        setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/api/auth/register", "POST"));
         this.jwtService = jwtService;
     }
 
