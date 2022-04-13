@@ -1,6 +1,5 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.implementations;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Curriculum;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Rolee;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.IRoleeService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.IRoleeController;
@@ -71,6 +70,7 @@ public class RoleeController implements IRoleeController {
     }
 
     @Override
+    @GetMapping()
     public ResponseEntity<List<Rolee>> getRolees() {
         try {
             List<Rolee> roleeList = iRoleeService.rolees();

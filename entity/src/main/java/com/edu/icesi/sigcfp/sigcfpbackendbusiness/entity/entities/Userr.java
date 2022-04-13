@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
-
 /**
  * The persistent class for the USERR database table.
  * 
@@ -37,11 +35,17 @@ public class Userr implements Serializable {
 	@Column(name="ISENABLE", length=2)
 	private boolean isEnable;
 
+    @OneToOne(mappedBy = "userr")
+    private Person person;
+	
 	//bi-directional many-to- one association to Rolee
-	@OneToMany(mappedBy="userr")
-	@JsonIgnore
-	private List<Rolee> rolees;
- 
+    //@OneToMany(mappedBy="userr")
+	//@JsonIgnore
+    //private List<Rolee> rolees;
+    @ManyToOne
+    @JoinColumn(name = "ROLE_ROLEE_ID")
+	private Rolee rolee;
+
 	//bi-directional many-to-one association to Company
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="COMPANY_COMP_ID")
@@ -83,6 +87,8 @@ public class Userr implements Serializable {
 		this.userPassword = userPassword;
 	}
 
+	public Rolee getRolee() {
+		return this.rolee;
 	public boolean isEnable() {
 		return isEnable;
 	}
@@ -91,28 +97,11 @@ public class Userr implements Serializable {
 		isEnable = enable;
 	}
 
-
-	public List<Rolee> getRolees() {
-		return this.rolees;
+	public void setRolee(Rolee rolee) {
+		this.rolee = rolee;
 	}
 
-	public void setRolees(List<Rolee> rolees) {
-		this.rolees = rolees;
-	}
-
-	public Rolee addRolee(Rolee rolee) {
-		getRolees().add(rolee);
-		rolee.setUserr(this);
-
-		return rolee;
-	}
-
-	public Rolee removeRolee(Rolee rolee) {
-		getRolees().remove(rolee);
-		rolee.setUserr(null);
-
-		return rolee;
-	}
+	
 
 	public Company getCompany() {
 		return this.company;
@@ -120,6 +109,14 @@ public class Userr implements Serializable {
 
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+
+	public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 
 

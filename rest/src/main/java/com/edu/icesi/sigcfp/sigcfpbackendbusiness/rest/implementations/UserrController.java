@@ -2,12 +2,10 @@ package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.implementations;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Logger;
-
-import org.hibernate.annotations.common.util.impl.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,8 +19,10 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Userr;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.IUserrService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.IUserrController;
 
+
 @RestController()
 @RequestMapping("/userrs")
+@CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class UserrController implements IUserrController{
 
