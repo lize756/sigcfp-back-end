@@ -22,7 +22,7 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.IPersonControl
 
 
 @RestController()
-@RequestMapping("/persons")
+@RequestMapping("/api/persons")
 @CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class PersonController implements IPersonController {

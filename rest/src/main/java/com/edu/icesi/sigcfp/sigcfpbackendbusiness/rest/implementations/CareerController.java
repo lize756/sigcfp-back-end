@@ -16,7 +16,7 @@ import java.util.Optional;
 @RestController()
 @RequestMapping("/api/careers")
 @CrossOrigin(origins = "*")
-@PreAuthorize("hasAuthority('ROLEE_LOCATION_COORDINATOR')")
+//@PreAuthorize("hasAuthority('ROLEE_LOCATION_COORDINATOR')")
 public class CareerController implements ICareerController {
 
 	ICareerService iCareerService;

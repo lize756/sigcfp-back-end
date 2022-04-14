@@ -26,7 +26,7 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.IInternRequest
 
 
 @RestController()
-@RequestMapping("/internRequests")
+@RequestMapping("/api/internRequests")
 @CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class InternRequestController implements IInternRequestController {

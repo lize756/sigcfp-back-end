@@ -21,7 +21,7 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.ICon
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.IContactController;
 
 @RestController()
-@RequestMapping("/contacts")
+@RequestMapping("/api/contacts")
 @CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class ContactController implements IContactController {

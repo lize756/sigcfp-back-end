@@ -21,7 +21,7 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.IEth
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.IEthnicgroupController;
 
 @RestController()
-@RequestMapping("/ethnicGroups")
+@RequestMapping("/api/ethnicGroups")
 @CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class EthnicgroupController implements IEthnicgroupController {

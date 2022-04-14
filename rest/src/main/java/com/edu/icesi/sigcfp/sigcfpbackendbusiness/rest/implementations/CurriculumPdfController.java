@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController()
-@RequestMapping("/curriculumPdfs")
+@RequestMapping("/api/curriculumPdfs")
 @CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class CurriculumPdfController implements ICurriculumPdfController {

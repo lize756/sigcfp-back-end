@@ -22,7 +22,7 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.ILanguageContr
 
 
 @RestController()
-@RequestMapping("/languages")
+@RequestMapping("/api/languages")
 @CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class LanguageController implements ILanguageController {

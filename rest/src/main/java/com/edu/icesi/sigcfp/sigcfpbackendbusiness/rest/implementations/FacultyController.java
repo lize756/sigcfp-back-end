@@ -20,7 +20,7 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.IFac
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.IFacultyController;
 
 @RestController()
-@RequestMapping("/faculties")
+@RequestMapping("/api/faculties")
 @CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class FacultyController implements IFacultyController {

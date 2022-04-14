@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController()
-@RequestMapping("/curriculums")
+@RequestMapping("/api/curriculums")
 @CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class CurriculumController implements ICurriculumController {

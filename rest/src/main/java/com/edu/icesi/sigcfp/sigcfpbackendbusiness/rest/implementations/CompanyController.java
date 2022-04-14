@@ -22,7 +22,7 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.ICompanyContro
 
 //@PreAuthorize("")
 @RestController()
-@RequestMapping("/companies")
+@RequestMapping("/api/companies")
 @CrossOrigin(origins = "*")
 public class CompanyController implements ICompanyController {
 
