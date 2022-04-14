@@ -22,7 +22,7 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.IUserrControll
 
 @RestController()
 @RequestMapping("/api/userrs")
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class UserrController implements IUserrController{
 
