@@ -13,9 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * Clase que se encarga de la autorización de los usuarios
+ */
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
-    @Autowired private JWTService jwtService;
+    @Autowired private JWTService jwtService; // Servicio de JWT
 
     public JWTAuthorizationFilter(AuthenticationManager authenticationManager, JWTService jwtService) {
         super(authenticationManager);
@@ -23,6 +26,9 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     }
 
     @Override
+    /**
+     * Método que se encarga de realizar el filtro de autorización
+     */
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         String header = request.getHeader(JWTService.HEADER_STRING);
         if (!requiresAuthentication(header)) {
@@ -37,6 +43,9 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
         chain.doFilter(request, response);
     }
 
+    /**
+     * Método que se encarga de determinar si el token es válido
+     */
     protected boolean requiresAuthentication(String header) {
         if (header == null || !header.startsWith(JWTService.TOKEN_PREFIX)) {
             return false;

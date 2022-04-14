@@ -26,10 +26,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Clase que se encarga de la autenticación de usuarios
+ */
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-    private AuthenticationManager authenticationManager;
-    @Autowired private JWTService jwtService;
+    private AuthenticationManager authenticationManager; //variable de tipo AuthenticationManager
+    @Autowired private JWTService jwtService; //variable de tipo JWTService
 
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager, JWTService jwtService) {
         this.authenticationManager = authenticationManager;
@@ -40,6 +43,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     }
 
     @Override
+    /**
+     * Método que se encarga de la autenticación de usuarios
+     */
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         String userName = obtainUsername(request);
         String userPassword = obtainPassword(request);
@@ -58,7 +64,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 e.printStackTrace();
             }
         }
-
         userName = userName.trim();
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userName, userPassword);
         return authenticationManager.authenticate(authenticationToken);
@@ -66,6 +71,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
 
     @Override
+    /**
+     * Método que se encarga de la autenticación exitosa de los usuarios
+     */
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
        String token = jwtService.create(authResult);
         response.addHeader(JWTService.HEADER_STRING, JWTService.TOKEN_PREFIX + token);
@@ -79,6 +87,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     }
 
     @Override
+    /**
+     * Método que se encarga de la autenticación fallida de los usuarios
+     */
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
         Map<String, Object> body = new HashMap<String, Object>();
         body.put("message", "Error de autenticación: username o password incorrectos");

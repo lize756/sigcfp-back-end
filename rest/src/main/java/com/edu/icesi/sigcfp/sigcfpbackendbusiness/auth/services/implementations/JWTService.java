@@ -24,12 +24,15 @@ import java.util.Date;
 @Component
 public class JWTService implements IJWTService {
 
-    public static final String SECRET_KEY = Base64Utils.encodeToString("Est@.Es.la.Secret-Key".getBytes());
-    public static final Long EXPIRATION_DATE = 3600000 * 24L;
-    public static final String TOKEN_PREFIX = "Bearer ";
-    public static final String HEADER_STRING = "Authorization";
+    public static final String SECRET_KEY = Base64Utils.encodeToString("Est@.Es.la.Secret-Key".getBytes()); // Clave secreta para generar el token
+    public static final Long EXPIRATION_DATE = 3600000 * 24L; // Tiempo de expiracion del token
+    public static final String TOKEN_PREFIX = "Bearer "; // Prefix del token
+    public static final String HEADER_STRING = "Authorization"; // Header para el token
 
     @Override
+    /**
+     * Genera un token para el usuario
+     */
     public String create(Authentication auth) throws JsonProcessingException {
         String userName = ((User) auth.getPrincipal()).getUsername();
 
@@ -48,6 +51,9 @@ public class JWTService implements IJWTService {
     }
 
     @Override
+    /**
+     * Valida el token
+     */
     public boolean validate(String token) {
         try {
              getClaims(token);
@@ -58,6 +64,9 @@ public class JWTService implements IJWTService {
     }
 
     @Override
+    /**
+     *
+     */
     public Claims getClaims(String token) {
         Claims claims= Jwts.parser()
                 // TODO: cambiar este clave por una constante
@@ -68,11 +77,17 @@ public class JWTService implements IJWTService {
     }
 
     @Override
+    /**
+     * Obtener el usuario del token
+     */
     public String getUserName(String token) {
         return getClaims(token).getSubject();
     }
 
     @Override
+    /**
+     * Obtener los roles del token
+     */
     public Collection<? extends GrantedAuthority> getRoles(String token) throws IOException {
         Object roles = getClaims(token).get("roles");
         Collection<? extends GrantedAuthority> rolees = Arrays.asList(new ObjectMapper()
@@ -82,6 +97,9 @@ public class JWTService implements IJWTService {
     }
 
     @Override
+    /**
+     * Obtener el token
+     */
     public String resolve(String token) {
         if (token != null && token.startsWith(TOKEN_PREFIX)) {
             return token.replace(TOKEN_PREFIX, "");

@@ -3,10 +3,13 @@ package com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.model;
 
 import java.io.Serializable;
 
+/**
+ * Clase para la autenticacion de usuarios
+ */
 public class AuthenticationRequest implements Serializable {
 
-    private String username;
-    private String password;
+    private String username; // Nombre de usuario
+    private String password; // Contraseña del usuario
 
     //need default constructor for JSON Parsing
     public AuthenticationRequest() {
@@ -15,6 +18,7 @@ public class AuthenticationRequest implements Serializable {
         this.setUsername(username);
         this.setPassword(password);
     }
+
 
 
     public String getUsername() {

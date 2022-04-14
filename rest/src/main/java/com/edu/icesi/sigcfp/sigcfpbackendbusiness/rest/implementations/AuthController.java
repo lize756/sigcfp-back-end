@@ -21,11 +21,11 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*")
 public class AuthController implements IAuthController {
 
-    @Autowired private UserrService userrService;
-    @Autowired private JWTService jwtService;
+    @Autowired private UserrService userrService; //Servicio de usuarios
+    @Autowired private JWTService jwtService; //Servicio de JWT
     @Autowired private MyUserDetailsService userDetailsService;
-    @Autowired private AuthenticationManager authenticationManager;
-    @Autowired private PasswordEncoder passwordEncoder;
+    @Autowired private AuthenticationManager authenticationManager; //Servicio de autenticacion
+    @Autowired private PasswordEncoder passwordEncoder; //Servicio de encriptacion de contraseñas
 
     @Override
     @PostMapping("/login")
@@ -44,6 +44,8 @@ public class AuthController implements IAuthController {
 
     @Override
     public ResponseEntity<?> logout() {
+
+
         return null;
     }
 
@@ -55,6 +57,8 @@ public class AuthController implements IAuthController {
         userrService.addUserr(userr);
         return ResponseEntity.ok("User registered successfully");
     }
+
+
 
 
 

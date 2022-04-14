@@ -19,31 +19,36 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import java.util.Arrays;
+
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
         securedEnabled = true,
         jsr250Enabled = true,
         prePostEnabled = true
 )
+/**
+ * Clase que configura la seguridad de la aplicación
+ */
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private UserDetailsService myUserDetailsService;
-
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    @Autowired private UserDetailsService myUserDetailsService; // Servicio que provee los usuarios
+    @Autowired private BCryptPasswordEncoder passwordEncoder; // Encriptador de contraseñas
+    @Autowired private JWTService jwtService; // Servicio que provee el token
 
 
     @Autowired
-    private JWTService jwtService;
-
-
-    @Autowired
+    /**
+     * Método que realiza la configuración global de la seguridad
+     */
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(myUserDetailsService).passwordEncoder(passwordEncoder);
     }
 
     @Override
+    /**
+     * Método que configura la seguridad de la aplicación
+     */
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf().disable() // Disabling csrf
@@ -53,19 +58,36 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
                 .authorizeHttpRequests() // Authorizing incoming requests
                 // Our public endpoints
-                .antMatchers("/api/auth/login").permitAll()
-                .antMatchers("/api/auth/register").permitAll()
+                .antMatchers("/api/auth/login").permitAll() // Logueo
+                .antMatchers("/api/auth/register").permitAll() // Registro
                 // Our private endpoints
-                .anyRequest().authenticated()
+                .antMatchers("/api/careers/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Carreras
+                .antMatchers("/api/academicStudies/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Estudios
+                .antMatchers("/api/cities/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Ciudades
+                .antMatchers("/api/companies/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Empresas
+                .antMatchers("/api/contacts/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Contactos
+                .antMatchers("/api/curriculums/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Curriculums
+                .antMatchers("/api/curriculumPdfs/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // PDF de curriculums
+                .antMatchers("/api/ethnicGroups/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Grupos étnicos
+                .antMatchers("/api/faculties/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Facultades
+                .antMatchers("/api/internRequests/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Solicitudes de practicante
+                .antMatchers("/api/languages/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Lenguajes
+                .antMatchers("/api/persons/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Personas
+                .antMatchers("/api/rolees/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Roles
+                .antMatchers("/api/userrs/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Usuarios
+                .anyRequest().authenticated() // All other requests need to be authenticated
 
                 .and()
-                .addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtService))
-                .addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtService))
+                .addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtService)) // Agrega el filtro de autenticación
+                .addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtService)) // Agrega el filtro de autorización
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
 
     @Bean
+    /**
+     * Método que configura el encriptador de contraseñas
+     */
     public static BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
@@ -77,8 +99,10 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-    // Used by spring security if CORS is enabled.
     @Bean
+    /**
+     * Used by spring security if CORS is enabled.
+     */
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source =
                 new UrlBasedCorsConfigurationSource();
@@ -86,10 +110,12 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         config.setAllowCredentials(true);
         config.addAllowedOrigin("*");
         config.addAllowedHeader("*");
-        config.addAllowedMethod("*");
+        config.addAllowedMethod(String.valueOf(Arrays.asList("GET", "POST", "PUT", "DELETE")));
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
+
+
 
 
 }
