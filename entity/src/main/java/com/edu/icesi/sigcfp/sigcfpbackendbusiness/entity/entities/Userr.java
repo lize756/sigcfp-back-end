@@ -23,9 +23,6 @@ public class Userr implements Serializable {
 	@Column(name="USER_ID", unique=true, nullable=false, precision=10)
 	private long userId;
 
-	@Column(name="USER_EMAIL", length=255, unique = true)
-	private String userEmail;
-
 	@Column(name="USER_NAME", length=255, unique = true)
 	private String userName;
 
@@ -61,14 +58,6 @@ public class Userr implements Serializable {
 
 	public void setUserId(long userId) {
 		this.userId = userId;
-	}
-
-	public String getUserEmail() {
-		return this.userEmail;
-	}
-
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
 	}
 
 	public String getUserName() {

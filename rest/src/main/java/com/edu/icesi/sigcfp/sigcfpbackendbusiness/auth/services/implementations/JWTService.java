@@ -41,9 +41,10 @@ public class JWTService implements IJWTService {
         Claims claims = Jwts.claims();
         claims.put("roles", new ObjectMapper().writeValueAsString(rolees));
         String token = Jwts.builder()
+                .setHeaderParam("typ", "JWT")
+                .signWith(SignatureAlgorithm.HS512, SECRET_KEY.getBytes())
                 .setClaims(claims)
                 .setSubject(userName)
-                .signWith(SignatureAlgorithm.HS512, SECRET_KEY.getBytes())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_DATE))
                 .compact();
