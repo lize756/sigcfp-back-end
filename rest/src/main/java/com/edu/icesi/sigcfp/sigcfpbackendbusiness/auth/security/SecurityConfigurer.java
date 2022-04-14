@@ -3,6 +3,7 @@ package com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.security;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.services.implementations.JWTService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -61,8 +62,15 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/auth/login").permitAll() // Logueo
                 .antMatchers("/api/auth/register").permitAll() // Registro
                 // Our private endpoints
-                .antMatchers("/api/careers/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Carreras
+                // Accesos a
+                .antMatchers(HttpMethod.POST,"/api/careers/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Carreras
+                .antMatchers(HttpMethod.GET,"/api/careers/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Carreras
+                .antMatchers(HttpMethod.PUT, "/api/careers/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Carreras
+                .antMatchers(HttpMethod.DELETE,"/api/careers/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Carreras
+
+
                 .antMatchers("/api/academicStudies/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Estudios
+
                 .antMatchers("/api/cities/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Ciudades
                 .antMatchers("/api/companies/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Empresas
                 .antMatchers("/api/contacts/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Contactos

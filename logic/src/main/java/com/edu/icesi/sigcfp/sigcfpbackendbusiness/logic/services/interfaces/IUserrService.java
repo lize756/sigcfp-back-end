@@ -16,7 +16,5 @@ public interface IUserrService {
 
     List<Userr> userrs();
 
-    Userr findUserrByUserEmail(String userEmail);
-
     Userr findUserrByUserName(String userName);
 }
