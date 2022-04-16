@@ -70,7 +70,6 @@ public class JWTService implements IJWTService {
      */
     public Claims getClaims(String token) {
         Claims claims= Jwts.parser()
-                // TODO: cambiar este clave por una constante
                 .setSigningKey(SECRET_KEY.getBytes())
                 .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
                 .getBody();

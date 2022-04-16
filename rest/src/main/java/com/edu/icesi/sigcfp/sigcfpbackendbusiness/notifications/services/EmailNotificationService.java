@@ -13,10 +13,14 @@ import javax.mail.internet.MimeMessage;
 @Service
 public class EmailNotificationService implements IEmailNotificationService{
 
-   // private static final Logger LOGGER = (Logger) LoggerFactory.getLogger(EmailNotificationService.class);
     @Autowired private JavaMailSender mailSender;
 
+
     @Override
+    /**
+     * Envía una notificación de correo electrónico
+     * @param emailBody Contiene los datos del correo electrónico
+     */
     public void sendSimpleEmail(EmailBody emailBody) {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
@@ -25,16 +29,11 @@ public class EmailNotificationService implements IEmailNotificationService{
             helper.setText(emailBody.getContent(), true);
             helper.setSubject(emailBody.getSubject());
             mailSender.send(message);
-            //LOGGER.info("Mail enviado!");
         } catch (MessagingException e) {
-           // LOGGER.error("Hubo un error al enviar el mail: {}", e.getMessage());
+            e.printStackTrace();
         }
     }
 
-    @Override
-    public void sendSimpleEmail() {
-
-    }
 
     @Override
     public void sendEmailWithAttachment(EmailBody emailBody) {
@@ -42,9 +41,4 @@ public class EmailNotificationService implements IEmailNotificationService{
     }
 
 
-
-    @Override
-    public void sendEmailWithAttachment() {
-
-    }
 }
