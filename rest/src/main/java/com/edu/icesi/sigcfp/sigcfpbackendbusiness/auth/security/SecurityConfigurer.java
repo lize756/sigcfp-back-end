@@ -61,6 +61,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 // Our public endpoints
                 .antMatchers("/api/auth/login").permitAll() // Logueo
                 .antMatchers("/api/auth/register").permitAll() // Registro
+                .antMatchers("/api/emailNotifications/**").permitAll() // Notificaciones por correo
                 // Our private endpoints
 
                 // Accesos a las rutas de las carreras
