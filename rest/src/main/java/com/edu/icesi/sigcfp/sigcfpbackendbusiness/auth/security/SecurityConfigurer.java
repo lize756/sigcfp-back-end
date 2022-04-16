@@ -62,27 +62,91 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/auth/login").permitAll() // Logueo
                 .antMatchers("/api/auth/register").permitAll() // Registro
                 // Our private endpoints
-                // Accesos a
+
+                // Accesos a las rutas de las carreras
                 .antMatchers(HttpMethod.POST,"/api/careers/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Carreras
                 .antMatchers(HttpMethod.GET,"/api/careers/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Carreras
                 .antMatchers(HttpMethod.PUT, "/api/careers/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Carreras
                 .antMatchers(HttpMethod.DELETE,"/api/careers/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Carreras
 
+                // Accesos a las rutas de los estudios
+                .antMatchers(HttpMethod.POST,"/api/academicStudies/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Estudios
+                .antMatchers(HttpMethod.GET,"/api/academicStudies/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Estudios
+                .antMatchers(HttpMethod.PUT,"/api/academicStudies/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Estudios
+                .antMatchers(HttpMethod.DELETE,"/api/academicStudies/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Estudios
 
-                .antMatchers("/api/academicStudies/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Estudios
+                // Accesos a las rutas de las ciudades
+                .antMatchers(HttpMethod.POST,"/api/cities/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Ciudades
+                .antMatchers(HttpMethod.GET,"/api/cities/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Ciudades
+                .antMatchers(HttpMethod.PUT,"/api/cities/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Ciudades
+                .antMatchers(HttpMethod.DELETE,"/api/cities/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Ciudades
 
-                .antMatchers("/api/cities/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Ciudades
-                .antMatchers("/api/companies/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Empresas
-                .antMatchers("/api/contacts/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Contactos
-                .antMatchers("/api/curriculums/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Curriculums
-                .antMatchers("/api/curriculumPdfs/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // PDF de curriculums
-                .antMatchers("/api/ethnicGroups/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Grupos étnicos
-                .antMatchers("/api/faculties/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Facultades
-                .antMatchers("/api/internRequests/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Solicitudes de practicante
-                .antMatchers("/api/languages/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Lenguajes
-                .antMatchers("/api/persons/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Personas
-                .antMatchers("/api/rolees/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Roles
-                .antMatchers("/api/userrs/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Usuarios
+                // Accesos a las rutas de las compañías
+                .antMatchers(HttpMethod.POST,"/api/companies/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Empresas
+                .antMatchers(HttpMethod.GET,"/api/companies/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Empresas
+                .antMatchers(HttpMethod.PUT,"/api/companies/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Empresas
+                .antMatchers(HttpMethod.DELETE,"/api/companies/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Empresas
+
+                // Accesos a las rutas de los contactos
+                .antMatchers(HttpMethod.POST,"/api/contacts/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Contactos
+                .antMatchers(HttpMethod.GET,"/api/contacts/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Contactos
+                .antMatchers(HttpMethod.PUT,"/api/contacts/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Contactos
+                .antMatchers(HttpMethod.DELETE,"/api/contacts/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Contactos
+
+                // Accesos a las rutas de los curriculums
+                .antMatchers(HttpMethod.POST, "/api/curriculums/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Curriculums
+                .antMatchers(HttpMethod.GET, "/api/curriculums/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Curriculums
+                .antMatchers(HttpMethod.PUT, "/api/curriculums/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Curriculums
+                .antMatchers(HttpMethod.DELETE, "/api/curriculums/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Curriculums
+
+                // Accesos a las rutas de los PDFs de los curriculums
+                .antMatchers(HttpMethod.POST,"/api/curriculumPdfs/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // PDF de curriculums
+                .antMatchers(HttpMethod.GET,"/api/curriculumPdfs/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // PDF de curriculums
+                .antMatchers(HttpMethod.PUT,"/api/curriculumPdfs/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // PDF de curriculums
+                .antMatchers(HttpMethod.DELETE,"/api/curriculumPdfs/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // PDF de curriculums
+
+                // Accesos a las rutas de los grupos étnicos
+                .antMatchers(HttpMethod.POST,"/api/ethnicGroups/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Grupos étnicos
+                .antMatchers(HttpMethod.GET,"/api/ethnicGroups/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Grupos étnicos
+                .antMatchers(HttpMethod.PUT,"/api/ethnicGroups/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Grupos étnicos
+                .antMatchers(HttpMethod.DELETE,"/api/ethnicGroups/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Grupos étnicos
+
+                // Accesos a las rutas de las facultades
+                .antMatchers(HttpMethod.POST, "/api/faculties/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Facultades
+                .antMatchers(HttpMethod.GET, "/api/faculties/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Facultades
+                .antMatchers(HttpMethod.PUT, "/api/faculties/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Facultades
+                .antMatchers(HttpMethod.DELETE, "/api/faculties/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Facultades
+
+                // Accesos a las rutas de las solicitudes de practicantes
+                .antMatchers(HttpMethod.POST, "/api/internRequests/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Solicitudes de practicante
+                .antMatchers(HttpMethod.GET, "/api/internRequests/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Solicitudes de practicante
+                .antMatchers(HttpMethod.PUT, "/api/internRequests/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Solicitudes de practicante
+                .antMatchers(HttpMethod.DELETE, "/api/internRequests/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Solicitudes de practicante
+
+                // Accesos a las rutas de los lenguajes
+                .antMatchers(HttpMethod.POST,"/api/languages/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Lenguajes
+                .antMatchers(HttpMethod.GET,"/api/languages/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Lenguajes
+                .antMatchers(HttpMethod.PUT,"/api/languages/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Lenguajes
+                .antMatchers(HttpMethod.DELETE,"/api/languages/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Lenguajes
+
+                // Accesos a las rutas de las personas
+                .antMatchers(HttpMethod.POST,"/api/persons/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Personas
+                .antMatchers(HttpMethod.GET,"/api/persons/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Personas
+                .antMatchers(HttpMethod.PUT,"/api/persons/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Personas
+                .antMatchers(HttpMethod.DELETE,"/api/persons/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Personas
+
+                // Accesos a las rutas de los roles
+                .antMatchers(HttpMethod.POST,"/api/rolees/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Roles
+                .antMatchers(HttpMethod.GET,"/api/rolees/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Roles
+                .antMatchers(HttpMethod.PUT,"/api/rolees/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Roles
+                .antMatchers(HttpMethod.DELETE,"/api/rolees/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Roles
+
+                // Accesos a las rutas de los usuarios
+                .antMatchers(HttpMethod.POST,"/api/userrs/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Usuarios
+                .antMatchers(HttpMethod.GET,"/api/userrs/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Usuarios
+                .antMatchers(HttpMethod.PUT,"/api/userrs/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Usuarios
+                .antMatchers(HttpMethod.DELETE,"/api/userrs/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Usuarios
+
                 .anyRequest().authenticated() // All other requests need to be authenticated
 
                 .and()
