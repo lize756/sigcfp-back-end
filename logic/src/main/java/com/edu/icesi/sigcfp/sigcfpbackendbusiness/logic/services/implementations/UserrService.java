@@ -38,24 +38,13 @@ public class UserrService implements IUserrService {
     @Override
     @Transactional
     public Userr searchUserr(long userId) {
-        if (iUserrRepo.existsById(userId)) {
             return iUserrRepo.getById(userId);
-        } else {
-            return null;
-        }
     }
 
     @Override
     @Transactional
-    public Userr deleteUserr(long userId) {
-        Userr userrToDelete = null;
-        if (iUserrRepo.existsById(userId)) {
-            userrToDelete = iUserrRepo.findById(userId).get();
-            iUserrRepo.delete(iUserrRepo.getById(userId));
-        } else {
-            return null;
-        }
-        return userrToDelete;
+    public void deleteUserr(long userId) {
+            iUserrRepo.deleteById(userId);
     }
 
     @Override

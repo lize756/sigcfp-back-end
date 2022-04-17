@@ -61,7 +61,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 // Our public endpoints
                 .antMatchers("/api/auth/login").permitAll() // Logueo
                 .antMatchers("/api/auth/register").permitAll() // Registro
-                .antMatchers("/api/emailNotifications/**").permitAll() // Notificaciones por correo
+
                 // Our private endpoints
 
                 // Accesos a las rutas de las carreras
@@ -95,16 +95,16 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE,"/api/contacts/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Contactos
 
                 // Accesos a las rutas de los curriculums
-                .antMatchers(HttpMethod.POST, "/api/curriculums/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Curriculums
-                .antMatchers(HttpMethod.GET, "/api/curriculums/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Curriculums
-                .antMatchers(HttpMethod.PUT, "/api/curriculums/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Curriculums
-                .antMatchers(HttpMethod.DELETE, "/api/curriculums/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Curriculums
+                .antMatchers(HttpMethod.POST, "/api/curriculums/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR","ROLEE_GRADUATE") // Curriculums
+                .antMatchers(HttpMethod.GET, "/api/curriculums/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR","ROLEE_GRADUATE") // Curriculums
+                .antMatchers(HttpMethod.PUT, "/api/curriculums/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR","ROLEE_GRADUATE") // Curriculums
+                .antMatchers(HttpMethod.DELETE, "/api/curriculums/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR", "ROLEE_GRADUATE") // Curriculums
 
                 // Accesos a las rutas de los PDFs de los curriculums
-                .antMatchers(HttpMethod.POST,"/api/curriculumPdfs/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // PDF de curriculums
-                .antMatchers(HttpMethod.GET,"/api/curriculumPdfs/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // PDF de curriculums
-                .antMatchers(HttpMethod.PUT,"/api/curriculumPdfs/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // PDF de curriculums
-                .antMatchers(HttpMethod.DELETE,"/api/curriculumPdfs/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // PDF de curriculums
+                .antMatchers(HttpMethod.POST,"/api/curriculumPdfs/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR", "ROLEE_GRADUATE") // PDF de curriculums
+                .antMatchers(HttpMethod.GET,"/api/curriculumPdfs/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR","ROLEE_GRADUATE") // PDF de curriculums
+                .antMatchers(HttpMethod.PUT,"/api/curriculumPdfs/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR","ROLEE_GRADUATE") // PDF de curriculums
+                .antMatchers(HttpMethod.DELETE,"/api/curriculumPdfs/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR","ROLEE_GRADUATE") // PDF de curriculums
 
                 // Accesos a las rutas de los grupos étnicos
                 .antMatchers(HttpMethod.POST,"/api/ethnicGroups/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Grupos étnicos
@@ -119,10 +119,10 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE, "/api/faculties/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Facultades
 
                 // Accesos a las rutas de las solicitudes de practicantes
-                .antMatchers(HttpMethod.POST, "/api/internRequests/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Solicitudes de practicante
-                .antMatchers(HttpMethod.GET, "/api/internRequests/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Solicitudes de practicante
-                .antMatchers(HttpMethod.PUT, "/api/internRequests/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Solicitudes de practicante
-                .antMatchers(HttpMethod.DELETE, "/api/internRequests/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Solicitudes de practicante
+                .antMatchers(HttpMethod.POST, "/api/internRequests/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR","ROLEE_COMPANY") // Solicitudes de practicante
+                .antMatchers(HttpMethod.GET, "/api/internRequests/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR","ROLEE_COMPANY") // Solicitudes de practicante
+                .antMatchers(HttpMethod.PUT, "/api/internRequests/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR","ROLEE_COMPANY") // Solicitudes de practicante
+                .antMatchers(HttpMethod.DELETE, "/api/internRequests/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR","ROLEE_COMPANY") // Solicitudes de practicante
 
                 // Accesos a las rutas de los lenguajes
                 .antMatchers(HttpMethod.POST,"/api/languages/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Lenguajes
@@ -147,6 +147,12 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/api/userrs/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Usuarios
                 .antMatchers(HttpMethod.PUT,"/api/userrs/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Usuarios
                 .antMatchers(HttpMethod.DELETE,"/api/userrs/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Usuarios
+
+                // Accesos a las rutas de las notificaciones
+                .antMatchers(HttpMethod.POST,"/api/emailNotifications/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Notificaciones por correo
+                .antMatchers(HttpMethod.GET,"/api/emailNotifications/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR")// Notificaciones por correo
+                .antMatchers(HttpMethod.PUT,"/api/emailNotifications/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Notificaciones por correo
+                .antMatchers(HttpMethod.DELETE,"/api/emailNotifications/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Notificaciones por correo
 
                 .anyRequest().authenticated() // All other requests need to be authenticated
 

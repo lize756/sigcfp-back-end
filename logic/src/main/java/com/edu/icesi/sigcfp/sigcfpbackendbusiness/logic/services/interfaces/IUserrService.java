@@ -12,7 +12,7 @@ public interface IUserrService {
 
     Userr searchUserr(long userId);
 
-    Userr deleteUserr(long userId);
+    void deleteUserr(long userId);
 
     List<Userr> userrs();
 

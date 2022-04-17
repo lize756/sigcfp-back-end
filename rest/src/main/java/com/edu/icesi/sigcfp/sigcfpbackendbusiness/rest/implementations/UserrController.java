@@ -70,12 +70,12 @@ public class UserrController implements IUserrController{
 
 	@Override
 	@DeleteMapping("/{userId}")
-	public ResponseEntity<HttpStatus> deleteUserr(@PathVariable("userId") long userId) {
+	public ResponseEntity<?> deleteUserr(@PathVariable() long userId) {
 		try {
 			iUserrService.deleteUserr(userId);
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>("Usuario eliminado exitosamente",HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>("Ha ocurrido un error eliminando el usuario",HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 

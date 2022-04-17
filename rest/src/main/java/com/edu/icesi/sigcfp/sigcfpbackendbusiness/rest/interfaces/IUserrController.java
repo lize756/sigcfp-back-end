@@ -41,7 +41,7 @@ public interface IUserrController {
 	 * @return a responseEntity that represent the whole HTTP response: status code,
 	 *         headers, and body.
 	 */
-    ResponseEntity<HttpStatus> deleteUserr(long userId);
+    ResponseEntity<?> deleteUserr(long userId);
 
     /**
 	 * Allows to obtain the list of userrs saved in the database.
