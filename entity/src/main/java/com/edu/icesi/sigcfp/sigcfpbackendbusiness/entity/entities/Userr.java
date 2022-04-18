@@ -32,7 +32,8 @@ public class Userr implements Serializable {
 	@Column(name="ISENABLE", length=2)
 	private boolean isEnable;
 
-    @OneToOne(mappedBy = "userr")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="PERSON_PERS_ID")
     private Person person;
 	
 	//bi-directional many-to- one association to Rolee

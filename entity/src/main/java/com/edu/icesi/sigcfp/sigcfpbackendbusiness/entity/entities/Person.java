@@ -81,9 +81,9 @@ public class Person implements Serializable {
 	private List<Language> languages;
 
 	//bi-directional many-to-one association to Userr
-	//@ManyToOne
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="USERR_USER_ID")
+	//@OneToOne(cascade = CascadeType.ALL)
+	//
+    //@OneToOne(mappedBy = "person")
 	private Userr userr;
 	
 	public Person() {
