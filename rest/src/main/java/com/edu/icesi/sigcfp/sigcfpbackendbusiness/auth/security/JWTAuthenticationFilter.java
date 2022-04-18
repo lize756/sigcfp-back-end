@@ -2,17 +2,15 @@ package com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.security;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.services.implementations.JWTService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Userr;
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.IUserrService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -21,8 +19,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,6 +29,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     private AuthenticationManager authenticationManager; //variable de tipo AuthenticationManager
     @Autowired private JWTService jwtService; //variable de tipo JWTService
+    @Autowired private IUserrService userrService; //variable de tipo IUserrService
+    @Autowired private MyUserDetailsService myUserDetailsService; //variable de tipo MyUserDetailsService
+    private long userId = 0L; //variable de tipo long que almacena el id del usuario
 
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager, JWTService jwtService) {
         this.authenticationManager = authenticationManager;
@@ -65,7 +64,11 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             }
         }
         userName = userName.trim();
+
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userName, userPassword);
+        // TODO: Borrar esto después de probar
+        System.out.println("UserDetail: " + authenticationToken.getDetails());
+
         return authenticationManager.authenticate(authenticationToken);
     }
 
@@ -75,15 +78,23 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
      * Método que se encarga de la autenticación exitosa de los usuarios
      */
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
-       String token = jwtService.create(authResult);
+
+        String token = jwtService.create(authResult);
+
         response.addHeader(JWTService.HEADER_STRING, JWTService.TOKEN_PREFIX + token);
         Map<String, Object> body = new HashMap<String, Object>();
         body.put("token", token);
-        body.put("user", ((User) authResult.getPrincipal()));
-        body.put("message", String.format("Hola %s, has iniciado sesión correctamente", ((User) authResult.getPrincipal()).getUsername()));
+        //body.put("user", ((User) authResult.getPrincipal()));
+        body.put("userId", jwtService.getUserId(token));
+        body.put("userName", jwtService.getUserName(token));
+        //body.put("rolees", jwtService.getRoles(token));
+        body.put("rolee", jwtService.getUserRole(token));
+        //body.put("userr", jwtService.getUserr(token));
+        //body.put("message", String.format("Hola %s, has iniciado sesión correctamente", jwtService.getUserName(token)));
         response.getWriter().write(new ObjectMapper().writeValueAsString(body));
         response.setStatus(200);
         response.setContentType("application/json");
+
     }
 
     @Override

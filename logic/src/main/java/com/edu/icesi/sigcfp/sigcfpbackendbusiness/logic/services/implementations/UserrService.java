@@ -54,7 +54,9 @@ public class UserrService implements IUserrService {
     }
 
     @Override
+    @Transactional()
     public Userr findUserrByUserName(String userName) {
-        return iUserrRepo.findUserrByUserName( userName);
+        return iUserrRepo.findUserrByUserName(userName);
     }
+
 }

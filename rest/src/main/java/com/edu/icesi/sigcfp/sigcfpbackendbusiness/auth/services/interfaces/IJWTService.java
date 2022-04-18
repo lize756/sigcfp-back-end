@@ -1,5 +1,6 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.services.interfaces;
 
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Userr;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.jsonwebtoken.Claims;
 import org.springframework.security.core.Authentication;
@@ -14,6 +15,9 @@ public interface IJWTService {
     public boolean validate(String token);
     public Claims getClaims(String token);
     public String getUserName(String token);
+    public long getUserId(String token);
+    public String getUserRole(String token);
+    public Userr getUserr(String token);
     public Collection<? extends GrantedAuthority> getRoles(String token) throws IOException;
     public String resolve(String token);
 
