@@ -57,9 +57,10 @@ public class Company implements Serializable {
 	private City city;
 
 	//bi-directional many-to-one association to Userr
-	@ManyToOne
-	@JoinColumn(name="USERR_USER_ID")
-	@JsonIgnore
+	//@ManyToOne
+	//@JoinColumn(name="USERR_USER_ID")
+	//@JsonIgnore
+	//@OneToOne(mappedBy = "company")
 	private Userr userr;
 
 	//bi-directional many-to-one association to Contact

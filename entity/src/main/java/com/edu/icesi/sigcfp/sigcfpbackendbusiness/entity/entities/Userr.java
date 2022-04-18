@@ -45,9 +45,10 @@ public class Userr implements Serializable {
 	private Rolee rolee;
 
 	//bi-directional many-to-one association to Company
-	@ManyToOne(fetch = FetchType.LAZY)
+	//@ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="COMPANY_COMP_ID")
-	@JsonIgnore
+	//@JsonIgnore
 	private Company company;
 
 	public Userr() {
