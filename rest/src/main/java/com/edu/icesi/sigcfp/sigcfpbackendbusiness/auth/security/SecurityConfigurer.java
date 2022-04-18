@@ -83,10 +83,10 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE,"/api/cities/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Ciudades
 
                 // Accesos a las rutas de las compañías
-                .antMatchers(HttpMethod.POST,"/api/companies/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Empresas
-                .antMatchers(HttpMethod.GET,"/api/companies/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Empresas
-                .antMatchers(HttpMethod.PUT,"/api/companies/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Empresas
-                .antMatchers(HttpMethod.DELETE,"/api/companies/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Empresas
+                .antMatchers(HttpMethod.POST,"/api/companies/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR","ROLEE_COMPANY") // Empresas
+                .antMatchers(HttpMethod.GET,"/api/companies/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR","ROLEE_COMPANY") // Empresas
+                .antMatchers(HttpMethod.PUT,"/api/companies/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR","ROLEE_COMPANY") // Empresas
+                .antMatchers(HttpMethod.DELETE,"/api/companies/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR", "ROLEE_COMPANY") // Empresas
 
                 // Accesos a las rutas de los contactos
                 .antMatchers(HttpMethod.POST,"/api/contacts/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR") // Contactos

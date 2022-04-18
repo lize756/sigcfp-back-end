@@ -39,17 +39,24 @@ public class JWTService implements IJWTService {
      * Genera un token para el usuario
      */
     public String create(Authentication auth) throws JsonProcessingException {
+
         String userName = ((User) auth.getPrincipal()).getUsername();
+
         long userId = userService.findUserrByUserName(userName).getUserId();
-        String rolee = userService.findUserrByUserName(userName).getRolee().getRoleName();
+        //String rolee = userService.findUserrByUserName(userName).getRolee().getRoleName();
         //Userr userr = userService.findUserrByUserName(userName);
         //userr.setUserPassword(null);
+
+
         Collection<? extends GrantedAuthority> rolees = auth.getAuthorities();
+
         Claims claims = Jwts.claims();
+
         claims.put("rolees", new ObjectMapper().writeValueAsString(rolees));
         claims.put("userId", userId);
-        claims.put("rolee", rolee);
+        //claims.put("rolee", rolee);
         //claims.put("userr", userr);
+
         String token = Jwts.builder()
                 .setHeaderParam("typ", "JWT")
                 .signWith(SignatureAlgorithm.HS512, SECRET_KEY.getBytes())
@@ -58,6 +65,7 @@ public class JWTService implements IJWTService {
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_DATE))
                 .compact();
+
         return token;
     }
 
@@ -114,7 +122,7 @@ public class JWTService implements IJWTService {
      * Obtener los roles del token
      */
     public Collection<? extends GrantedAuthority> getRoles(String token) throws IOException {
-        Object roles = getClaims(token).get("roles");
+        Object roles = getClaims(token).get("rolees");
         Collection<? extends GrantedAuthority> rolees = Arrays.asList(new ObjectMapper()
                 .addMixIn(SimpleGrantedAuthority.class, SimpleGrantedAuthorityMixin.class)
                 .readValue(roles.toString().getBytes(), SimpleGrantedAuthority[].class));

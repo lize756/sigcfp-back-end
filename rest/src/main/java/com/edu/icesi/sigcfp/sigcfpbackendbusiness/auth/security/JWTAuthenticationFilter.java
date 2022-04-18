@@ -83,12 +83,12 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         response.addHeader(JWTService.HEADER_STRING, JWTService.TOKEN_PREFIX + token);
         Map<String, Object> body = new HashMap<String, Object>();
-        body.put("token", token);
-        //body.put("user", ((User) authResult.getPrincipal()));
         body.put("userId", jwtService.getUserId(token));
-        body.put("userName", jwtService.getUserName(token));
+        body.put("user", ((User) authResult.getPrincipal()));
+        body.put("token", token);
+        //body.put("userName", jwtService.getUserName(token));
         //body.put("rolees", jwtService.getRoles(token));
-        body.put("rolee", jwtService.getUserRole(token));
+        //body.put("rolee", jwtService.getUserRole(token));
         //body.put("userr", jwtService.getUserr(token));
         //body.put("message", String.format("Hola %s, has iniciado sesión correctamente", jwtService.getUserName(token)));
         response.getWriter().write(new ObjectMapper().writeValueAsString(body));
