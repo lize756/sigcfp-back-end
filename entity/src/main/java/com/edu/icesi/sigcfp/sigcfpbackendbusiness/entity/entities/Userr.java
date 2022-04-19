@@ -34,6 +34,7 @@ public class Userr implements Serializable {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="PERSON_PERS_ID")
+	//@JsonIgnore
     private Person person;
 	
 	//bi-directional many-to- one association to Rolee
