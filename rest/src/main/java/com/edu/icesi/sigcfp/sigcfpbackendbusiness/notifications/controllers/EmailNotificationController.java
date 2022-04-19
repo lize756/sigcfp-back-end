@@ -23,10 +23,6 @@ public class EmailNotificationController implements IEmailNotificationController
         return new ResponseEntity<>("Email enviado exitosamente", HttpStatus.OK);
     }
 
-    @Override
-    public void sendSimpleEmail() {
-
-    }
 
     @Override
     public void sendEmailWithAttachment(EmailBody emailBody) {
@@ -34,7 +30,25 @@ public class EmailNotificationController implements IEmailNotificationController
     }
 
     @Override
-    public void sendEmailWithAttachment() {
+    public void sendEmailWithAttachment(EmailBody emailBody, String attachmentPath) {
 
     }
+
+    @Override
+    public void sendStartInternPeriodNotification() {
+
+    }
+
+    @Override
+    public void sendEndInternPeriodNotification() {
+
+    }
+
+    @Override
+    @GetMapping("/sendNotificationsToContacts")
+    public ResponseEntity<?> sendNotificationsToContacts() {
+        iEmailNotificationService.sendNotificationsToContacts();
+        return new ResponseEntity<>("Los correos se han enviado a los contactos correctamente", HttpStatus.OK);
+    }
+
 }
