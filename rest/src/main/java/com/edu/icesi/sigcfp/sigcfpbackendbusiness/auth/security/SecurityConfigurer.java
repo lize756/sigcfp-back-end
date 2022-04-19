@@ -72,7 +72,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
                 // Accesos a las rutas de los estudios
                 .antMatchers(HttpMethod.POST,"/api/academicStudies/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Estudios
-                .antMatchers(HttpMethod.GET,"/api/academicStudies/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Estudios
+                .antMatchers(HttpMethod.GET,"/api/academicStudies/**").permitAll() // Estudios
                 .antMatchers(HttpMethod.PUT,"/api/academicStudies/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Estudios
                 .antMatchers(HttpMethod.DELETE,"/api/academicStudies/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Estudios
 
