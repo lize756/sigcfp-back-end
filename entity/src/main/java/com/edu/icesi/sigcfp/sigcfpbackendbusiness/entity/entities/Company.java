@@ -84,9 +84,9 @@ public class Company implements Serializable {
 	private List<Noti> notis;
 
 	//bi-directional many-to-one association to Userr
-	@OneToMany(mappedBy="company")
-	@JsonIgnore
-	private List<Userr> userrs;
+	//@OneToMany(mappedBy="company")
+	//@JsonIgnore
+	//private List<Userr> userrs;
 
 	public Company() {
 	}
@@ -260,7 +260,8 @@ public class Company implements Serializable {
 	public void setNotis(List<Noti> notis) {
 		this.notis = notis;
 	}
-
+/**
+ * 
 	public List<Userr> getUserrs() {
 		return this.userrs;
 	}
@@ -282,5 +283,7 @@ public class Company implements Serializable {
 
 		return userr;
 	}
+ * @return
+ */
 
 }
