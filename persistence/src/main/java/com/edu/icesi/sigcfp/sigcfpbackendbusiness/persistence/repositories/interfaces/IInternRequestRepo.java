@@ -2,6 +2,7 @@ package com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.inte
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.InternRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,4 +15,11 @@ public interface IInternRequestRepo extends JpaRepository<InternRequest, Long> {
 
     List<InternRequest> findInternRequestsByInteRequIsinprocess(String isInProcess);
     
+    /**
+     * Allow search the intern request associated with a companies
+     * @param id
+     * @return
+     */
+    @Query("select inReq from InternRequest inReq where inReq.company.compId = ?1")
+    List<InternRequest> findInternRequestsByCompany(long compId);
 }

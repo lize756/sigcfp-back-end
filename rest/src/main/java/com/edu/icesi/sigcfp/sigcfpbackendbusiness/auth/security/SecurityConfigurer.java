@@ -144,7 +144,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
                 // Accesos a las rutas de los usuarios
                 .antMatchers(HttpMethod.POST,"/api/userrs/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(),"ROLEE_PROMOTION_COORDINATOR") // Usuarios
-                .antMatchers(HttpMethod.GET,"/api/userrs/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(),"ROLEE_PROMOTION_COORDINATOR") // Usuarios
+                .antMatchers(HttpMethod.GET,"/api/userrs/**").permitAll() // Usuarios
                 .antMatchers(HttpMethod.PUT,"/api/userrs/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Usuarios
                 .antMatchers(HttpMethod.DELETE,"/api/userrs/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Usuarios
 

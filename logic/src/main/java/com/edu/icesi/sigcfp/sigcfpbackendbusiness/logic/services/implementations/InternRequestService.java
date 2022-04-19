@@ -57,10 +57,20 @@ public class InternRequestService implements IInternRequestService {
 		}
 		return internRequestToDelete;
 	}
-
+	
 	@Override
 	@Transactional
 	public List<InternRequest> internRequests() {
 		return iInternRequestRepo.findAll();
 	}
+
+	@Override
+	@Transactional
+	public List<InternRequest> findInternRequestsByCompany(long compId) {
+		return iInternRequestRepo.findInternRequestsByCompany(compId);
+	}
+	
+	
+	
+	
 }

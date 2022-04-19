@@ -52,4 +52,13 @@ public interface IInternRequestController {
 	 */
     ResponseEntity<List<InternRequest>> getInternRequests();
 
+    
+    /**
+   	 * Allows to obtain the list of intern requests associated to company.
+   	 * 
+   	 * @return a responseEntity that represent the whole HTTP response: status code,
+   	 *         headers, and body.
+   	 */
+	ResponseEntity<List<InternRequest>> getInternRequestsAssociatedCompany(long compId);
+
 }
