@@ -1,5 +1,7 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces;
 
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Company;
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Person;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Userr;
 
 import java.util.List;
@@ -17,4 +19,8 @@ public interface IUserrService {
     List<Userr> userrs();
 
     Userr findUserrByUserName(String userName);
+    
+    Company findCompanyByUserName(String userName);
+    
+    Person findPersonByUserName(String userName);    
 }
