@@ -16,4 +16,8 @@ public interface IInternRequestService {
     InternRequest deleteInternRequest(long inteRequId);
 
     List<InternRequest> internRequests();
+    
+    
+    List<InternRequest> findInternRequestsByCompany(long compId);
+
 }

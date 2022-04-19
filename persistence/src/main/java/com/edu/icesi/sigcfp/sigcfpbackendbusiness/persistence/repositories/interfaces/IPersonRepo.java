@@ -10,4 +10,6 @@ import java.util.List;
 public interface IPersonRepo extends JpaRepository<Person, Long> {
     @Override
     List<Person> findAll();
+    
+    
 }

@@ -108,5 +108,20 @@ public class InternRequestController implements IInternRequestController {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	@Override
+	@GetMapping("/comp/{compId}")
+	public ResponseEntity<List<InternRequest>> getInternRequestsAssociatedCompany(@PathVariable("compId") long compId) {
+		try {
+			List<InternRequest> internRequests = iInternRequestService.findInternRequestsByCompany(compId);
+			System.out.println(internRequests);
+			if (internRequests.isEmpty()){
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
+			return new ResponseEntity<>(internRequests, HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}	}
 
 }

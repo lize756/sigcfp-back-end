@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 /**
  * The persistent class for the USERR database table.
  * 
@@ -34,6 +37,8 @@ public class Userr implements Serializable {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="PERSON_PERS_ID")
+	@NotFound(action = NotFoundAction.IGNORE)
+	//@JsonIgnore
     private Person person;
 	
 	//bi-directional many-to- one association to Rolee

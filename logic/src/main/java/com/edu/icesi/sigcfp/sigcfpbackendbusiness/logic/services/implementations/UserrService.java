@@ -1,5 +1,7 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.implementations;
 
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Company;
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Person;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Userr;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.IUserrService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.IUserrRepo;
@@ -58,5 +60,17 @@ public class UserrService implements IUserrService {
     public Userr findUserrByUserName(String userName) {
         return iUserrRepo.findUserrByUserName(userName);
     }
+
+	@Override
+    @Transactional()
+	public Company findCompanyByUserName(String userName) {
+		return iUserrRepo.findCompanyByUserName(userName);
+	}
+
+	@Override
+    @Transactional()
+	public Person findPersonByUserName(String userName) {
+		return iUserrRepo.findPersonByUserName(userName);
+	}
 
 }

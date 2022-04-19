@@ -87,7 +87,7 @@ public class InternRequest implements Serializable {
 	//bi-directional many-to-one association to Company
 	@ManyToOne
 	@JoinColumn(name="COMPANY_COMP_ID")
-	@JsonIgnore
+	//@JsonIgnore
 	private Company company;
 
 	public InternRequest() {

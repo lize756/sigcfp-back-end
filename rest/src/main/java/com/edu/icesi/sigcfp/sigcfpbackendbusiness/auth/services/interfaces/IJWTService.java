@@ -20,5 +20,7 @@ public interface IJWTService {
     public Userr getUserr(String token);
     public Collection<? extends GrantedAuthority> getRoles(String token) throws IOException;
     public String resolve(String token);
+    public long getUserCompanyId(String token);
+    public long getUserPersonId(String token);
 
 }
