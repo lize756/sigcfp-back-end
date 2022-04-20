@@ -149,10 +149,10 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE,"/api/userrs/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Usuarios
 
                 // Accesos a las rutas de las notificaciones
-                .antMatchers(HttpMethod.POST,"/api/emailNotifications/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Notificaciones por correo
-                .antMatchers(HttpMethod.GET,"/api/emailNotifications/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString())// Notificaciones por correo
-                .antMatchers(HttpMethod.PUT,"/api/emailNotifications/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Notificaciones por correo
-                .antMatchers(HttpMethod.DELETE,"/api/emailNotifications/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Notificaciones por correo
+                .antMatchers(HttpMethod.POST,"/api/emailNotifications/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR", "ROLEE_DIRECTOR") // Notificaciones por correo
+                .antMatchers(HttpMethod.GET,"/api/emailNotifications/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR", "ROLEE_DIRECTOR")// Notificaciones por correo
+                .antMatchers(HttpMethod.PUT,"/api/emailNotifications/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR", "ROLEE_DIRECTOR") // Notificaciones por correo
+                .antMatchers(HttpMethod.DELETE,"/api/emailNotifications/**").hasAnyAuthority("ROLEE_LOCATION_COORDINATOR", "ROLEE_DIRECTOR") // Notificaciones por correo
 
                 .anyRequest().authenticated() // All other requests need to be authenticated
 
