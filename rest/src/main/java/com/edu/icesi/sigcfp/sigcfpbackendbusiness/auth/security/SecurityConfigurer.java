@@ -66,7 +66,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
                 // Accesos a las rutas de las carreras
                 .antMatchers(HttpMethod.POST,"/api/careers/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Carreras
-                .antMatchers(HttpMethod.GET,"/api/careers/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Carreras
+                .antMatchers(HttpMethod.GET,"/api/careers/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(),TypesOfRolees.ROLEE_COMPANY.toString()) // Carreras
                 .antMatchers(HttpMethod.PUT, "/api/careers/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Carreras
                 .antMatchers(HttpMethod.DELETE,"/api/careers/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Carreras
 
@@ -119,7 +119,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE, "/api/faculties/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Facultades
 
                 // Accesos a las rutas de las solicitudes de practicantes
-                .antMatchers(HttpMethod.POST, "/api/internRequests/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Solicitudes de practicante
+                .antMatchers(HttpMethod.POST, "/api/internRequests/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(),TypesOfRolees.ROLEE_COMPANY.toString()) // Solicitudes de practicante
                 .antMatchers(HttpMethod.GET, "/api/internRequests/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(),TypesOfRolees.ROLEE_COMPANY.toString()) // Solicitudes de practicante
                 .antMatchers(HttpMethod.PUT, "/api/internRequests/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(),"ROLEE_COMPANY") // Solicitudes de practicante
                 .antMatchers(HttpMethod.DELETE, "/api/internRequests/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(),"ROLEE_COMPANY") // Solicitudes de practicante
