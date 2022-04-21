@@ -20,4 +20,6 @@ public interface IInternRequestService {
     
     List<InternRequest> findInternRequestsByCompany(long compId);
 
+
+
 }
