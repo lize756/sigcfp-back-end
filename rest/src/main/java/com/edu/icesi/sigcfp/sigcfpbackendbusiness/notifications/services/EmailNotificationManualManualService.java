@@ -3,9 +3,6 @@ package com.edu.icesi.sigcfp.sigcfpbackendbusiness.notifications.services;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Company;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Contact;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.ICompanyService;
-import org.apache.logging.log4j.Logger;
-import org.apache.tomcat.util.digester.ArrayStack;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -17,11 +14,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class EmailNotificationService implements IEmailNotificationService{
+public class EmailNotificationManualManualService implements IEmailNotificationManualService {
 
     @Autowired private JavaMailSender mailSender;
     @Autowired private ICompanyService iCompanyService;
 
+
+    @Override
+    public void sendSimpleEmail() {
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+        try {
+            helper.setTo("simply753@gmail.com");
+            helper.setText("Este es un ejemplo de alerta automática con cron", true);
+            helper.setSubject("Alerta automática");
+            mailSender.send(message);
+        } catch (MessagingException ex) {
+            ex.printStackTrace();
+        }
+
+    }
 
     @Override
     /**
@@ -29,6 +41,7 @@ public class EmailNotificationService implements IEmailNotificationService{
      * @param emailBody Contiene los datos del correo electrónico
      */
     public void sendSimpleEmail(EmailBody emailBody) {
+
 
     }
 

@@ -1,8 +1,7 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.notifications.controllers;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.notifications.services.EmailBody;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.notifications.services.EmailNotificationService;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.notifications.services.IEmailNotificationService;
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.notifications.services.IEmailNotificationManualService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,13 +12,13 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*")
 public class EmailNotificationController implements IEmailNotificationController{
 
-    @Autowired private IEmailNotificationService iEmailNotificationService;
+    @Autowired private IEmailNotificationManualService iEmailNotificationManualService;
 
 
     @Override
     @PostMapping("/sendSimpleEmail")
     public ResponseEntity<?> sendSimpleEmail(@RequestBody EmailBody emailBody) {
-        iEmailNotificationService.sendSimpleEmail(emailBody);
+        iEmailNotificationManualService.sendSimpleEmail(emailBody);
         return new ResponseEntity<>("Email enviado exitosamente", HttpStatus.OK);
     }
 
@@ -47,7 +46,7 @@ public class EmailNotificationController implements IEmailNotificationController
     @Override
     @GetMapping("/sendNotificationsToContacts")
     public ResponseEntity<?> sendNotificationsToContacts() {
-        iEmailNotificationService.sendNotificationsToContacts();
+        iEmailNotificationManualService.sendNotificationsToContacts();
         return new ResponseEntity<>("Los correos se han enviado a los contactos correctamente", HttpStatus.OK);
     }
 
