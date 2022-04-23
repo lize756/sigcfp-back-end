@@ -35,7 +35,7 @@ public class Userr implements Serializable {
 	@Column(name="ISENABLE", length=2)
 	private boolean isEnable;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(optional = true)
 	@JoinColumn(name="PERSON_PERS_ID")
 	@NotFound(action = NotFoundAction.IGNORE)
 	//@JsonIgnore

@@ -53,6 +53,7 @@ public class InternRequestController implements IInternRequestController {
 			_inteRequest.setCareers(careers);
 			return new ResponseEntity<InternRequest>(_inteRequest, HttpStatus.CREATED);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
