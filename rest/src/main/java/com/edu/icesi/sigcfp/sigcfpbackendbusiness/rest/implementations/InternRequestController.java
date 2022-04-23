@@ -59,7 +59,7 @@ public class InternRequestController implements IInternRequestController {
 	}
 
 	@Override
-	@PutMapping("/update/{inteRequId}")
+	@PutMapping("/update/{inteRequeId}")
 	public ResponseEntity<InternRequest> updateInternRequest(@PathVariable("inteRequeId") long inteRequId, @RequestBody InternRequest internRequest) {
 		Optional<InternRequest> inteRequestOptional = Optional
 				.of(iInternRequestService.searchInternRequest(inteRequId));
