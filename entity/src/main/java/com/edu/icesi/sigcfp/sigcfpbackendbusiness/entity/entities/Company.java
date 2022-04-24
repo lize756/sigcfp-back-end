@@ -50,11 +50,11 @@ public class Company implements Serializable {
 	@Column(name="COMP_URL_ADDRESS", length=255)
 	private String compUrlAddress;
 
-	//bi-directional many-to-one association to City
-	@ManyToOne
-	@JoinColumn(name="CITY_CITY_ID", nullable=false)
-	//@JsonIgnore
-	private City city;
+	@Column(name="COMP_COUNTRY_NAME")
+	private String compCountryName;
+	
+	@Column(name="COMP_CITY_NAME")
+	private String compCityName;
 
 	//bi-directional many-to-one association to Userr
 	//@ManyToOne
@@ -171,12 +171,20 @@ public class Company implements Serializable {
 		this.compUrlAddress = compUrlAddress;
 	}
 
-	public City getCity() {
-		return this.city;
+	public String getCompCountryName() {
+		return compCountryName;
 	}
 
-	public void setCity(City city) {
-		this.city = city;
+	public void setCompCountryName(String compCountryName) {
+		this.compCountryName = compCountryName;
+	}
+
+	public String getCompCityName() {
+		return compCityName;
+	}
+
+	public void setCompCityName(String compCityName) {
+		this.compCityName = compCityName;
 	}
 
 	public Userr getUserr() {
