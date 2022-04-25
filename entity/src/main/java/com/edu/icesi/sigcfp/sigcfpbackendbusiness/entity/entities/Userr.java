@@ -51,7 +51,7 @@ public class Userr implements Serializable {
 
 	//bi-directional many-to-one association to Company
 	//@ManyToOne(fetch = FetchType.LAZY)
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
 	@JoinColumn(name="COMPANY_COMP_ID")
 	//@JsonIgnore
 	private Company company;
