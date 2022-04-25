@@ -87,7 +87,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 // Accesos a las rutas de las compañías
                 .antMatchers(HttpMethod.POST,"/api/companies/**").permitAll() // Empresas
                 .antMatchers(HttpMethod.GET,"/api/companies/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(),TypesOfRolees.ROLEE_PROMOTION_COORDINATOR.toString(),TypesOfRolees.ROLEE_DIRECTOR.toString(),TypesOfRolees.ROLEE_COMPANY.toString()) // Empresas
-                .antMatchers(HttpMethod.PUT,"/api/companies/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(),"ROLEE_COMPANY") // Empresas
+                .antMatchers(HttpMethod.PUT,"/api/companies/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(),TypesOfRolees.ROLEE_COMPANY.toString()) // Empresas
                 .antMatchers(HttpMethod.DELETE,"/api/companies/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), "ROLEE_COMPANY") // Empresas
 
                 // Accesos a las rutas de los contactos
