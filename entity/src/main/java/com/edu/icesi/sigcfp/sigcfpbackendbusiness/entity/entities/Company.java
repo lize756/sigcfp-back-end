@@ -65,7 +65,7 @@ public class Company implements Serializable {
 
 	//bi-directional many-to-one association to Contact
 	@OneToMany(mappedBy="company")
-	//@JsonIgnore
+	@JsonIgnore
 	private List<Contact> contacts;
 
 	//bi-directional many-to-one association to Curriculum

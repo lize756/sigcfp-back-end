@@ -89,8 +89,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE,"/api/companies/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), "ROLEE_COMPANY") // Empresas
 
                 // Accesos a las rutas de los contactos
-                .antMatchers(HttpMethod.POST,"/api/contacts/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Contactos
-                .antMatchers(HttpMethod.GET,"/api/contacts/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Contactos
+                .antMatchers(HttpMethod.POST,"/api/contacts/**").permitAll() // Contactos
+                .antMatchers(HttpMethod.GET,"/api/contacts/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(),TypesOfRolees.ROLEE_COMPANY.toString(),TypesOfRolees.ROLEE_DIRECTOR.toString(),TypesOfRolees.ROLEE_PROMOTION_COORDINATOR.toString()) // Contactos
                 .antMatchers(HttpMethod.PUT,"/api/contacts/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Contactos
                 .antMatchers(HttpMethod.DELETE,"/api/contacts/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(),TypesOfRolees.ROLEE_COMPANY.toString()) // Contactos
 
