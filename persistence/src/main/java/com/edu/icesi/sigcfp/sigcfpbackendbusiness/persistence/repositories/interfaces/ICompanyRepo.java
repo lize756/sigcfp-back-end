@@ -21,6 +21,14 @@ public interface ICompanyRepo extends JpaRepository<Company, Long> {
     @Query("select c from Company c where c.compIcesiStud = ?1")
     List<Company> findCompaniesByCompIcesiStud( boolean compIcesiStud);
 
+    // TODO: Reporte - Mostrar el numero de solicitudes de practicantes por carrera, agrupadas por carrera.
+
+
+
+    List<?> interRequestByCareerGroupByCareers();
+
+
+
 
 
 

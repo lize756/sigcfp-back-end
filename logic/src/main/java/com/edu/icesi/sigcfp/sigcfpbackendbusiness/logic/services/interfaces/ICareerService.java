@@ -15,4 +15,6 @@ public interface ICareerService {
     Career deleteCareer(long careId);
 
     List<Career> careers();
+
+    List<Career> findCareersByFacultyFacuId(Long facuId);
 }

@@ -61,4 +61,10 @@ public interface IInternRequestController {
    	 */
 	ResponseEntity<List<InternRequest>> getInternRequestsAssociatedCompany(long compId);
 
+
+
+	ResponseEntity<?> getCountInternRequestByCompanyId(long compId);
+
+
+	ResponseEntity<?> getInternRequestsByCompanyCompId(long compId);
 }

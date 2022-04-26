@@ -53,4 +53,7 @@ public interface ICompanyController {
 	 */
 	ResponseEntity<List<Company>> getCompanies();
 
+
+	ResponseEntity<?> getCompaniesByCompIcesiStud(boolean hasIcesiStudent);
+
 }

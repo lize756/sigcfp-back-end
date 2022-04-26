@@ -87,10 +87,16 @@ public class CompanyController implements ICompanyController {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
 			return new ResponseEntity<>(companies, HttpStatus.OK);
-
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
+	@Override
+	@GetMapping("/getCompaniesByCompIcesiStud/{hasIcesiStudent}")
+	public ResponseEntity<?> getCompaniesByCompIcesiStud(@PathVariable boolean hasIcesiStudent) {
+		return new ResponseEntity<>(iCompanyService.findCompaniesByCompIcesiStud(hasIcesiStudent), HttpStatus.OK);
+	}
+
 
 }

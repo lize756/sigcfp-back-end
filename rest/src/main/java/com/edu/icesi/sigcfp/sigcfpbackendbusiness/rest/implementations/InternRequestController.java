@@ -125,4 +125,16 @@ public class InternRequestController implements IInternRequestController {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}	}
 
+	@Override
+	@GetMapping("/getCountInternRequestByCompanyId/{compId}")
+	public ResponseEntity<?> getCountInternRequestByCompanyId(@PathVariable long compId) {
+		return new ResponseEntity<>(iInternRequestService.countInternRequestByCompanyId(compId), HttpStatus.OK);
+	}
+
+	@Override
+	@GetMapping("/getInternRequestByCompanyId/{compId}")
+	public ResponseEntity<?> getInternRequestsByCompanyCompId(long compId) {
+		return new ResponseEntity<>(iInternRequestService.findInternRequestsByCompanyCompId(compId), HttpStatus.OK);
+	}
+
 }

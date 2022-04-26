@@ -3,6 +3,7 @@ package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.implementations;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Career;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.ICareerService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.ICareerController;
+import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -73,5 +74,11 @@ public class CareerController implements ICareerController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+
+	@Override
+	@GetMapping("/getCareersByFacultyFacuId/{facuId}")
+	public ResponseEntity<?> getCareersByFacultyFacuId(@PathVariable long facuId) {
+		return new ResponseEntity<>(iCareerService.findCareersByFacultyFacuId(facuId), HttpStatus.OK);
 	}
 }
