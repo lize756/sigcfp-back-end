@@ -57,11 +57,7 @@ public class Person implements Serializable {
 	//@JsonIgnore
 	private List<Ethnicgroup> ethnicgroups;
 
-	//bi-directional many-to-one association to City
-	@ManyToOne
-	@JoinColumn(name="CITY_CITY_ID", nullable=false)
-	//@JsonIgnore
-	private City city;
+
 
 	//bi-directional many-to-one association to Curriculum
 	@ManyToOne
@@ -88,6 +84,13 @@ public class Person implements Serializable {
 	//
     //@OneToOne(mappedBy = "person")
 	private Userr userr;
+	
+	
+	@Column(name="PERS_COUNTRY_NAME")
+	private String persCountryName;
+	
+	@Column(name="PERS_CITY_NAME")
+	private String persCityName;
 	
 	public Person() {
 	}
@@ -192,14 +195,6 @@ public class Person implements Serializable {
 		return ethnicgroup;
 	}
 
-	public City getCity() {
-		return this.city;
-	}
-
-	public void setCity(City city) {
-		this.city = city;
-	}
-
 	public Curriculum getCurriculum() {
 		return this.curriculum;
 	}
@@ -224,11 +219,22 @@ public class Person implements Serializable {
 		this.userr = userr;
 	}
 
-	
 
-	
+	public String getPersCountryName() {
+		return persCountryName;
+	}
 
-	
+	public void setPersCountryName(String persCountryName) {
+		this.persCountryName = persCountryName;
+	}
+
+	public String getPersCityName() {
+		return persCityName;
+	}
+
+	public void setPersCityName(String persCityName) {
+		this.persCityName = persCityName;
+	}
 
 	public Language addLanguage(Language language) {
 		getLanguages().add(language);
