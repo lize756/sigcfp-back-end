@@ -5,10 +5,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface IEmailNotificationController {
 
-    public ResponseEntity<?> sendSimpleEmail(EmailBody emailBody);
-    public void sendEmailWithAttachment(EmailBody emailBody);
-
-    public void sendEmailWithAttachment(EmailBody emailBody, String attachmentPath);
+    public ResponseEntity<?> sendSimpleEmail();
 
     public void sendStartInternPeriodNotification();
     public void sendEndInternPeriodNotification();

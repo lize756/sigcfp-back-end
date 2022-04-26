@@ -26,7 +26,7 @@ public class EmailNotificationAutomaticService implements IEmailNotificationAuto
 
 
     @Override
-    @Scheduled(cron = "${cron.startExpression}")
+    //@Scheduled(cron = "${cron.startExpression}")
     public void sendEmailNotificationStartInternPeriod() {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
@@ -46,7 +46,7 @@ public class EmailNotificationAutomaticService implements IEmailNotificationAuto
     }
 
     @Override
-    @Scheduled(cron = "${cron.endExpression}")
+    //@Scheduled(cron = "${cron.endExpression}")
     public void sendEmailNotificationEndInternPeriod() {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
