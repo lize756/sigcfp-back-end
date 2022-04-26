@@ -35,7 +35,7 @@ public class Userr implements Serializable {
 	@Column(name="ISENABLE", length=2)
 	private boolean isEnable;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(optional = true)
 	@JoinColumn(name="PERSON_PERS_ID")
 	@NotFound(action = NotFoundAction.IGNORE)
 	//@JsonIgnore
@@ -51,7 +51,7 @@ public class Userr implements Serializable {
 
 	//bi-directional many-to-one association to Company
 	//@ManyToOne(fetch = FetchType.LAZY)
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
 	@JoinColumn(name="COMPANY_COMP_ID")
 	//@JsonIgnore
 	private Company company;

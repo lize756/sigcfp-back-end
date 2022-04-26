@@ -17,6 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Base64Utils;
 
@@ -33,6 +34,7 @@ public class JWTService implements IJWTService {
     public static final String TOKEN_PREFIX = "Bearer "; // Prefix del token
     public static final String HEADER_STRING = "Authorization"; // Header para el token
     @Autowired private IUserrService userService;
+    @Autowired private BCryptPasswordEncoder passwordEncoder;
     
     @Override
     /**
@@ -130,8 +132,27 @@ public class JWTService implements IJWTService {
     public long getUserPersonId(String token){
         return getClaims(token).get("userPersonId", Long.class);
     }
-    
-    
+
+    @Override
+    public boolean validatePassword(String userName, String password) {
+        Userr userr = userService.findUserrByUserName(userName);
+        if(userr != null){
+            return passwordEncoder.matches(password, userr.getUserPassword());
+        }
+        return false;
+    }
+
+
+    @Override
+    public void updatePassword(String userName, String password) {
+        Userr userr = userService.findUserrByUserName(userName);
+        if(userr != null){
+            userr.setUserPassword(passwordEncoder.encode(password));
+            userService.updateUserr(userr);
+        }
+    }
+
+
     @Override
     /**
      * Obtener los roles del token

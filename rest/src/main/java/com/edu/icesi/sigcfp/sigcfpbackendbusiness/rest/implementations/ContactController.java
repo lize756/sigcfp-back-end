@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Contact;
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.InternRequest;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.IContactService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.IContactController;
 
@@ -79,6 +80,20 @@ public class ContactController implements IContactController {
 	}
 
 	@Override
+	@PostMapping("/addContacts")
+	public ResponseEntity<List<Contact>> addContacts(@RequestBody List<Contact> contacts) {
+		try {
+			List<Contact> _contacts = iContactService.addContacts(contacts);
+			return new ResponseEntity<List<Contact>>(_contacts, HttpStatus.CREATED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	
+	
+	@Override
 	@GetMapping()
 	public ResponseEntity<List<Contact>> getContacts() {
 		try {
@@ -89,6 +104,23 @@ public class ContactController implements IContactController {
 			return new ResponseEntity<>(contacts, HttpStatus.OK);
 
 		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@Override
+	@GetMapping("/comp/{compId}")
+	public ResponseEntity<List<Contact>> getContactssAssociatedCompany(@PathVariable("compId") long compId) {
+		try {
+			List<Contact> contacts = iContactService.findContactsByCompany(compId);
+			System.out.println(contacts);
+			if (contacts.isEmpty()){
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
+			return new ResponseEntity<>(contacts, HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
