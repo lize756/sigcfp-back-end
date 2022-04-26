@@ -33,10 +33,6 @@ public class City implements Serializable {
 	@JsonIgnore
 	private List<Academicstudy> academicstudies;
 
-	//bi-directional many-to-one association to Company
-	@OneToMany(mappedBy="city")
-	@JsonIgnore
-	private List<Company> companies;
 
 	//bi-directional many-to-one association to Person
 	@OneToMany(mappedBy="city")
@@ -83,29 +79,6 @@ public class City implements Serializable {
 
 		return academicstudy;
 	}
-
-	public List<Company> getCompanies() {
-		return this.companies;
-	}
-
-	public void setCompanies(List<Company> companies) {
-		this.companies = companies;
-	}
-
-	public Company addCompany(Company company) {
-		getCompanies().add(company);
-		company.setCity(this);
-
-		return company;
-	}
-
-	public Company removeCompany(Company company) {
-		getCompanies().remove(company);
-		company.setCity(null);
-
-		return company;
-	}
-
 	public List<Person> getPersons() {
 		return this.persons;
 	}

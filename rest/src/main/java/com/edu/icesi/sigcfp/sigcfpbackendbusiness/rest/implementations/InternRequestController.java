@@ -53,12 +53,13 @@ public class InternRequestController implements IInternRequestController {
 			_inteRequest.setCareers(careers);
 			return new ResponseEntity<InternRequest>(_inteRequest, HttpStatus.CREATED);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
 	@Override
-	@PutMapping("/update/{inteRequId}")
+	@PutMapping("/update/{inteRequeId}")
 	public ResponseEntity<InternRequest> updateInternRequest(@PathVariable("inteRequeId") long inteRequId, @RequestBody InternRequest internRequest) {
 		Optional<InternRequest> inteRequestOptional = Optional
 				.of(iInternRequestService.searchInternRequest(inteRequId));

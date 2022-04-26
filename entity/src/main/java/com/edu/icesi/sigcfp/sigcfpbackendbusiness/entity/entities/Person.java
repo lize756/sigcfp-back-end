@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import java.util.List;
 
 
@@ -26,7 +29,7 @@ public class Person implements Serializable {
 	@Column(name="PERS_ID", unique=true, nullable=false, precision=10)
 	private long persId;
 
-	@Column(name="PERS_ADDRESS", length=255)
+	@Column(name="PERS_ADDRESS", length=255,nullable = true)
 	private String persAddress;
 
 	@Column(name="PERS_DOCUMENT", length=20)

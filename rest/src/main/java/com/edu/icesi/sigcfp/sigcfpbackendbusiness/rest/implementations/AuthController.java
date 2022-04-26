@@ -2,6 +2,8 @@ package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.implementations;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.model.AuthenticationRequest;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.model.AuthenticationResponse;
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.model.ChangeUserPassword;
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.model.ValidateUserPassword;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.security.MyUserDetailsService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.services.implementations.JWTService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Userr;
@@ -58,8 +60,34 @@ public class AuthController implements IAuthController {
         return ResponseEntity.ok("User registered successfully");
     }
 
+    @Override
+    @PostMapping("/validatePassword")
+    public ResponseEntity<?> validatePassword(@RequestBody ValidateUserPassword validateUserPassword) {
+        Userr userr = userrService.findUserrByUserName(validateUserPassword.getUserName());
+        if(userr != null && passwordEncoder.matches(validateUserPassword.getUserPassword(), userr.getUserPassword())) {
+            return ResponseEntity.ok("La contraseña es correcta");
+        }
+        return ResponseEntity.badRequest().body("La contraseña es incorrecta");
+    }
 
+    @Override
+    public ResponseEntity<?> recoveryPassword(String username, String password) {
+        return null;
+    }
 
+    @Override
+    @PostMapping("/changePassword")
+    public ResponseEntity<?> changePassword(@RequestBody ChangeUserPassword changeUserPassword) {
+        Userr userr = userrService.findUserrByUserName(changeUserPassword.getUserName());
+        if(userr != null && passwordEncoder.matches(changeUserPassword.getOldUserPassword(), userr.getUserPassword())
+                && changeUserPassword.getNewUserPassword().equals(changeUserPassword.getConfirmPassword())) {
+            userr.setUserPassword(passwordEncoder.encode(changeUserPassword.getNewUserPassword()));
+            userrService.updateUserr(userr);
+            return ResponseEntity.ok("Contraseña cambiada correctamente");
+        }
+        return ResponseEntity.badRequest().body("La contraseña es incorrecta");
+
+    }
 
 
 }

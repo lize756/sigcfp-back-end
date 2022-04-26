@@ -63,4 +63,16 @@ public class ContactService implements IContactService {
 	public List<Contact> contacts() {
 		return iContactRepo.findAll();
 	}
+
+	@Override
+	@Transactional
+	public List<Contact> addContacts(List<Contact> contacts) {
+		return iContactRepo.saveAll(contacts);
+	}
+
+	@Override
+	@Transactional
+	public List<Contact> findContactsByCompany(long compId) {
+		return iContactRepo.findContactsByCompany(compId);
+	}
 }

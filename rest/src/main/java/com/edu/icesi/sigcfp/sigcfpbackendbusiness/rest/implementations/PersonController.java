@@ -48,11 +48,18 @@ public class PersonController implements IPersonController {
 	@Override
 	@PutMapping("/update/{persId}")
 	public ResponseEntity<Person> updatePerson(@PathVariable("persId") long persId,@RequestBody Person person) {
+		try {
+			
 		Optional<Person> personOptional = Optional.of(iPersonService.searchPerson(persId));
-		if (personOptional.isPresent()) {
-			return new ResponseEntity<>(iPersonService.updatePerson(person), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		System.out.println("ENTRE----------------->>>>>>>>> "+personOptional);
+			if (personOptional.isPresent()) {
+				return new ResponseEntity<>(iPersonService.updatePerson(person), HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 

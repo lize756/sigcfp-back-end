@@ -39,7 +39,7 @@ public class Contact implements Serializable {
 	//bi-directional many-to-one association to Company
 	@ManyToOne
 	@JoinColumn(name="COMPANY_COMP_ID")
-	@JsonIgnore
+	//@JsonIgnore
 	private Company company;
 
 	public Contact() {

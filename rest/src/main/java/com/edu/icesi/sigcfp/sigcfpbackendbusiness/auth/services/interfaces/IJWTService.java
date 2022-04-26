@@ -23,4 +23,8 @@ public interface IJWTService {
     public long getUserCompanyId(String token);
     public long getUserPersonId(String token);
 
+    public boolean validatePassword(String token, String password);
+
+    public void updatePassword(String token, String password);
+
 }

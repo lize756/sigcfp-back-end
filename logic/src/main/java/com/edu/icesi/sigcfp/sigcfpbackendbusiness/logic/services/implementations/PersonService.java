@@ -39,7 +39,7 @@ public class PersonService implements IPersonService {
 	@Transactional
 	public Person searchPerson(long persId) {
 		if (iPersonRepo.existsById(persId)) {
-			return iPersonRepo.getById(persId);
+			return iPersonRepo.getPersonById(persId);
 		} else {
 			return null;
 		}
@@ -51,7 +51,7 @@ public class PersonService implements IPersonService {
 		Person personToDelete = null;
 		if (iPersonRepo.existsById(persId)) {
 			personToDelete = iPersonRepo.findById(persId).get();
-			iPersonRepo.delete(iPersonRepo.getById(persId));
+			iPersonRepo.delete(iPersonRepo.getPersonById(persId));
 		} else {
 			return null;
 		}
