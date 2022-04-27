@@ -1,8 +1,6 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.implementations;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.City;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Person;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.ICityRepo;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.IPersonRepo;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

@@ -4,6 +4,8 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Person;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -26,6 +28,14 @@ public interface IPersonController {
 	 */
     ResponseEntity<Person> updatePerson(long persId, Person person);
     
+    /**
+     * Allow partially update a person.
+     * @param persId persId id of person to update.
+     * @param person person to update
+     * @return
+     */
+	ResponseEntity<Person> partiallyUpdatePerson(long persId,Person person);
+	
     /**
 	 * Allows to obtain a person through you id.
 	 * 
@@ -51,5 +61,8 @@ public interface IPersonController {
 	 *         headers, and body.
 	 */
     ResponseEntity<List<Person>> getPersons();
+    
+   
+
 
 }

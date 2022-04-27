@@ -62,6 +62,29 @@ public class PersonController implements IPersonController {
 			return null;
 		}
 	}
+	
+	@Override
+	@PutMapping("/partiallyUpdate/{persId}")
+	public ResponseEntity<Person> partiallyUpdatePerson(@PathVariable("persId") long persId,@RequestBody Person person) {
+		try {
+			
+		Optional<Person> personOptional = Optional.of(iPersonService.searchPerson(persId));
+		System.out.println("ENTRE----------------->>>>>>>>> "+personOptional);
+			if (personOptional.isPresent()) {
+				Person previousPerson = personOptional.get();
+				//Elements to partially update
+				person.setCurriculum(previousPerson.getCurriculum());
+				person.setEthnicgroups(previousPerson.getEthnicgroups());
+				person.setLanguages(previousPerson.getLanguages());
+				return new ResponseEntity<>(iPersonService.updatePerson(person), HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	@Override
 	@GetMapping("/{persId}")

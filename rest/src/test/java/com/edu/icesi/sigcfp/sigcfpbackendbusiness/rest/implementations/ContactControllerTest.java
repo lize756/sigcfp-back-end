@@ -1,10 +1,7 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.implementations;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.City;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Contact;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.ICityRepo;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.IContactRepo;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

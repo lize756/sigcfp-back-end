@@ -1,10 +1,8 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.implementations;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Career;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.City;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Faculty;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.ICareerRepo;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.ICityRepo;
 import org.junit.jupiter.api.*;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
