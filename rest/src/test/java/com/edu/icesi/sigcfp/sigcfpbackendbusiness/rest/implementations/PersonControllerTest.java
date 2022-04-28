@@ -2,7 +2,6 @@ package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.implementations;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Person;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.IPersonRepo;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -21,17 +20,16 @@ import java.util.List;
 import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class PersonControllerTest {
 
     final static long PERS_ID = 3275;
-
+    TestRestTemplate restTemplate = new TestRestTemplate();
     @LocalServerPort
     private int port;
-    TestRestTemplate restTemplate = new TestRestTemplate();
     @MockBean
     private IPersonRepo iPersonRepo;
 
@@ -79,7 +77,7 @@ class PersonControllerTest {
 
         // then
         this.restTemplate.put(
-                "http://localhost:" + port + "/persons/update/"+PERS_ID, person
+                "http://localhost:" + port + "/persons/update/" + PERS_ID, person
         );
 
     }
@@ -97,7 +95,7 @@ class PersonControllerTest {
         Mockito.when(iPersonRepo.getById(PERS_ID)).thenReturn(person);
 
         // when
-        ResponseEntity<Person> personResponseEntity = restTemplate.getForEntity("http://localhost:" + port +"/persons/"+PERS_ID, Person.class);
+        ResponseEntity<Person> personResponseEntity = restTemplate.getForEntity("http://localhost:" + port + "/persons/" + PERS_ID, Person.class);
 
         // then
         assertThat(personResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -118,8 +116,8 @@ class PersonControllerTest {
         Mockito.when(iPersonRepo.existsById(PERS_ID)).thenReturn(false);
 
         // when
-        restTemplate.delete("http://localhost:" + port +"/persons/"+PERS_ID);
-        ResponseEntity<Person> personResponseEntity = restTemplate.getForEntity("http://localhost:" + port +"/persons/"+PERS_ID, Person.class);
+        restTemplate.delete("http://localhost:" + port + "/persons/" + PERS_ID);
+        ResponseEntity<Person> personResponseEntity = restTemplate.getForEntity("http://localhost:" + port + "/persons/" + PERS_ID, Person.class);
 
         // then
         assertThat(personResponseEntity.getStatusCode()).isNotEqualTo(HttpStatus.NO_CONTENT);

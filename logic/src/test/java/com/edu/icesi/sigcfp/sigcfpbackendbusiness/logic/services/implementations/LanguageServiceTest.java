@@ -1,6 +1,5 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.implementations;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Career;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Language;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.ILanguageRepo;
 import org.junit.jupiter.api.*;
@@ -34,11 +33,15 @@ class LanguageServiceTest {
         System.out.println("|| ---- LanguageServiceTest Started ---- ||");
     }
 
+    @AfterAll
+    static void finish() {
+        System.out.println("|| ---- LanguageServiceTest Finished ---- ||");
+    }
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-
 
     @Test
     void addLanguage() {
@@ -140,11 +143,6 @@ class LanguageServiceTest {
 
     @AfterEach
     void tearDown() {
-    }
-
-    @AfterAll
-    static void finish(){
-        System.out.println("|| ---- LanguageServiceTest Finished ---- ||");
     }
 
 }

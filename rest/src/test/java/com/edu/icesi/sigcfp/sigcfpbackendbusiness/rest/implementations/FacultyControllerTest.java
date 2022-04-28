@@ -20,17 +20,16 @@ import java.util.List;
 import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class FacultyControllerTest {
 
     final static long FACU_ID = 6974;
-
+    TestRestTemplate restTemplate = new TestRestTemplate();
     @LocalServerPort
     private int port;
-    TestRestTemplate restTemplate = new TestRestTemplate();
     @MockBean
     private IFacultyRepo iFacultyRepo;
 
@@ -74,7 +73,7 @@ class FacultyControllerTest {
 
         // then
         this.restTemplate.put(
-                "http://localhost:" + port + "/faculties/update/"+FACU_ID, faculty
+                "http://localhost:" + port + "/faculties/update/" + FACU_ID, faculty
         );
 
     }
@@ -90,7 +89,7 @@ class FacultyControllerTest {
         Mockito.when(iFacultyRepo.getById(FACU_ID)).thenReturn(faculty);
 
         // when
-        ResponseEntity<Faculty> facultyResponseEntity = restTemplate.getForEntity("http://localhost:" + port +"/faculties/"+FACU_ID, Faculty.class);
+        ResponseEntity<Faculty> facultyResponseEntity = restTemplate.getForEntity("http://localhost:" + port + "/faculties/" + FACU_ID, Faculty.class);
 
         // then
         assertThat(facultyResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -108,8 +107,8 @@ class FacultyControllerTest {
         Mockito.when(iFacultyRepo.existsById(FACU_ID)).thenReturn(false);
 
         // when
-        restTemplate.delete("http://localhost:" + port +"/faculties/"+FACU_ID);
-        ResponseEntity<Faculty> facultyResponseEntity = restTemplate.getForEntity("http://localhost:" + port +"/faculties/"+FACU_ID, Faculty.class);
+        restTemplate.delete("http://localhost:" + port + "/faculties/" + FACU_ID);
+        ResponseEntity<Faculty> facultyResponseEntity = restTemplate.getForEntity("http://localhost:" + port + "/faculties/" + FACU_ID, Faculty.class);
 
         // then
         assertThat(facultyResponseEntity.getStatusCode()).isNotEqualTo(HttpStatus.NO_CONTENT);

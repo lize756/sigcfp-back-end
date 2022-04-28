@@ -1,8 +1,6 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.implementations;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Career;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Noti;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.ICareerRepo;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.INotiRepo;
 import org.junit.jupiter.api.*;
 import org.junit.runner.RunWith;
@@ -36,12 +34,15 @@ class NotiServiceTest {
         System.out.println("|| ---- NotiServiceTest Started ---- ||");
     }
 
+    @AfterAll
+    static void finish() {
+        System.out.println("|| ---- NotiServiceTest Finished ---- ||");
+    }
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-
-
 
     @Test
     void addNoti() {
@@ -140,11 +141,6 @@ class NotiServiceTest {
 
     @AfterEach
     void tearDown() {
-    }
-
-    @AfterAll
-    static void finish(){
-        System.out.println("|| ---- NotiServiceTest Finished ---- ||");
     }
 
 }

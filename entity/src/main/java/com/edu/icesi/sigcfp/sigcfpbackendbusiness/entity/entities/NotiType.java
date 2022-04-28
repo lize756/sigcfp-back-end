@@ -3,61 +3,60 @@ package com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.io.Serializable;
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 /**
  * The persistent class for the NOTI_TYPE database table.
- * 
  */
 @Entity
-@Table(name="NOTI_TYPE")
-@NamedQuery(name="NotiType.findAll", query="SELECT n FROM NotiType n")
-@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
+@Table(name = "NOTI_TYPE")
+@NamedQuery(name = "NotiType.findAll", query = "SELECT n FROM NotiType n")
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
 public class NotiType implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@SequenceGenerator(name="NOTI_TYPE_NOTITYPEID_GENERATOR", allocationSize = 1, sequenceName = "NOTI_TYPE_SEQ"  )
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="NOTI_TYPE_NOTITYPEID_GENERATOR")
-	@Column(name="NOTI_TYPE_ID", unique=true, nullable=false, precision=10)
-	private long notiTypeId;
+    @Id
+    @SequenceGenerator(name = "NOTI_TYPE_NOTITYPEID_GENERATOR", allocationSize = 1, sequenceName = "NOTI_TYPE_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "NOTI_TYPE_NOTITYPEID_GENERATOR")
+    @Column(name = "NOTI_TYPE_ID", unique = true, nullable = false, precision = 10)
+    private long notiTypeId;
 
-	@Column(name="NOTI_TYPE_NAME", length=255)
-	private String notiTypeName;
+    @Column(name = "NOTI_TYPE_NAME", length = 255)
+    private String notiTypeName;
 
-	//bi-directional many-to-one association to Noti
-	@ManyToOne
-	@JoinColumn(name="NOTI_NOTI_ID")
-	@JsonIgnore
-	private Noti noti;
+    //bi-directional many-to-one association to Noti
+    @ManyToOne
+    @JoinColumn(name = "NOTI_NOTI_ID")
+    @JsonIgnore
+    private Noti noti;
 
-	public NotiType() {
-	}
+    public NotiType() {
+    }
 
-	public long getNotiTypeId() {
-		return this.notiTypeId;
-	}
+    public long getNotiTypeId() {
+        return this.notiTypeId;
+    }
 
-	public void setNotiTypeId(long notiTypeId) {
-		this.notiTypeId = notiTypeId;
-	}
+    public void setNotiTypeId(long notiTypeId) {
+        this.notiTypeId = notiTypeId;
+    }
 
-	public String getNotiTypeName() {
-		return this.notiTypeName;
-	}
+    public String getNotiTypeName() {
+        return this.notiTypeName;
+    }
 
-	public void setNotiTypeName(String notiTypeName) {
-		this.notiTypeName = notiTypeName;
-	}
+    public void setNotiTypeName(String notiTypeName) {
+        this.notiTypeName = notiTypeName;
+    }
 
-	public Noti getNoti() {
-		return this.noti;
-	}
+    public Noti getNoti() {
+        return this.noti;
+    }
 
-	public void setNoti(Noti noti) {
-		this.noti = noti;
-	}
+    public void setNoti(Noti noti) {
+        this.noti = noti;
+    }
 
 }

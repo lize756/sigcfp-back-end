@@ -31,15 +31,19 @@ class CurriculumServiceTest {
     CurriculumService curriculumService;
 
     @BeforeAll
-    static void init(){
+    static void init() {
         System.out.println("|| ---- CurriculumServiceTest Started ---- ||");
+    }
+
+    @AfterAll
+    static void finish() {
+        System.out.println("|| ---- CurriculumServiceTest Finished ---- ||");
     }
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-
 
     @Test
     void addCurriculum() {
@@ -142,16 +146,9 @@ class CurriculumServiceTest {
 
     }
 
-
     @AfterEach
     void tearDown() {
     }
-
-    @AfterAll
-    static void finish(){
-        System.out.println("|| ---- CurriculumServiceTest Finished ---- ||");
-    }
-
 
 
 }

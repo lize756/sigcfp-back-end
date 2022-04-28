@@ -22,17 +22,16 @@ import java.util.List;
 import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class InternRequestControllerTest {
 
     final static long INTE_REQU_ID = 8858;
-
+    TestRestTemplate restTemplate = new TestRestTemplate();
     @LocalServerPort
     private int port;
-    TestRestTemplate restTemplate = new TestRestTemplate();
     @MockBean
     private IInternRequestRepo iInternRequestRepo;
 
@@ -79,7 +78,7 @@ class InternRequestControllerTest {
 
         // then
         this.restTemplate.put(
-                "http://localhost:" + port + "/internRequests/update/"+INTE_REQU_ID, internRequest
+                "http://localhost:" + port + "/internRequests/update/" + INTE_REQU_ID, internRequest
         );
     }
 
@@ -96,7 +95,7 @@ class InternRequestControllerTest {
         Mockito.when(iInternRequestRepo.getById(INTE_REQU_ID)).thenReturn(internRequest);
 
         // when
-        ResponseEntity<InternRequest> internRequestResponseEntity = restTemplate.getForEntity("http://localhost:" + port +"/internRequests/"+INTE_REQU_ID, InternRequest.class);
+        ResponseEntity<InternRequest> internRequestResponseEntity = restTemplate.getForEntity("http://localhost:" + port + "/internRequests/" + INTE_REQU_ID, InternRequest.class);
 
         // then
         assertThat(internRequestResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -117,8 +116,8 @@ class InternRequestControllerTest {
         Mockito.when(iInternRequestRepo.existsById(INTE_REQU_ID)).thenReturn(false);
 
         // when
-        restTemplate.delete("http://localhost:" + port +"/internRequests/"+INTE_REQU_ID);
-        ResponseEntity<InternRequest> internRequestResponseEntity = restTemplate.getForEntity("http://localhost:" + port +"/internRequests/"+INTE_REQU_ID, InternRequest.class);
+        restTemplate.delete("http://localhost:" + port + "/internRequests/" + INTE_REQU_ID);
+        ResponseEntity<InternRequest> internRequestResponseEntity = restTemplate.getForEntity("http://localhost:" + port + "/internRequests/" + INTE_REQU_ID, InternRequest.class);
 
         // then
         assertThat(internRequestResponseEntity.getStatusCode()).isNotEqualTo(HttpStatus.NO_CONTENT);

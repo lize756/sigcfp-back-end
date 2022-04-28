@@ -1,6 +1,5 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.implementations;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Contact;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Curriculum;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.ICurriculumService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.ICurriculumController;
@@ -38,7 +37,7 @@ public class CurriculumController implements ICurriculumController {
 
     @Override
     @PutMapping("/update/{curriId}")
-    public ResponseEntity<Curriculum> updateCurriculum(@PathVariable("curriId")  long curriId, @RequestBody Curriculum curriculum) {
+    public ResponseEntity<Curriculum> updateCurriculum(@PathVariable("curriId") long curriId, @RequestBody Curriculum curriculum) {
         Optional<Curriculum> curriculumOptional = Optional.of(iCurriculumService.searchCurriculum(curriId));
         if (curriculumOptional.isPresent()) {
             Curriculum _curriculum = curriculumOptional.get();
@@ -50,7 +49,7 @@ public class CurriculumController implements ICurriculumController {
 
     @Override
     @GetMapping("/{curriId}")
-    public ResponseEntity<Curriculum> getCurriculum(@PathVariable("curriId")  long curriId) {
+    public ResponseEntity<Curriculum> getCurriculum(@PathVariable("curriId") long curriId) {
         Optional<Curriculum> curriculumOptional = Optional.of(iCurriculumService.searchCurriculum(curriId));
         if (curriculumOptional.isPresent()) {
             return new ResponseEntity<>(curriculumOptional.get(), HttpStatus.OK);

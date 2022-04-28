@@ -1,8 +1,6 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.implementations;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Career;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Ethnicgroup;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.ICareerRepo;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.IEthnicgroupRepo;
 import org.junit.jupiter.api.*;
 import org.junit.runner.RunWith;
@@ -31,7 +29,12 @@ class EthnicgroupServiceTest {
     EthnicgroupService ethnicgroupService;
 
     @BeforeAll
-    static void init(){
+    static void init() {
+        System.out.println("|| ---- EthnicgroupServiceTest Started ---- ||");
+    }
+
+    @AfterAll
+    static void finish() {
         System.out.println("|| ---- EthnicgroupServiceTest Started ---- ||");
     }
 
@@ -39,7 +42,6 @@ class EthnicgroupServiceTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-
 
     @Test
     void addEthnicgroup() {
@@ -141,12 +143,6 @@ class EthnicgroupServiceTest {
     @AfterEach
     void tearDown() {
     }
-
-    @AfterAll
-    static void finish(){
-        System.out.println("|| ---- EthnicgroupServiceTest Started ---- ||");
-    }
-
 
 
 }

@@ -17,6 +17,4 @@ public interface ICareerRepo extends JpaRepository<Career, Long> {
     List<Career> findCareersByFacultyFacuId(Long facuId);
 
 
-
-
 }

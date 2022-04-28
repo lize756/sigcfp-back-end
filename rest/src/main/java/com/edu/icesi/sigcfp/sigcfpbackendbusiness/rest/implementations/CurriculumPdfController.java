@@ -38,7 +38,7 @@ public class CurriculumPdfController implements ICurriculumPdfController {
     @Override
     @PutMapping("/update/{cuPdfId}")
     public ResponseEntity<CurriculumPdf> updateCurriculumPdf(@PathVariable("cuPdfId") long cuPdfId, @RequestBody CurriculumPdf curriculumPdf) {
-        Optional<CurriculumPdf>  optionalCurriculumPdf = Optional.of(iCurriculumPdfService.searchCurriculumPdf(cuPdfId));
+        Optional<CurriculumPdf> optionalCurriculumPdf = Optional.of(iCurriculumPdfService.searchCurriculumPdf(cuPdfId));
         if (optionalCurriculumPdf.isPresent()) {
             CurriculumPdf _curriculumPdf = optionalCurriculumPdf.get();
             return new ResponseEntity<>(iCurriculumPdfService.updateCurriculumPdf(_curriculumPdf), HttpStatus.OK);

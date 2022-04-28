@@ -30,15 +30,19 @@ class AcademicstudyServiceTest {
     private AcademicstudyService academicstudyService;
 
     @BeforeAll
-    static void init(){
+    static void init() {
         System.out.println("|| ---- AcademicstudyServiceTest Started ---- ||");
+    }
+
+    @AfterAll
+    static void finish() {
+        System.out.println("|| ---- AcademicstudyServiceTest Finished ---- ||");
     }
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-
 
     @Test
     void addAcademicstudy() {
@@ -95,7 +99,7 @@ class AcademicstudyServiceTest {
 
         assertThat(academicstudyService.searchAcademicstudy(ACAD_STUD_ID))
                 .isNotNull()
-                        .isEqualTo(academicstudy);
+                .isEqualTo(academicstudy);
         assertEquals("UnIcesi", academicstudyService.searchAcademicstudy(ACAD_STUD_ID).getAcadStudInsti());
     }
 
@@ -148,11 +152,6 @@ class AcademicstudyServiceTest {
 
     @AfterEach
     void tearDown() {
-    }
-
-    @AfterAll
-    static void finish(){
-        System.out.println("|| ---- AcademicstudyServiceTest Finished ---- ||");
     }
 
 

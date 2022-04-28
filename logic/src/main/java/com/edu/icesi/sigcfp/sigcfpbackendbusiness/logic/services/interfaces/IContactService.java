@@ -13,10 +13,10 @@ public interface IContactService {
     Contact searchContact(long contId);
 
     Contact deleteContact(long contId);
-    
+
     List<Contact> addContacts(List<Contact> contacts);
 
     List<Contact> contacts();
-    
+
     List<Contact> findContactsByCompany(long compId);
 }

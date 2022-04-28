@@ -10,7 +10,6 @@ import java.util.List;
 @Repository
 public interface ICompanyRepo extends JpaRepository<Company, Long> {
 
-
     // TODO: Reporte - Empresas registradas en el sistema
     // TODO: Reporte que muestre la información de las empresas que están registradas por carrera
     @Query("select c from Company c")
@@ -19,18 +18,9 @@ public interface ICompanyRepo extends JpaRepository<Company, Long> {
 
     // TODO: Reporte - Mostrar que empresas han solicitado practicantes y cuáles no.
     @Query("select c from Company c where c.compIcesiStud = ?1")
-    List<Company> findCompaniesByCompIcesiStud( boolean compIcesiStud);
+    List<Company> findCompaniesByCompIcesiStud(boolean compIcesiStud);
 
     // TODO: Reporte - Mostrar el numero de solicitudes de practicantes por carrera, agrupadas por carrera.
-
-
-
-    List<?> interRequestByCareerGroupByCareers();
-
-
-
-
-
 
 
 }

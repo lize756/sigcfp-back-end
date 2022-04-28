@@ -34,11 +34,15 @@ class CareerServiceTest {
         System.out.println("|| ---- CareerServiceTest Started ---- ||");
     }
 
+    @AfterAll
+    static void finish() {
+        System.out.println("|| ---- CareerServiceTest Finished ---- ||");
+    }
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-
 
     @Test
     void addCareer() {
@@ -167,11 +171,6 @@ class CareerServiceTest {
 
     @AfterEach
     void tearDown() {
-    }
-
-    @AfterAll
-    static void finish(){
-        System.out.println("|| ---- CareerServiceTest Finished ---- ||");
     }
 
 }

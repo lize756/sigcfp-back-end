@@ -21,7 +21,8 @@ import java.util.Map;
 @RequestMapping("/api/reports")
 public class AllReportsController implements IAllReportsController {
 
-    @Autowired IAllReportsService iAllReportsService;
+    @Autowired
+    IAllReportsService iAllReportsService;
 
     @Override
     @GetMapping("/download/allCompaniesReport")
@@ -30,6 +31,34 @@ public class AllReportsController implements IAllReportsController {
         MediaType mediaType = null;
         try {
             dto = iAllReportsService.generateAllCompaniesReport(params);
+            InputStreamResource streamResource = new InputStreamResource(dto.getStream());
+            if (params.get("type").toString().equalsIgnoreCase(ReportTypeEnum.EXCEL.name())) {
+                mediaType = MediaType.APPLICATION_OCTET_STREAM;
+            } else {
+                mediaType = MediaType.APPLICATION_PDF;
+            }
+            return ResponseEntity.ok().header("Content-Disposition", "inline; filename=\"" + dto.getFileName() + "\"")
+                    .contentLength(dto.getLength()).contentType(mediaType).body(streamResource);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (JRException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+    @Override
+    @GetMapping("/download/companyContactsReport")
+    public ResponseEntity<?> downloadCompanyContactsReport(@RequestParam Map<String, Object> params) {
+
+        ReportDTO dto = null;
+        MediaType mediaType = null;
+        try {
+            dto = iAllReportsService.generateCompanyContactsReport(params);
             InputStreamResource streamResource = new InputStreamResource(dto.getStream());
             if (params.get("type").toString().equalsIgnoreCase(ReportTypeEnum.EXCEL.name())) {
                 mediaType = MediaType.APPLICATION_OCTET_STREAM;

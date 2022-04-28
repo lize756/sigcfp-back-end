@@ -1,8 +1,6 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.implementations;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Career;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Precondition;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.ICareerRepo;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.IPreconditionRepo;
 import org.junit.jupiter.api.*;
 import org.junit.runner.RunWith;
@@ -35,11 +33,15 @@ class PreconditionServiceTest {
         System.out.println("|| ---- PreconditionServiceTest Started ---- ||");
     }
 
+    @AfterAll
+    static void finish() {
+        System.out.println("|| ---- PreconditionServiceTest Finished ---- ||");
+    }
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-
 
     @Test
     void addPrecondition() {
@@ -133,11 +135,6 @@ class PreconditionServiceTest {
 
     @AfterEach
     void tearDown() {
-    }
-
-    @AfterAll
-    static void finish(){
-        System.out.println("|| ---- PreconditionServiceTest Finished ---- ||");
     }
 
 

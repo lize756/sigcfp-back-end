@@ -19,8 +19,8 @@ public interface IUserrService {
     List<Userr> userrs();
 
     Userr findUserrByUserName(String userName);
-    
+
     Company findCompanyByUserName(String userName);
-    
-    Person findPersonByUserName(String userName);    
+
+    Person findPersonByUserName(String userName);
 }

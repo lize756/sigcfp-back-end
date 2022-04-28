@@ -33,7 +33,7 @@ public class PermmissionService implements IPermmissionService {
     @Override
     @Transactional
     public Permmission updatePermmission(Permmission permmission) {
-            return iPermmissionRepo.save(permmission);
+        return iPermmissionRepo.save(permmission);
     }
 
     @Override

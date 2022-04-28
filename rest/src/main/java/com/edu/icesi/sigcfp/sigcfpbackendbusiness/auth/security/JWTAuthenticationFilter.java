@@ -10,7 +10,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -28,9 +27,12 @@ import java.util.Map;
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private AuthenticationManager authenticationManager; //variable de tipo AuthenticationManager
-    @Autowired private JWTService jwtService; //variable de tipo JWTService
-    @Autowired private IUserrService userrService; //variable de tipo IUserrService
-    @Autowired private MyUserDetailsService myUserDetailsService; //variable de tipo MyUserDetailsService
+    @Autowired
+    private JWTService jwtService; //variable de tipo JWTService
+    @Autowired
+    private IUserrService userrService; //variable de tipo IUserrService
+    @Autowired
+    private MyUserDetailsService myUserDetailsService; //variable de tipo MyUserDetailsService
     private long userId = 0L; //variable de tipo long que almacena el id del usuario
 
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager, JWTService jwtService) {

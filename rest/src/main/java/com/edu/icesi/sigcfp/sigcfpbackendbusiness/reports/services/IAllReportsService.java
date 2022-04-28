@@ -9,6 +9,8 @@ import java.util.Map;
 
 public interface IAllReportsService {
 
-     ReportDTO generateAllCompaniesReport(Map<String, Object> params) throws SQLException, JRException, IOException;
+    ReportDTO generateCompanyContactsReport(Map<String, Object> params) throws SQLException, JRException, IOException;
+
+    ReportDTO generateAllCompaniesReport(Map<String, Object> params) throws SQLException, JRException, IOException;
 
 }

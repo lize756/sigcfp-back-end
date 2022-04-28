@@ -1,9 +1,6 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.implementations;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Career;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Company;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Faculty;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.ICareerRepo;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.ICompanyRepo;
 import org.junit.jupiter.api.*;
 import org.junit.runner.RunWith;
@@ -32,15 +29,19 @@ class CompanyServiceTest {
     CompanyService companyService;
 
     @BeforeAll
-    static void init(){
+    static void init() {
         System.out.println("|| ---- CompanyServiceTest Started ---- ||");
+    }
+
+    @AfterAll
+    static void finish() {
+        System.out.println("|| ---- CompanyServiceTest Finished ---- ||");
     }
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-
 
     @Test
     void addCompany() {
@@ -142,11 +143,6 @@ class CompanyServiceTest {
 
     @AfterEach
     void tearDown() {
-    }
-
-    @AfterAll
-    static void finish(){
-        System.out.println("|| ---- CompanyServiceTest Finished ---- ||");
     }
 
 }

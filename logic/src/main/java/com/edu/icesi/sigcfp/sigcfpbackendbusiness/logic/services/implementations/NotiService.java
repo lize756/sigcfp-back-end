@@ -33,7 +33,7 @@ public class NotiService implements INotiService {
     @Override
     @Transactional
     public Noti updateNoti(Noti noti) {
-            return iNotiRepo.save(noti);
+        return iNotiRepo.save(noti);
     }
 
     @Override

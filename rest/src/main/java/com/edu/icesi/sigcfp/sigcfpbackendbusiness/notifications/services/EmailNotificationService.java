@@ -3,9 +3,6 @@ package com.edu.icesi.sigcfp.sigcfpbackendbusiness.notifications.services;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Company;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Contact;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.ICompanyService;
-import org.apache.logging.log4j.Logger;
-import org.apache.tomcat.util.digester.ArrayStack;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -17,10 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class EmailNotificationService implements IEmailNotificationService{
+public class EmailNotificationService implements IEmailNotificationService {
 
-    @Autowired private JavaMailSender mailSender;
-    @Autowired private ICompanyService iCompanyService;
+    @Autowired
+    private JavaMailSender mailSender;
+    @Autowired
+    private ICompanyService iCompanyService;
 
 
     @Override
@@ -31,7 +30,6 @@ public class EmailNotificationService implements IEmailNotificationService{
     public void sendSimpleEmail(EmailBody emailBody) {
 
     }
-
 
 
     @Override
@@ -66,7 +64,7 @@ public class EmailNotificationService implements IEmailNotificationService{
                     if (company.getContacts() != null) {
                         for (Contact contact : company.getContacts()) {
                             helper.setTo(contact.getContEmail());
-                            helper.setText("Hola " + contact.getContName() +", este es un aviso sobre la apertura o cierre de los periodos de práctica de Unicesi. " +
+                            helper.setText("Hola " + contact.getContName() + ", este es un aviso sobre la apertura o cierre de los periodos de práctica de Unicesi. " +
                                     "Te invitamos a crear tus solicitudes de practicantes; estaremos atentos para ayudarte. " +
                                     "Atte. Equipo SIGCFP", true);
                             helper.setSubject("Aviso de cierre o apertura de periodos de práctica de Unicesi");

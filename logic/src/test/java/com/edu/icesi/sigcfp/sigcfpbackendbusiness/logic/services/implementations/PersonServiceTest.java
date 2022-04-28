@@ -1,8 +1,6 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.implementations;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Career;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Person;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.ICareerRepo;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.IPersonRepo;
 import org.junit.jupiter.api.*;
 import org.junit.runner.RunWith;
@@ -35,11 +33,15 @@ class PersonServiceTest {
         System.out.println("|| ---- PersonServiceTest Started ---- ||");
     }
 
+    @AfterAll
+    static void finish() {
+        System.out.println("|| ---- PersonServiceTest Finished ---- ||");
+    }
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-
 
     @Test
     void addPerson() {
@@ -146,12 +148,6 @@ class PersonServiceTest {
     @AfterEach
     void tearDown() {
     }
-
-    @AfterAll
-    static void finish(){
-        System.out.println("|| ---- PersonServiceTest Finished ---- ||");
-    }
-
 
 
 }

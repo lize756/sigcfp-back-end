@@ -32,7 +32,7 @@ public class EthnicgroupService implements IEthnicgroupService {
     @Override
     @Transactional
     public Ethnicgroup updateEthnicgroup(Ethnicgroup ethnicgroup) {
-            return iEthnicgroupRepo.save(ethnicgroup);
+        return iEthnicgroupRepo.save(ethnicgroup);
     }
 
     @Override

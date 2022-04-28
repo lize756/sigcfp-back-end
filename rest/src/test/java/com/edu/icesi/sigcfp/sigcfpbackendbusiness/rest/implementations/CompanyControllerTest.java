@@ -20,17 +20,16 @@ import java.util.List;
 import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CompanyControllerTest {
 
     final static long COMP_ID = 6936;
-
+    TestRestTemplate restTemplate = new TestRestTemplate();
     @LocalServerPort
     private int port;
-    TestRestTemplate restTemplate = new TestRestTemplate();
     @MockBean
     private ICompanyRepo iCompanyRepo;
 
@@ -76,7 +75,7 @@ class CompanyControllerTest {
 
         // then
         this.restTemplate.put(
-                "http://localhost:" + port + "/companies/update/"+COMP_ID, company
+                "http://localhost:" + port + "/companies/update/" + COMP_ID, company
         );
 
 
@@ -94,7 +93,7 @@ class CompanyControllerTest {
         Mockito.when(iCompanyRepo.getById(COMP_ID)).thenReturn(company);
 
         // when
-        ResponseEntity<Company> companyResponseEntity = restTemplate.getForEntity("http://localhost:" + port +"/companies/"+COMP_ID, Company.class);
+        ResponseEntity<Company> companyResponseEntity = restTemplate.getForEntity("http://localhost:" + port + "/companies/" + COMP_ID, Company.class);
 
         // then
         assertThat(companyResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -114,8 +113,8 @@ class CompanyControllerTest {
         Mockito.when(iCompanyRepo.existsById(COMP_ID)).thenReturn(false);
 
         // when
-        restTemplate.delete("http://localhost:" + port +"/companies/"+COMP_ID);
-        ResponseEntity<Company> companyResponseEntity = restTemplate.getForEntity("http://localhost:" + port +"/companies/"+COMP_ID, Company.class);
+        restTemplate.delete("http://localhost:" + port + "/companies/" + COMP_ID);
+        ResponseEntity<Company> companyResponseEntity = restTemplate.getForEntity("http://localhost:" + port + "/companies/" + COMP_ID, Company.class);
 
         // then
         assertThat(companyResponseEntity.getStatusCode()).isNotEqualTo(HttpStatus.NO_CONTENT);

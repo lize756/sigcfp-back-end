@@ -33,11 +33,15 @@ class UserrServiceTest {
         System.out.println("|| ---- UserrServiceTest Started ---- ||");
     }
 
+    @AfterAll
+    static void finish() {
+        System.out.println("|| ---- UserrServiceTest Finished ---- ||");
+    }
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-
 
     @Test
     void addUserr() {
@@ -137,11 +141,6 @@ class UserrServiceTest {
 
     @AfterEach
     void tearDown() {
-    }
-
-    @AfterAll
-    static void finish(){
-        System.out.println("|| ---- UserrServiceTest Finished ---- ||");
     }
 
 }

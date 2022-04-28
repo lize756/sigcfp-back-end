@@ -12,15 +12,25 @@ import java.util.Collection;
 public interface IJWTService {
 
     public String create(Authentication auth) throws JsonProcessingException;
+
     public boolean validate(String token);
+
     public Claims getClaims(String token);
+
     public String getUserName(String token);
+
     public long getUserId(String token);
+
     public String getUserRole(String token);
+
     public Userr getUserr(String token);
+
     public Collection<? extends GrantedAuthority> getRoles(String token) throws IOException;
+
     public String resolve(String token);
+
     public long getUserCompanyId(String token);
+
     public long getUserPersonId(String token);
 
     public boolean validatePassword(String token, String password);

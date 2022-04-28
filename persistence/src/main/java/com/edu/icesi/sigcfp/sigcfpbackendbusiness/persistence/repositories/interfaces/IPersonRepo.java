@@ -11,9 +11,9 @@ import java.util.List;
 public interface IPersonRepo extends JpaRepository<Person, Long> {
     @Override
     List<Person> findAll();
-    
+
     @Query("select p from Person p where p.persId = ?1")
     Person getPersonById(long persId);
-    
-    
+
+
 }

@@ -1,7 +1,5 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Career;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Company;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.InternRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -29,12 +27,9 @@ public interface IInternRequestRepo extends JpaRepository<InternRequest, Long> {
     List<InternRequest> findInternRequestsByCompany(long compId);
 
 
-
-
-
-    @Query("select i from InternRequest i where i.careers = ?1") // Tengo mis dudas
+    @Query("select i from InternRequest i where i.careers = ?1")
+        // Tengo mis dudas
     List<InternRequest> findInternRequestsByCareers(long careId);
-
 
 
     // TODO: Contar el número de practicantes de una empresa por el id de la empresa

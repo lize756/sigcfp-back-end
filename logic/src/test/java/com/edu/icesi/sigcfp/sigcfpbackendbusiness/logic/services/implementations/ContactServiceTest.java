@@ -1,8 +1,6 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.implementations;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Career;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Contact;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.ICareerRepo;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.IContactRepo;
 import org.junit.jupiter.api.*;
 import org.junit.runner.RunWith;
@@ -31,16 +29,19 @@ class ContactServiceTest {
     ContactService contactService;
 
     @BeforeAll
-    static void init(){
+    static void init() {
         System.out.println("|| ---- ContactServiceTest Started ---- ||");
+    }
+
+    @AfterAll
+    static void finish() {
+        System.out.println("|| ---- ContactServiceTest Finished ---- ||");
     }
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-
-
 
     @Test
     void addContact() {
@@ -153,11 +154,6 @@ class ContactServiceTest {
 
     @AfterEach
     void tearDown() {
-    }
-
-    @AfterAll
-    static void finish(){
-        System.out.println("|| ---- ContactServiceTest Finished ---- ||");
     }
 
 

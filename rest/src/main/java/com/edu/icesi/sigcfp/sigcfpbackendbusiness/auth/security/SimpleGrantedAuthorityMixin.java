@@ -12,7 +12,8 @@ public abstract class SimpleGrantedAuthorityMixin {
     /**
      * Instantiates a new simple granted authority mixin.
      */
-    public SimpleGrantedAuthorityMixin(@JsonProperty("authority") String role) {}
+    public SimpleGrantedAuthorityMixin(@JsonProperty("authority") String role) {
+    }
 
 
 }

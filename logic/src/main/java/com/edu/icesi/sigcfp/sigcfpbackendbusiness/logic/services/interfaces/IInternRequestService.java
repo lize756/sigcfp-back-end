@@ -1,7 +1,6 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.InternRequest;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -16,15 +15,14 @@ public interface IInternRequestService {
     InternRequest deleteInternRequest(long inteRequId);
 
     List<InternRequest> internRequests();
-    
-    
+
+
     List<InternRequest> findInternRequestsByCompany(long compId);
 
 
     int countInternRequestByCompanyId(long compId);
 
     List<InternRequest> findInternRequestsByCompanyCompId(long compId);
-
 
 
 }
