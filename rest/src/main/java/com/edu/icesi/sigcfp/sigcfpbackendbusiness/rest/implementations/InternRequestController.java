@@ -1,17 +1,24 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.implementations;
 
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
-
+import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,11 +26,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.config.HelpClassMethod;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Career;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.InternRequest;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.IInternRequestService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.IInternRequestController;
-
 
 @RestController()
 @RequestMapping("/api/internRequests")
@@ -42,13 +49,16 @@ public class InternRequestController implements IInternRequestController {
 	@PostMapping("/add")
 	public ResponseEntity<InternRequest> addInternRequest(@RequestBody InternRequest internRequest) {
 		try {
+
+			// internRequest.setInteRequStDate(helpClassMethod.convertSecondFormat(internRequest.getInteRequStDate()));
+
 			InternRequest _inteRequest = iInternRequestService.addInternRequest(internRequest);
-			List<Career> careers =internRequest.getCareers();
-			System.out.println("careers"+"#################################");
-			System.out.println("Identificador: "+ internRequest.getInteRequId());
+			List<Career> careers = internRequest.getCareers();
+			System.out.println("Fecha: " + internRequest.getInteRequStDate());
+			System.out.println("careers" + "#################################");
 			for (Career career : careers) {
 				System.out.println(career.getCareName());
-				
+
 			}
 			_inteRequest.setCareers(careers);
 			return new ResponseEntity<InternRequest>(_inteRequest, HttpStatus.CREATED);
@@ -60,10 +70,13 @@ public class InternRequestController implements IInternRequestController {
 
 	@Override
 	@PutMapping("/update/{inteRequeId}")
-	public ResponseEntity<InternRequest> updateInternRequest(@PathVariable("inteRequeId") long inteRequId, @RequestBody InternRequest internRequest) {
+	public ResponseEntity<InternRequest> updateInternRequest(@PathVariable("inteRequeId") long inteRequId,
+			@RequestBody InternRequest internRequest) {
 		Optional<InternRequest> inteRequestOptional = Optional
 				.of(iInternRequestService.searchInternRequest(inteRequId));
+
 		if (inteRequestOptional.isPresent()) {
+			//internRequest.setInteRequStDate(helpClassMethod.convertSecondFormat(internRequest.getInteRequStDate()));
 			return new ResponseEntity<>(iInternRequestService.updateInternRequest(internRequest), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -109,13 +122,14 @@ public class InternRequestController implements IInternRequestController {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
 	@Override
 	@GetMapping("/comp/{compId}")
 	public ResponseEntity<List<InternRequest>> getInternRequestsAssociatedCompany(@PathVariable("compId") long compId) {
 		try {
 			List<InternRequest> internRequests = iInternRequestService.findInternRequestsByCompany(compId);
 			System.out.println(internRequests);
-			if (internRequests.isEmpty()){
+			if (internRequests.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
 			return new ResponseEntity<>(internRequests, HttpStatus.OK);
@@ -123,6 +137,9 @@ public class InternRequestController implements IInternRequestController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}	}
+		}
+	}
+
+
 
 }

@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -35,8 +38,8 @@ public class InternRequest implements Serializable {
 	@Column(name="INTE_REQU_COMPETENCIES", length=1000)
 	private String inteRequCompetencies;
 
-	@Temporal(TemporalType.DATE)
-    @JsonFormat(pattern="dd/MM/YY")
+	//@Temporal(TemporalType.DATE)
+    //@JsonFormat(pattern="dd/MM/yy")
 	@Column(name="INTE_REQU_CREATE")
 	private Date inteRequCreate;
 
@@ -65,8 +68,8 @@ public class InternRequest implements Serializable {
 	@Column(name="INTE_REQU_SALARY", precision=9)
 	private BigDecimal inteRequSalary;
 
-	@Temporal(TemporalType.DATE)
-    @JsonFormat(pattern="dd/MM/YY")
+	//@Temporal(TemporalType.DATE)
+   // @JsonFormat(pattern="dd/MM/yy")
 	@Column(name="INTE_REQU_ST_DATE")
 	private Date inteRequStDate;
 
