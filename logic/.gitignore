@@ -32,3 +32,4 @@ build/
 
 ### VS Code ###
 .vscode/
+!/src/test/java/com/edu/icesi/sigcfp/sigcfpbackendbusiness/logic/services/implementations/NotiServiceTest.java

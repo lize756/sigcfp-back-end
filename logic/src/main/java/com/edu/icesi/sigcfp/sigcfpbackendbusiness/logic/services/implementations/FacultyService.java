@@ -32,7 +32,7 @@ public class FacultyService implements IFacultyService {
     @Override
     @Transactional
     public Faculty updateFaculty(Faculty faculty) {
-            return iFacultyRepo.save(faculty);
+        return iFacultyRepo.save(faculty);
     }
 
     @Override

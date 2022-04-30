@@ -1,10 +1,7 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.implementations;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Academicstudy;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.City;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.IAcademicstudyRepo;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.ICityRepo;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +21,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -32,10 +29,9 @@ import static org.mockito.Mockito.when;
 class AcademicStudyControllerTest {
 
     final static long ACAD_STUD_ID = 9658;
-
+    TestRestTemplate restTemplate = new TestRestTemplate();
     @LocalServerPort
     private int port;
-    TestRestTemplate restTemplate = new TestRestTemplate();
     @MockBean
     private IAcademicstudyRepo iAcademicstudyRepo;
 
@@ -86,7 +82,7 @@ class AcademicStudyControllerTest {
 
         // then
         this.restTemplate.put(
-                "http://localhost:" + port + "/academicStudies/update/"+ACAD_STUD_ID, academicstudy
+                "http://localhost:" + port + "/academicStudies/update/" + ACAD_STUD_ID, academicstudy
         );
 
     }
@@ -106,10 +102,10 @@ class AcademicStudyControllerTest {
         Mockito.when(iAcademicstudyRepo.getById(ACAD_STUD_ID)).thenReturn(academicstudy);
 
         // when
-        ResponseEntity<Academicstudy> academicstudyResponseEntity = restTemplate.getForEntity("http://localhost:" + port +"/academicStudies/"+ACAD_STUD_ID, Academicstudy.class);
+        ResponseEntity<Academicstudy> academicstudyResponseEntity = restTemplate.getForEntity("http://localhost:" + port + "/academicStudies/" + ACAD_STUD_ID, Academicstudy.class);
 
         // then
-        assertThat( academicstudyResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(academicstudyResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
 
     }
 
@@ -124,8 +120,8 @@ class AcademicStudyControllerTest {
         Mockito.when(iAcademicstudyRepo.existsById(ACAD_STUD_ID)).thenReturn(false);
 
         // when
-        restTemplate.delete("http://localhost:" + port +"/academicStudies/"+ACAD_STUD_ID);
-        ResponseEntity<Academicstudy> academicstudyResponseEntity = restTemplate.getForEntity("http://localhost:" + port +"/academicStudies/"+ACAD_STUD_ID, Academicstudy.class);
+        restTemplate.delete("http://localhost:" + port + "/academicStudies/" + ACAD_STUD_ID);
+        ResponseEntity<Academicstudy> academicstudyResponseEntity = restTemplate.getForEntity("http://localhost:" + port + "/academicStudies/" + ACAD_STUD_ID, Academicstudy.class);
 
         // then
         assertThat(academicstudyResponseEntity.getStatusCode()).isNotEqualTo(HttpStatus.NO_CONTENT);
@@ -160,7 +156,7 @@ class AcademicStudyControllerTest {
         Mockito.when(iAcademicstudyRepo.findAll()).thenReturn(academicstudyList);
 
         // when
-        ResponseEntity<Academicstudy[]> academicStudiesResponseEntity = restTemplate.getForEntity("http://localhost:"+ port +"/academicStudies", Academicstudy[].class);
+        ResponseEntity<Academicstudy[]> academicStudiesResponseEntity = restTemplate.getForEntity("http://localhost:" + port + "/academicStudies", Academicstudy[].class);
 
         // then
         assertThat(academicStudiesResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);

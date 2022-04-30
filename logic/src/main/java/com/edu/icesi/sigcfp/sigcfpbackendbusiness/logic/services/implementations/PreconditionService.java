@@ -32,7 +32,7 @@ public class PreconditionService implements IPreconditionService {
     @Override
     @Transactional
     public Precondition updatePrecondition(Precondition precondition) {
-            return iPreconditionRepo.save(precondition);
+        return iPreconditionRepo.save(precondition);
     }
 
     @Override

@@ -1,10 +1,7 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.implementations;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.City;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Ethnicgroup;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.ICityRepo;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.IEthnicgroupRepo;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -23,17 +20,16 @@ import java.util.List;
 import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class EthnicgroupControllerTest {
 
     final static long ETGR_ID = 2154;
-
+    TestRestTemplate restTemplate = new TestRestTemplate();
     @LocalServerPort
     private int port;
-    TestRestTemplate restTemplate = new TestRestTemplate();
     @MockBean
     private IEthnicgroupRepo iEthnicgroupRepo;
 
@@ -80,9 +76,8 @@ class EthnicgroupControllerTest {
 
         // then
         this.restTemplate.put(
-                "http://localhost:" + port + "/ethnicGroups/update/"+ETGR_ID, ethnicgroup
+                "http://localhost:" + port + "/ethnicGroups/update/" + ETGR_ID, ethnicgroup
         );
-
 
 
     }
@@ -99,7 +94,7 @@ class EthnicgroupControllerTest {
         Mockito.when(iEthnicgroupRepo.getById(ETGR_ID)).thenReturn(ethnicgroup);
 
         // when
-        ResponseEntity<Ethnicgroup> cityResponseEntity = restTemplate.getForEntity("http://localhost:" + port +"/ethnicGroups/"+ETGR_ID, Ethnicgroup.class);
+        ResponseEntity<Ethnicgroup> cityResponseEntity = restTemplate.getForEntity("http://localhost:" + port + "/ethnicGroups/" + ETGR_ID, Ethnicgroup.class);
 
         // then
         assertThat(cityResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -119,8 +114,8 @@ class EthnicgroupControllerTest {
         Mockito.when(iEthnicgroupRepo.existsById(ETGR_ID)).thenReturn(false);
 
         // when
-        restTemplate.delete("http://localhost:" + port +"/ethnicGroups/"+ETGR_ID);
-        ResponseEntity<Ethnicgroup> ethnicgroupResponseEntity = restTemplate.getForEntity("http://localhost:" + port +"/ethnicGroups/"+ETGR_ID, Ethnicgroup.class);
+        restTemplate.delete("http://localhost:" + port + "/ethnicGroups/" + ETGR_ID);
+        ResponseEntity<Ethnicgroup> ethnicgroupResponseEntity = restTemplate.getForEntity("http://localhost:" + port + "/ethnicGroups/" + ETGR_ID, Ethnicgroup.class);
 
         // then
         assertThat(ethnicgroupResponseEntity.getStatusCode()).isNotEqualTo(HttpStatus.NO_CONTENT);

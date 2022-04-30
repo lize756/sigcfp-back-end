@@ -15,7 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -29,8 +30,13 @@ class CityServiceTest {
     CityService cityService;
 
     @BeforeAll
-    static void init(){
+    static void init() {
         System.out.println("|| ---- CityServiceTest Started ---- ||");
+    }
+
+    @AfterAll
+    static void finish() {
+        System.out.println("|| ---- CityServiceTest Finished ---- ||");
     }
 
     @BeforeEach
@@ -117,11 +123,7 @@ class CityServiceTest {
     }
 
     @AfterEach
-    void tearDown() {}
-
-    @AfterAll
-    static void finish(){
-        System.out.println("|| ---- CityServiceTest Finished ---- ||");
+    void tearDown() {
     }
 
 

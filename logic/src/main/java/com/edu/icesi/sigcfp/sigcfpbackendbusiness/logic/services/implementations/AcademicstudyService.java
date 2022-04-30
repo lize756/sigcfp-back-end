@@ -19,20 +19,20 @@ public class AcademicstudyService implements IAcademicstudyService {
         this.iAcademicstudyRepo = iAcademicstudyRepo;
     }
 
-   
+
     @Override
     @Transactional
     public Academicstudy addAcademicstudy(Academicstudy academicstudy) {
-            return iAcademicstudyRepo.save(academicstudy);
+        return iAcademicstudyRepo.save(academicstudy);
     }
 
     @Override
     @Transactional
     public Academicstudy updateAcademicstudy(Academicstudy academicstudy) {
-    	return iAcademicstudyRepo.save(academicstudy);
+        return iAcademicstudyRepo.save(academicstudy);
     }
 
-    
+
     @Override
     @Transactional
     public Academicstudy searchAcademicstudy(long acadStudId) {
@@ -62,5 +62,5 @@ public class AcademicstudyService implements IAcademicstudyService {
         return iAcademicstudyRepo.findAll();
     }
 
-	
+
 }

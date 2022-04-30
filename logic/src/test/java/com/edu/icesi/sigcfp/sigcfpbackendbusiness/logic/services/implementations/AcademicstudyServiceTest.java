@@ -1,16 +1,11 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.implementations;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Academicstudy;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.City;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.IAcademicstudyRepo;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -19,11 +14,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -37,15 +30,19 @@ class AcademicstudyServiceTest {
     private AcademicstudyService academicstudyService;
 
     @BeforeAll
-    static void init(){
+    static void init() {
         System.out.println("|| ---- AcademicstudyServiceTest Started ---- ||");
+    }
+
+    @AfterAll
+    static void finish() {
+        System.out.println("|| ---- AcademicstudyServiceTest Finished ---- ||");
     }
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-
 
     @Test
     void addAcademicstudy() {
@@ -102,7 +99,7 @@ class AcademicstudyServiceTest {
 
         assertThat(academicstudyService.searchAcademicstudy(ACAD_STUD_ID))
                 .isNotNull()
-                        .isEqualTo(academicstudy);
+                .isEqualTo(academicstudy);
         assertEquals("UnIcesi", academicstudyService.searchAcademicstudy(ACAD_STUD_ID).getAcadStudInsti());
     }
 
@@ -155,11 +152,6 @@ class AcademicstudyServiceTest {
 
     @AfterEach
     void tearDown() {
-    }
-
-    @AfterAll
-    static void finish(){
-        System.out.println("|| ---- AcademicstudyServiceTest Finished ---- ||");
     }
 
 

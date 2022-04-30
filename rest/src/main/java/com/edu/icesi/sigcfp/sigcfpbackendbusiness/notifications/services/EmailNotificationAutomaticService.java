@@ -5,24 +5,20 @@ import com.sun.istack.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-
-
-import static org.slf4j.Logger.*;
-import static org.slf4j.LoggerFactory.getLogger;
 
 @Service
 public class EmailNotificationAutomaticService implements IEmailNotificationAutomaticService {
 
     private static final Logger LOG = Logger.getLogger(EmailNotificationAutomaticService.class);
 
-    @Autowired private JavaMailSender mailSender;
-    @Autowired private ICompanyService iCompanyService;
+    @Autowired
+    private JavaMailSender mailSender;
+    @Autowired
+    private ICompanyService iCompanyService;
 
 
     @Override

@@ -1,4 +1,4 @@
-package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces;
+package com.edu.icesi.sigcfp.sigcfpbackendbusiness.notifications.controllers;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Noti;
 import org.springframework.http.HttpStatus;
@@ -17,5 +17,12 @@ public interface INotiController {
     ResponseEntity<HttpStatus> deleteNoti(long notiId);
 
     ResponseEntity<List<Noti>> getNotis();
+
+     ResponseEntity<?> sendManualStartNotificationsToContacts();
+
+    ResponseEntity<?> sendManualEndNotificationsToContacts();
+
+
+
 
 }

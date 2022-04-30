@@ -4,7 +4,6 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Company;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Contact;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Noti;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.ICompanyService;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.INotiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -12,8 +11,6 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class EmailNotificationManualManualService implements IEmailNotificationManualService {
@@ -21,10 +18,13 @@ public class EmailNotificationManualManualService implements IEmailNotificationM
     public final static long START_PERIOD = 1L;
     public final static long END_PERIOD = 2L;
 
-    @Autowired private JavaMailSender mailSender;
-    @Autowired private ICompanyService iCompanyService;
+    @Autowired
+    private JavaMailSender mailSender;
+    @Autowired
+    private ICompanyService iCompanyService;
 
-    @Autowired private INotiService iNotiService;
+    @Autowired
+    private INotiService iNotiService;
 
 
     @Override
@@ -45,7 +45,6 @@ public class EmailNotificationManualManualService implements IEmailNotificationM
     }
 
 
-
     @Override
     public void sendStartInternPeriodNotification() {
 
@@ -63,8 +62,6 @@ public class EmailNotificationManualManualService implements IEmailNotificationM
     @Override
     public void sendEndNotificationsToContacts() {
 
-        List<Contact> contactList = new ArrayList<>();
-
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
         try {
@@ -73,21 +70,18 @@ public class EmailNotificationManualManualService implements IEmailNotificationM
                     if (company.getContacts() != null) {
                         for (Contact contact : company.getContacts()) {
                             helper.setTo(contact.getContEmail());
-                            helper.setText("Hola " + contact.getContName() +", este es un aviso sobre la apertura o cierre de los periodos de práctica de Unicesi. " +
+                            helper.setText("Hola " + contact.getContName() + ", este es un aviso sobre la apertura o cierre de los periodos de práctica de Unicesi. " +
                                     "Te invitamos a crear tus solicitudes de practicantes; estaremos atentos para ayudarte. " +
                                     "Atte. Equipo SIGCFP", true);
                             helper.setSubject("Aviso de cierre o apertura de periodos de práctica de Unicesi");
                             mailSender.send(message);
                         }
-
                     }
-
                 }
             }
         } catch (MessagingException ex) {
             ex.printStackTrace();
         }
-
     }
 
 

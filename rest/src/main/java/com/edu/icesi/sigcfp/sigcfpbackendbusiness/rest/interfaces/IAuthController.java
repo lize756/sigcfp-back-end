@@ -8,7 +8,9 @@ import org.springframework.http.ResponseEntity;
 
 public interface IAuthController {
     public ResponseEntity<?> login(AuthenticationRequest authenticationRequest) throws Exception;
+
     public ResponseEntity<?> logout();
+
     public ResponseEntity<?> register(Userr userr);
 
     public ResponseEntity<?> validatePassword(ValidateUserPassword validateUserPassword);

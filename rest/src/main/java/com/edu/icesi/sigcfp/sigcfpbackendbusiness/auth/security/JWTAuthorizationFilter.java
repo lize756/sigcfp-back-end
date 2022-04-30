@@ -18,7 +18,8 @@ import java.io.IOException;
  */
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
-    @Autowired private JWTService jwtService; // Servicio de JWT
+    @Autowired
+    private JWTService jwtService; // Servicio de JWT
 
     public JWTAuthorizationFilter(AuthenticationManager authenticationManager, JWTService jwtService) {
         super(authenticationManager);
@@ -36,7 +37,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
             return;
         }
         UsernamePasswordAuthenticationToken authenticationToken = null;
-        if (jwtService.validate(header)){
+        if (jwtService.validate(header)) {
             authenticationToken = new UsernamePasswordAuthenticationToken(jwtService.getUserName(header), null, jwtService.getRoles(header));
         }
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);

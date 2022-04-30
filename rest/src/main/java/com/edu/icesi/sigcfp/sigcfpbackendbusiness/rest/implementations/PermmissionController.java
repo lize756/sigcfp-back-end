@@ -1,6 +1,5 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.implementations;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Curriculum;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Permmission;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.IPermmissionService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces.IPermmissionController;
@@ -39,7 +38,7 @@ public class PermmissionController implements IPermmissionController {
     @Override
     @PutMapping("/update/{permId}")
     public ResponseEntity<Permmission> updatePermmission(@PathVariable("permId") long permId, @RequestBody Permmission permmission) {
-        Optional<Permmission> optionalPermmission = Optional.of( iPermmissionService.searchPermmission(permId));
+        Optional<Permmission> optionalPermmission = Optional.of(iPermmissionService.searchPermmission(permId));
         if (optionalPermmission.isPresent()) {
             Permmission _permmission = optionalPermmission.get();
             return new ResponseEntity<>(iPermmissionService.updatePermmission(_permmission), HttpStatus.OK);
@@ -61,7 +60,7 @@ public class PermmissionController implements IPermmissionController {
 
     @Override
     @DeleteMapping("/{permId}")
-    public ResponseEntity<HttpStatus> deletePermmissión(@PathVariable("permId")  long permId) {
+    public ResponseEntity<HttpStatus> deletePermmissión(@PathVariable("permId") long permId) {
         try {
             iPermmissionService.deletePermmission(permId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

@@ -32,7 +32,7 @@ public class CityService implements ICityService {
     @Override
     @Transactional
     public City updateCity(City city) {
-    	return iCityRepo.save(city);
+        return iCityRepo.save(city);
     }
 
     @Override

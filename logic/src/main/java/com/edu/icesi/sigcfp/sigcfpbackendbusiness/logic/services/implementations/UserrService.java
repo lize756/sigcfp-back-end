@@ -34,19 +34,19 @@ public class UserrService implements IUserrService {
     @Override
     @Transactional
     public Userr updateUserr(Userr userr) {
-            return iUserrRepo.save(userr);
+        return iUserrRepo.save(userr);
     }
 
     @Override
     @Transactional
     public Userr searchUserr(long userId) {
-            return iUserrRepo.getById(userId);
+        return iUserrRepo.getById(userId);
     }
 
     @Override
     @Transactional
     public void deleteUserr(long userId) {
-            iUserrRepo.deleteById(userId);
+        iUserrRepo.deleteById(userId);
     }
 
     @Override
@@ -61,16 +61,16 @@ public class UserrService implements IUserrService {
         return iUserrRepo.findUserrByUserName(userName);
     }
 
-	@Override
+    @Override
     @Transactional()
-	public Company findCompanyByUserName(String userName) {
-		return iUserrRepo.findCompanyByUserName(userName);
-	}
+    public Company findCompanyByUserName(String userName) {
+        return iUserrRepo.findCompanyByUserName(userName);
+    }
 
-	@Override
+    @Override
     @Transactional()
-	public Person findPersonByUserName(String userName) {
-		return iUserrRepo.findPersonByUserName(userName);
-	}
+    public Person findPersonByUserName(String userName) {
+        return iUserrRepo.findPersonByUserName(userName);
+    }
 
 }

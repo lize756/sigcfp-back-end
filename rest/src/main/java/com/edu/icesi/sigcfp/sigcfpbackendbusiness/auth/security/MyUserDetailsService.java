@@ -36,10 +36,10 @@ public class MyUserDetailsService implements UserDetailsService {
         Userr userr = iUserrService.findUserrByUserName(username);
         if (userr == null) {
             logger.error("Error: no existe el usuario " + username);
-           throw new UsernameNotFoundException("El username: " + username + " no existe en el sistema");
+            throw new UsernameNotFoundException("El username: " + username + " no existe en el sistema");
         }
         List<GrantedAuthority> rolees = new ArrayList<GrantedAuthority>();
-        rolees.add( new SimpleGrantedAuthority ( userr.getRolee().getRoleName() ) );
+        rolees.add(new SimpleGrantedAuthority(userr.getRolee().getRoleName()));
         if (rolees.isEmpty()) {
             logger.error("Error: el usuario " + username + " no tiene roles asignados");
             throw new UsernameNotFoundException("El usuario: " + username + " no tiene roles asignados");

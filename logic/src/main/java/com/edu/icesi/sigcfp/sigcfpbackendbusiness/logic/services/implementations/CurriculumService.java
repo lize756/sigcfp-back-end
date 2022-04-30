@@ -33,7 +33,7 @@ public class CurriculumService implements ICurriculumService {
     @Override
     @Transactional
     public Curriculum updateCurriculum(Curriculum curriculum) {
-            return iCurriculumRepo.save(curriculum);
+        return iCurriculumRepo.save(curriculum);
     }
 
     @Override

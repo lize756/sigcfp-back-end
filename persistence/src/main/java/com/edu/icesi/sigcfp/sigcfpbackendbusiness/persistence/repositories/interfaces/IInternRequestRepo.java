@@ -14,9 +14,10 @@ public interface IInternRequestRepo extends JpaRepository<InternRequest, Long> {
     List<InternRequest> findAll();
 
     List<InternRequest> findInternRequestsByInteRequIsinprocess(String isInProcess);
-    
+
     /**
      * Allow search the intern request associated with a companies
+     *
      * @param id
      * @return
      */

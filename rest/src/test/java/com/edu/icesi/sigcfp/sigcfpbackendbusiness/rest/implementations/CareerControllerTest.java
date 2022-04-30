@@ -1,12 +1,8 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.implementations;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Career;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.City;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Faculty;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.implementations.CareerService;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.ICareerRepo;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.ICityRepo;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -25,18 +21,16 @@ import java.util.List;
 import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CareerControllerTest {
 
     final static long CARE_ID = 3275;
-
+    TestRestTemplate restTemplate = new TestRestTemplate();
     @LocalServerPort
     private int port;
-    TestRestTemplate restTemplate = new TestRestTemplate();
     @MockBean
     private ICareerRepo iCareerRepo;
 
@@ -90,7 +84,7 @@ class CareerControllerTest {
 
         // then
         this.restTemplate.put(
-                "http://localhost:" + port + "/careers/update/"+ CARE_ID, career
+                "http://localhost:" + port + "/careers/update/" + CARE_ID, career
         );
 
 
@@ -112,7 +106,7 @@ class CareerControllerTest {
         Mockito.when(iCareerRepo.getById(CARE_ID)).thenReturn(career);
 
         // when
-        ResponseEntity<Career> careerResponseEntity = restTemplate.getForEntity("http://localhost:" + port +"/careers/"+CARE_ID, Career.class);
+        ResponseEntity<Career> careerResponseEntity = restTemplate.getForEntity("http://localhost:" + port + "/careers/" + CARE_ID, Career.class);
 
         // then
         assertThat(careerResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -135,8 +129,8 @@ class CareerControllerTest {
         Mockito.when(iCareerRepo.existsById(CARE_ID)).thenReturn(false);
 
         // when
-        restTemplate.delete("http://localhost:" + port +"/careers/"+CARE_ID);
-        ResponseEntity<Career> careerResponseEntity = restTemplate.getForEntity("http://localhost:" + port +"/careers/"+CARE_ID, Career.class);
+        restTemplate.delete("http://localhost:" + port + "/careers/" + CARE_ID);
+        ResponseEntity<Career> careerResponseEntity = restTemplate.getForEntity("http://localhost:" + port + "/careers/" + CARE_ID, Career.class);
 
         // then
         assertThat(careerResponseEntity.getStatusCode()).isNotEqualTo(HttpStatus.NO_CONTENT);

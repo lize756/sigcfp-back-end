@@ -32,7 +32,7 @@ public class RoleeService implements IRoleeService {
     @Override
     @Transactional
     public Rolee updateRolee(Rolee rolee) {
-            return iRoleeRepo.save(rolee);
+        return iRoleeRepo.save(rolee);
     }
 
     @Override

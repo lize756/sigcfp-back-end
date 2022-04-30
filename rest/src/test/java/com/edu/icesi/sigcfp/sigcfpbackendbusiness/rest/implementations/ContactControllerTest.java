@@ -1,10 +1,7 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.implementations;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.City;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Contact;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.ICityRepo;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.IContactRepo;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -23,17 +20,16 @@ import java.util.List;
 import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ContactControllerTest {
 
     final static long CONT_ID = 2547;
-
+    TestRestTemplate restTemplate = new TestRestTemplate();
     @LocalServerPort
     private int port;
-    TestRestTemplate restTemplate = new TestRestTemplate();
     @MockBean
     private IContactRepo iContactRepo;
 
@@ -82,7 +78,7 @@ class ContactControllerTest {
 
         // then
         this.restTemplate.put(
-                "http://localhost:" + port + "/contacts/update/"+CONT_ID, contact
+                "http://localhost:" + port + "/contacts/update/" + CONT_ID, contact
         );
 
 
@@ -102,7 +98,7 @@ class ContactControllerTest {
         Mockito.when(iContactRepo.getById(CONT_ID)).thenReturn(contact);
 
         // when
-        ResponseEntity<Contact> contactResponseEntity = restTemplate.getForEntity("http://localhost:" + port +"/contacts/"+CONT_ID, Contact.class);
+        ResponseEntity<Contact> contactResponseEntity = restTemplate.getForEntity("http://localhost:" + port + "/contacts/" + CONT_ID, Contact.class);
 
         // then
         assertThat(contactResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -124,8 +120,8 @@ class ContactControllerTest {
         Mockito.when(iContactRepo.existsById(CONT_ID)).thenReturn(false);
 
         // when
-        restTemplate.delete("http://localhost:" + port +"/contacts/"+CONT_ID);
-        ResponseEntity<Contact> contactResponseEntity = restTemplate.getForEntity("http://localhost:" + port +"/contacts/"+CONT_ID, Contact.class);
+        restTemplate.delete("http://localhost:" + port + "/contacts/" + CONT_ID);
+        ResponseEntity<Contact> contactResponseEntity = restTemplate.getForEntity("http://localhost:" + port + "/contacts/" + CONT_ID, Contact.class);
 
         // then
         assertThat(contactResponseEntity.getStatusCode()).isNotEqualTo(HttpStatus.NO_CONTENT);
@@ -163,7 +159,6 @@ class ContactControllerTest {
 
         assertThat(Objects.requireNonNull(contactResponseEntity.getBody())[0].getContName())
                 .isNotNull();
-
 
 
     }

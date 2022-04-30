@@ -33,7 +33,7 @@ public class CurriculumPdfService implements ICurriculumPdfService {
     @Override
     @Transactional
     public CurriculumPdf updateCurriculumPdf(CurriculumPdf curriculumPdf) {
-            return iCurriculumPdfRepo.save(curriculumPdf);
+        return iCurriculumPdfRepo.save(curriculumPdf);
     }
 
     @Override

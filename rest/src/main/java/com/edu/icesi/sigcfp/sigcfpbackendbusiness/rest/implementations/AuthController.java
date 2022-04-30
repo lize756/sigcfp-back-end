@@ -16,18 +16,26 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController()
 @RequestMapping("/api/auth")
 //@CrossOrigin(origins = "*")
 public class AuthController implements IAuthController {
 
-    @Autowired private UserrService userrService; //Servicio de usuarios
-    @Autowired private JWTService jwtService; //Servicio de JWT
-    @Autowired private MyUserDetailsService userDetailsService;
-    @Autowired private AuthenticationManager authenticationManager; //Servicio de autenticacion
-    @Autowired private PasswordEncoder passwordEncoder; //Servicio de encriptacion de contraseñas
+    @Autowired
+    private UserrService userrService; //Servicio de usuarios
+    @Autowired
+    private JWTService jwtService; //Servicio de JWT
+    @Autowired
+    private MyUserDetailsService userDetailsService;
+    @Autowired
+    private AuthenticationManager authenticationManager; //Servicio de autenticacion
+    @Autowired
+    private PasswordEncoder passwordEncoder; //Servicio de encriptacion de contraseñas
 
     @Override
     @PostMapping("/login")
@@ -38,8 +46,7 @@ public class AuthController implements IAuthController {
             authenticationManager.authenticate(authentication);
             final String jwt = jwtService.create(authentication);
             return ResponseEntity.ok(new AuthenticationResponse(jwt));
-        }
-        catch (BadCredentialsException e) {
+        } catch (BadCredentialsException e) {
             return ResponseEntity.badRequest().body("Invalid username or password");
         }
     }
@@ -64,7 +71,7 @@ public class AuthController implements IAuthController {
     @PostMapping("/validatePassword")
     public ResponseEntity<?> validatePassword(@RequestBody ValidateUserPassword validateUserPassword) {
         Userr userr = userrService.findUserrByUserName(validateUserPassword.getUserName());
-        if(userr != null && passwordEncoder.matches(validateUserPassword.getUserPassword(), userr.getUserPassword())) {
+        if (userr != null && passwordEncoder.matches(validateUserPassword.getUserPassword(), userr.getUserPassword())) {
             return ResponseEntity.ok("La contraseña es correcta");
         }
         return ResponseEntity.badRequest().body("La contraseña es incorrecta");
@@ -79,7 +86,7 @@ public class AuthController implements IAuthController {
     @PostMapping("/changePassword")
     public ResponseEntity<?> changePassword(@RequestBody ChangeUserPassword changeUserPassword) {
         Userr userr = userrService.findUserrByUserName(changeUserPassword.getUserName());
-        if(userr != null && passwordEncoder.matches(changeUserPassword.getOldUserPassword(), userr.getUserPassword())
+        if (userr != null && passwordEncoder.matches(changeUserPassword.getOldUserPassword(), userr.getUserPassword())
                 && changeUserPassword.getNewUserPassword().equals(changeUserPassword.getConfirmPassword())) {
             userr.setUserPassword(passwordEncoder.encode(changeUserPassword.getNewUserPassword()));
             userrService.updateUserr(userr);

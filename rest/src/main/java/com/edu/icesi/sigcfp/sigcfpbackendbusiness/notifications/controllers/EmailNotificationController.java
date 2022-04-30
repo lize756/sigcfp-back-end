@@ -1,6 +1,5 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.notifications.controllers;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.notifications.services.EmailBody;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.notifications.services.IEmailNotificationManualService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,9 +9,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/emailNotifications")
 @CrossOrigin(origins = "*")
-public class EmailNotificationController implements IEmailNotificationController{
+public class EmailNotificationController implements IEmailNotificationController {
 
-    @Autowired private IEmailNotificationManualService iEmailNotificationManualService;
+    @Autowired
+    private IEmailNotificationManualService iEmailNotificationManualService;
 
 
     @Override
@@ -21,8 +21,6 @@ public class EmailNotificationController implements IEmailNotificationController
         iEmailNotificationManualService.sendSimpleEmail();
         return new ResponseEntity<>("Email enviado exitosamente", HttpStatus.OK);
     }
-
-
 
 
     @Override

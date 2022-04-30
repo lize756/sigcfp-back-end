@@ -1,7 +1,6 @@
-package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces;
+package com.edu.icesi.sigcfp.sigcfpbackendbusiness.notifications.services;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Noti;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -17,4 +16,11 @@ public interface INotiService {
     Noti deleteNoti(long notiId);
 
     List<Noti> notis();
+
+    public void sendManualStartNotificationsToContacts();
+
+    public void sendManualEndNotificationsToContacts();
+
+
+
 }

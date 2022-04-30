@@ -32,7 +32,7 @@ public class NotiTypeService implements INotiTypeService {
     @Override
     @Transactional
     public NotiType updateNotiType(NotiType notiType) {
-            return iNotiTypeRepo.save(notiType);
+        return iNotiTypeRepo.save(notiType);
     }
 
     @Override

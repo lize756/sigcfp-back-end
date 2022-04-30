@@ -12,12 +12,12 @@ import java.util.List;
 @Service
 public class CareerService implements ICareerService {
 
-	ICareerRepo iCareerRepo;
+    ICareerRepo iCareerRepo;
 
-	@Autowired
-	public CareerService(ICareerRepo iCareerRepo) {
-		this.iCareerRepo = iCareerRepo;
-	}
+    @Autowired
+    public CareerService(ICareerRepo iCareerRepo) {
+        this.iCareerRepo = iCareerRepo;
+    }
 
     @Override
     @Transactional
@@ -32,7 +32,7 @@ public class CareerService implements ICareerService {
     @Override
     @Transactional
     public Career updateCareer(Career career) {
-         return iCareerRepo.save(career);
+        return iCareerRepo.save(career);
     }
 
     @Override

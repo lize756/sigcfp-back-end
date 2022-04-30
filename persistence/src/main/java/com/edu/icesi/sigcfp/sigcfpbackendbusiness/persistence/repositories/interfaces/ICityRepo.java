@@ -10,5 +10,4 @@ public interface ICityRepo extends JpaRepository<City, Long> {
     List<City> findAll();
 
 
-
 }

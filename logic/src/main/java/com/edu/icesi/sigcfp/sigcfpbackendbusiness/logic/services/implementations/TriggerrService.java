@@ -32,7 +32,7 @@ public class TriggerrService implements ITriggerrService {
     @Override
     @Transactional
     public Triggerr updateTriggerr(Triggerr triggerr) {
-            return iTriggerrRepo.save(triggerr);
+        return iTriggerrRepo.save(triggerr);
     }
 
     @Override

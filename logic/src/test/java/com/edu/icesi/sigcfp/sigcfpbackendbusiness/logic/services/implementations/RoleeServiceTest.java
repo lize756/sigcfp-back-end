@@ -1,7 +1,6 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.implementations;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Rolee;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Userr;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.IRoleeRepo;
 import org.junit.jupiter.api.*;
 import org.junit.runner.RunWith;
@@ -34,11 +33,15 @@ class RoleeServiceTest {
         System.out.println("|| ---- RoleeServiceTest Started ---- ||");
     }
 
+    @AfterAll
+    static void finish() {
+        System.out.println("|| ---- RoleeServiceTest Finished ---- ||");
+    }
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-
 
     @Test
     void addRolee() {
@@ -132,11 +135,6 @@ class RoleeServiceTest {
 
     @AfterEach
     void tearDown() {
-    }
-
-    @AfterAll
-    static void finish(){
-        System.out.println("|| ---- RoleeServiceTest Finished ---- ||");
     }
 
 }
