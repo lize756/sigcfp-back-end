@@ -138,10 +138,10 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE, "/api/languages/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Lenguajes
 
                 // Accesos a las rutas de las personas
-                .antMatchers(HttpMethod.POST, "/api/persons/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Personas
-                .antMatchers(HttpMethod.GET, "/api/persons/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), TypesOfRolees.ROLEE_PROMOTION_COORDINATOR.toString(), TypesOfRolees.ROLEE_DIRECTOR.toString()) // Personas
-                .antMatchers(HttpMethod.PUT, "/api/persons/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Personas
-                .antMatchers(HttpMethod.DELETE, "/api/persons/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Personas
+                .antMatchers(HttpMethod.POST,"/api/persons/**").permitAll() // Personas
+                .antMatchers(HttpMethod.GET,"/api/persons/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(),TypesOfRolees.ROLEE_PROMOTION_COORDINATOR.toString(),TypesOfRolees.ROLEE_DIRECTOR.toString()) // Personas
+                .antMatchers(HttpMethod.PUT,"/api/persons/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), TypesOfRolees.ROLEE_DIRECTOR.toString(),TypesOfRolees.ROLEE_PROMOTION_COORDINATOR.toString(),TypesOfRolees.ROLEE_GRADUATE.toString()) // Personas
+                .antMatchers(HttpMethod.DELETE,"/api/persons/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Personas
 
                 // Accesos a las rutas de los roles
                 .antMatchers(HttpMethod.POST, "/api/rolees/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Roles

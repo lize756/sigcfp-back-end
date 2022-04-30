@@ -52,17 +52,13 @@ public class Person implements Serializable {
     //@JsonIgnore
     private List<Ethnicgroup> ethnicgroups;
 
-    //bi-directional many-to-one association to City
-    @ManyToOne
-    @JoinColumn(name = "CITY_CITY_ID", nullable = false)
-    //@JsonIgnore
-    private City city;
 
-    //bi-directional many-to-one association to Curriculum
-    @ManyToOne
-    @JoinColumn(name = "CURRICULUM_CURR_ID")
-    @JsonIgnore
-    private Curriculum curriculum;
+
+	//bi-directional many-to-one association to Curriculum
+	@ManyToOne
+	@JoinColumn(name="CURRICULUM_CURR_ID")
+	@JsonIgnore
+	private Curriculum curriculum;
 
     //bi-directional many-to-many association to Language
     @ManyToMany
@@ -82,7 +78,17 @@ public class Person implements Serializable {
     //@OneToOne(cascade = CascadeType.ALL)
     //
     //@OneToOne(mappedBy = "person")
-    private Userr userr;
+	private Userr userr;
+	
+	
+	@Column(name="PERS_COUNTRY_NAME")
+	private String persCountryName;
+	
+	@Column(name="PERS_CITY_NAME")
+	private String persCityName;
+	
+	public Person() {
+	}
 
     public Person() {
     }
@@ -184,16 +190,9 @@ public class Person implements Serializable {
         getEthnicgroups().remove(ethnicgroup);
         ethnicgroup.setPerson(null);
 
-        return ethnicgroup;
-    }
-
-    public City getCity() {
-        return this.city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    }
+	public Curriculum getCurriculum() {
+		return this.curriculum;
+	}
 
     public Curriculum getCurriculum() {
         return this.curriculum;
@@ -215,17 +214,26 @@ public class Person implements Serializable {
         return this.userr;
     }
 
-    public void setUserr(Userr userr) {
-        this.userr = userr;
-    }
 
+	public String getPersCountryName() {
+		return persCountryName;
+	}
 
-    public Language addLanguage(Language language) {
-        getLanguages().add(language);
-        language.setPerson(this);
+	public void setPersCountryName(String persCountryName) {
+		this.persCountryName = persCountryName;
+	}
 
-        return language;
-    }
+	public String getPersCityName() {
+		return persCityName;
+	}
+
+	public void setPersCityName(String persCityName) {
+		this.persCityName = persCityName;
+	}
+
+	public Language addLanguage(Language language) {
+		getLanguages().add(language);
+		language.setPerson(this);
 
     public Language removeLanguage(Language language) {
         getLanguages().remove(language);
