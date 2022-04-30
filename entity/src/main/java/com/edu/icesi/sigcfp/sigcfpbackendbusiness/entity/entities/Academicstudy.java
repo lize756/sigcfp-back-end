@@ -58,8 +58,6 @@ public class Academicstudy implements Serializable {
     public Academicstudy() {
     }
 
-    public Academicstudy() {
-    }
 
     public long getAcadStudId() {
         return this.acadStudId;
@@ -132,16 +130,6 @@ public class Academicstudy implements Serializable {
     public Curriculum getCurriculum() {
         return this.curriculum;
     }
-
-    public void setCurriculum(Curriculum curriculum) {
-        this.curriculum = curriculum;
-    }
-
-
-
-	public Curriculum getCurriculum() {
-		return this.curriculum;
-	}
 
     public void setCurriculum(Curriculum curriculum) {
         this.curriculum = curriculum;

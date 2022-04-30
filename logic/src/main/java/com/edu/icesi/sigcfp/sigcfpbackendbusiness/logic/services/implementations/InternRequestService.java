@@ -70,5 +70,15 @@ public class InternRequestService implements IInternRequestService {
         return iInternRequestRepo.findInternRequestsByCompany(compId);
     }
 
+    @Override
+    public int countInternRequestByCompanyId(long compId) {
+        return 0;
+    }
+
+    @Override
+    public List<InternRequest> findInternRequestsByCompanyCompId(long compId) {
+        return null;
+    }
+
 
 }

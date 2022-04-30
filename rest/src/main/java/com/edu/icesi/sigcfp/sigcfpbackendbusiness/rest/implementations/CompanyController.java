@@ -84,5 +84,10 @@ public class CompanyController implements ICompanyController {
         }
     }
 
+    @Override
+    public ResponseEntity<?> getCompaniesByCompIcesiStud(boolean hasIcesiStudent) {
+        return null;
+    }
+
 
 }

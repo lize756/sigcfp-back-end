@@ -133,6 +133,15 @@ public class InternRequestController implements IInternRequestController {
 		}
 	}
 
+	@Override
+	public ResponseEntity<?> getCountInternRequestByCompanyId(long compId) {
+		return null;
+	}
+
+	@Override
+	public ResponseEntity<?> getInternRequestsByCompanyCompId(long compId) {
+		return null;
+	}
 
 
 }

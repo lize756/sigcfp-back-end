@@ -59,4 +59,9 @@ public class CompanyService implements ICompanyService {
     public List<Company> companies() {
         return iCompanyRepo.findAll();
     }
+
+    @Override
+    public List<Company> findCompaniesByCompIcesiStud(boolean hasIcesiStudent) {
+        return null;
+    }
 }

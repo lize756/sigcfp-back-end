@@ -72,4 +72,9 @@ public class CareerController implements ICareerController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @Override
+    public ResponseEntity<?> getCareersByFacultyFacuId(long facuId) {
+        return null;
+    }
 }
