@@ -44,14 +44,19 @@ public class Academicstudy implements Serializable {
     @Column(name = "ACAD_STUD_TITULE", length = 255)
     private String acadStudTitule;
 
-	
 
+    //bi-directional many-to-one association to Curriculum
+    @ManyToOne
+    @JoinColumn(name = "CURRICULUM_CURR_ID")
+    @JsonIgnore
+    private Curriculum curriculum;
+    @Column(name = "ACAD_COUNTRY_NAME")
+    private String acadCountryName;
+    @Column(name = "ACAD_CITY_NAME")
+    private String acadCityName;
 
-	//bi-directional many-to-one association to Curriculum
-	@ManyToOne
-	@JoinColumn(name="CURRICULUM_CURR_ID")
-	@JsonIgnore
-	private Curriculum curriculum;
+    public Academicstudy() {
+    }
 
     public Academicstudy() {
     }
@@ -112,27 +117,25 @@ public class Academicstudy implements Serializable {
         this.acadStudTitule = acadStudTitule;
     }
 
-	public String getAcadCountryName() {
-		return acadCountryName;
-	}
+    public void setAcadCountryName(String acadCountryName) {
+        this.acadCountryName = acadCountryName;
+    }
 
-	public void setAcadCountryName(String acadCountryName) {
-		this.acadCountryName = acadCountryName;
-	}
+    public String getAcadCityName() {
+        return acadCityName;
+    }
 
-	public String getAcadCityName() {
-		return acadCityName;
-	}
+    public void setAcadCityName(String acadCityName) {
+        this.acadCityName = acadCityName;
+    }
 
-	public void setAcadCityName(String acadCityName) {
-		this.acadCityName = acadCityName;
-	}
+    public Curriculum getCurriculum() {
+        return this.curriculum;
+    }
 
-	@Column(name="ACAD_COUNTRY_NAME")
-	private String acadCountryName;
-	
-	@Column(name="ACAD_CITY_NAME")
-	private String acadCityName;
+    public void setCurriculum(Curriculum curriculum) {
+        this.curriculum = curriculum;
+    }
 
 
 

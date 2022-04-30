@@ -3,8 +3,6 @@ package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Person;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -29,19 +27,20 @@ public interface IPersonController {
 
     /**
      * Allow partially update a person.
+     *
      * @param persId persId id of person to update.
      * @param person person to update
      * @return
      */
-	ResponseEntity<Person> partiallyUpdatePerson(long persId,Person person);
-	
+    ResponseEntity<Person> partiallyUpdatePerson(long persId, Person person);
+
     /**
-	 * Allows to obtain a person through you id.
-	 * 
-	 * @param persId id to search one person
-	 * @return a responseEntity that represent the whole HTTP response: status code,
-	 *         headers, and body.
-	 */
+     * Allows to obtain a person through you id.
+     *
+     * @param persId id to search one person
+     * @return a responseEntity that represent the whole HTTP response: status code,
+     * headers, and body.
+     */
     ResponseEntity<Person> getPerson(long persId);
 
     /**
@@ -60,8 +59,6 @@ public interface IPersonController {
      * headers, and body.
      */
     ResponseEntity<List<Person>> getPersons();
-    
-   
 
 
 }

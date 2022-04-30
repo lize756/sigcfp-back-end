@@ -51,4 +51,7 @@ public interface ICareerController {
      */
     ResponseEntity<List<Career>> getCareers();
 
+
+    ResponseEntity<?> getCareersByFacultyFacuId(long facuId);
+
 }

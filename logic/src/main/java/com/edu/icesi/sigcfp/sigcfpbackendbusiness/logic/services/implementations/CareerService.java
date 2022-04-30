@@ -63,4 +63,9 @@ public class CareerService implements ICareerService {
     public List<Career> careers() {
         return iCareerRepo.findAll();
     }
+
+    @Override
+    public List<Career> findCareersByFacultyFacuId(Long facuId) {
+        return iCareerRepo.findCareersByFacultyFacuId(facuId);
+    }
 }

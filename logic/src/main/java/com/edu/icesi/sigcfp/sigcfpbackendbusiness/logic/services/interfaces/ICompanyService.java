@@ -16,4 +16,7 @@ public interface ICompanyService {
     Company deleteCompany(long compId);
 
     List<Company> companies();
+
+    List<Company> findCompaniesByCompIcesiStud(boolean hasIcesiStudent);
+
 }

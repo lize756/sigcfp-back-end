@@ -19,4 +19,10 @@ public interface IInternRequestService {
 
     List<InternRequest> findInternRequestsByCompany(long compId);
 
+
+    int countInternRequestByCompanyId(long compId);
+
+    List<InternRequest> findInternRequestsByCompanyCompId(long compId);
+
+
 }
