@@ -64,9 +64,7 @@ public class PersonController implements IPersonController {
 			if (personOptional.isPresent()) {
 				Person previousPerson = personOptional.get();
 				//Elements to partially update
-				person.setCurriculum(previousPerson.getCurriculum());
 				person.setEthnicgroups(previousPerson.getEthnicgroups());
-				person.setLanguages(previousPerson.getLanguages());
 				return new ResponseEntity<>(iPersonService.updatePerson(person), HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -75,19 +73,7 @@ public class PersonController implements IPersonController {
 			e.printStackTrace();
 			return null;
 		}
-	}
 
-            Optional<Person> personOptional = Optional.of(iPersonService.searchPerson(persId));
-            System.out.println("ENTRE----------------->>>>>>>>> " + personOptional);
-            if (personOptional.isPresent()) {
-                return new ResponseEntity<>(iPersonService.updatePerson(person), HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 
     @Override

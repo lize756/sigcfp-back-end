@@ -72,20 +72,6 @@ public class InternRequestController implements IInternRequestController {
 		}
 	}
 
-	@Override
-	@PutMapping("/update/{inteRequeId}")
-	public ResponseEntity<InternRequest> updateInternRequest(@PathVariable("inteRequeId") long inteRequId,
-			@RequestBody InternRequest internRequest) {
-		Optional<InternRequest> inteRequestOptional = Optional
-				.of(iInternRequestService.searchInternRequest(inteRequId));
-
-		if (inteRequestOptional.isPresent()) {
-			//internRequest.setInteRequStDate(helpClassMethod.convertSecondFormat(internRequest.getInteRequStDate()));
-			return new ResponseEntity<>(iInternRequestService.updateInternRequest(internRequest), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-	}
 
     @Override
     @PutMapping("/update/{inteRequeId}")
@@ -122,11 +108,12 @@ public class InternRequestController implements IInternRequestController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
 
-		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+	}
+
+	@Override
+	public ResponseEntity<List<InternRequest>> getInternRequests() {
+		return null;
 	}
 
 	@Override

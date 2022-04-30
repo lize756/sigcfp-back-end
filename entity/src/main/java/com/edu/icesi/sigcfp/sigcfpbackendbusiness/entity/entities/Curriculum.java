@@ -202,18 +202,6 @@ public class Curriculum implements Serializable {
         this.persons = persons;
     }
 
-    public Person addPerson(Person person) {
-        getPersons().add(person);
-        person.setCurriculum(this);
 
-        return person;
-    }
-
-    public Person removePerson(Person person) {
-        getPersons().remove(person);
-        person.setCurriculum(null);
-
-        return person;
-    }
 
 }

@@ -45,13 +45,13 @@ public class NotiController implements INotiController{
     @PutMapping("/manualStartNotificationToContacts")
     public ResponseEntity<?> sendManualStartNotificationsToContacts() {
        iNotiService.sendManualStartNotificationsToContacts();
-        return new ResponseEntity<>("Correo de apertura enviado a los contacto exitosamente",HttpStatus.OK);
+        return new ResponseEntity<>("Correo de apertura enviado a los contactos exitosamente",HttpStatus.OK);
     }
 
     @Override
     @PutMapping("/manualEndNotificationToContacts")
     public ResponseEntity<?> sendManualEndNotificationsToContacts() {
         iNotiService.sendManualEndNotificationsToContacts();
-        return new ResponseEntity<>("Correo de cierre enviado a los contacto exitosamente",HttpStatus.OK);
+        return new ResponseEntity<>("Correo de cierre enviado a los contactos exitosamente",HttpStatus.OK);
     }
 }
