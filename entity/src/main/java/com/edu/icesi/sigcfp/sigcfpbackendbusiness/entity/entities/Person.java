@@ -80,6 +80,11 @@ public class Person implements Serializable {
     @Column(name = "PERS_CITY_NAME")
     private String persCityName;
 
+    @OneToMany(mappedBy = "person")
+    @JsonIgnore
+    private List<Career> careers;
+
+
     public Person() {
     }
 
@@ -182,6 +187,47 @@ public class Person implements Serializable {
 
         return ethnicgroup;
     }
+
+    public List<Career> getCareers() {
+        return careers;
+    }
+
+    public void setCareers(List<Career> careers) {
+        this.careers = careers;
+    }
+
+    public Curriculum getCurriculum() {
+        return curriculum;
+    }
+
+    public void setCurriculum(Curriculum curriculum) {
+        this.curriculum = curriculum;
+    }
+
+    public List<Language> getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(List<Language> languages) {
+        this.languages = languages;
+    }
+
+    public String getPersCountryName() {
+        return persCountryName;
+    }
+
+    public void setPersCountryName(String persCountryName) {
+        this.persCountryName = persCountryName;
+    }
+
+    public String getPersCityName() {
+        return persCityName;
+    }
+
+    public void setPersCityName(String persCityName) {
+        this.persCityName = persCityName;
+    }
+
 
 
 }

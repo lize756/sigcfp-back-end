@@ -30,6 +30,10 @@ public class Career implements Serializable {
     @Column(name = "CARE_NAME", length = 255)
     private String careName;
 
+    @ManyToOne
+    @JoinColumn(name = "PERSON_PERS_ID", nullable = true)
+    private Person person;
+
     //bi-directional many-to-one association to Faculty
     @ManyToOne
     @JoinColumn(name = "FACULTY_FACU_ID")
@@ -111,4 +115,11 @@ public class Career implements Serializable {
         this.internRequests = internRequests;
     }
 
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 }
