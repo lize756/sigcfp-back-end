@@ -21,6 +21,8 @@ public interface INotiService {
 
     public void sendManualEndNotificationsToContacts();
 
+    public void configureAutomaticNotificationsForAllContacts(Noti noti);
+
 
 
 }

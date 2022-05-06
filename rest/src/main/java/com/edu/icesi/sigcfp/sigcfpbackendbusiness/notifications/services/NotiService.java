@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -138,6 +139,33 @@ public class NotiService implements INotiService {
         } catch (MessagingException ex) {
             ex.printStackTrace();
         }
+
+    }
+
+    @Override
+    @Scheduled(cron= "0/30 * * * * ?" , zone = TIME_ZONE)    //@Scheduled(cron = "0 0 0 * * *")
+    public void configureAutomaticNotificationsForAllContacts(Noti noti) {
+        Noti notiCreated = iNotiRepo.save(noti);
+        if (notiCreated != null) {
+            try {
+                if (iCompanyService.companies() != null) {
+                    for (Company company : iCompanyService.companies()) {
+                        if (company.getContacts() != null) {
+                            for (Contact contact : company.getContacts()) {
+                                helper.setTo(noti.getNotiEmailDestination());
+                                helper.setText(noti.getNotiDescription(), true);
+                                helper.setSubject(noti.getNotiSubject());
+                                mailSender.send(mimeMessage);
+                                LOGGER.info("Sending automatic notifications to contacts");
+                            }
+                        }
+                    }
+                }
+            } catch (MessagingException ex) {
+                ex.printStackTrace();
+            }
+        }
+
 
     }
 

@@ -1,5 +1,6 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.reports;
 
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.reports.model.ReportTypeEnum;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;

@@ -1,6 +1,6 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.reports.services;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.reports.ReportDTO;
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.reports.model.ReportDTO;
 import net.sf.jasperreports.engine.JRException;
 
 import java.io.IOException;

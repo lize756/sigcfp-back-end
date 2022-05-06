@@ -1,8 +1,8 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.reports.services;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.reports.JasperReportManager;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.reports.ReportDTO;
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.reports.ReportTypeEnum;
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.reports.model.ReportDTO;
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.reports.model.ReportTypeEnum;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

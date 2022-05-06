@@ -1,4 +1,4 @@
-package com.edu.icesi.sigcfp.sigcfpbackendbusiness.reports;
+package com.edu.icesi.sigcfp.sigcfpbackendbusiness.reports.model;
 
 import java.io.ByteArrayInputStream;
 
