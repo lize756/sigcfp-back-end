@@ -65,4 +65,8 @@ public interface IInternRequestController {
 
 
     ResponseEntity<?> getInternRequestsByCompanyCompId(long compId);
+
+    ResponseEntity<?> findInternRequestsByCareId(long careId);
+
+
 }

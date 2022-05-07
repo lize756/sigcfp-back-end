@@ -144,4 +144,11 @@ public class InternRequestController implements IInternRequestController {
 	}
 
 
+	@Override
+	@GetMapping("/internRequestByCareer/{careId}")
+	public ResponseEntity<?> findInternRequestsByCareId(@PathVariable("careId") long careId) {
+		return new ResponseEntity<>(iInternRequestService.findInternRequestsByCareId(careId), HttpStatus.OK);
+	}
+
+
 }

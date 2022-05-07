@@ -143,7 +143,7 @@ public class NotiService implements INotiService {
     }
 
     @Override
-    @Scheduled(cron= "0/30 * * * * ?" , zone = TIME_ZONE)    //@Scheduled(cron = "0 0 0 * * *")
+    //@Scheduled(cron= "0/30 * * * * ?" , zone = TIME_ZONE)    //@Scheduled(cron = "0 0 0 * * *")
     public void configureAutomaticNotificationsForAllContacts(Noti noti) {
         Noti notiCreated = iNotiRepo.save(noti);
         if (notiCreated != null) {

@@ -16,6 +16,7 @@ public class NotiController implements INotiController{
     @Autowired INotiService iNotiService;
 
     @Override
+
     public  ResponseEntity<Noti> addNoti(@RequestBody Noti noti) {
         return new ResponseEntity<>(iNotiService.addNoti(noti), HttpStatus.CREATED);
     }

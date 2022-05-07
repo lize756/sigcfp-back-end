@@ -80,8 +80,18 @@ public class Person implements Serializable {
     @Column(name = "PERS_CITY_NAME")
     private String persCityName;
 
-    @OneToMany(mappedBy = "person")
-    @JsonIgnore
+    //@OneToMany(mappedBy = "person")
+    @ManyToMany
+    @JoinTable(
+            name = "PERS_CAREER"
+            , joinColumns = {
+            @JoinColumn(name = "PERSON_PERS_ID", nullable = false)
+    }
+            , inverseJoinColumns = {
+            @JoinColumn(name = "CAREER_CARE_ID", nullable = false)
+    }
+    )
+    //@JsonIgnore
     private List<Career> careers;
 
 
@@ -196,6 +206,20 @@ public class Person implements Serializable {
         this.careers = careers;
     }
 
+
+    public Career addCareer(Career career) {
+        getCareers().add(career);
+        career.setPerson(this);
+        return career;
+    }
+
+    public Career removeCareer(Career career) {
+        getCareers().remove(career);
+        career.setPerson(null);
+        return career;
+    }
+
+
     public Curriculum getCurriculum() {
         return curriculum;
     }
@@ -227,6 +251,7 @@ public class Person implements Serializable {
     public void setPersCityName(String persCityName) {
         this.persCityName = persCityName;
     }
+
 
 
 

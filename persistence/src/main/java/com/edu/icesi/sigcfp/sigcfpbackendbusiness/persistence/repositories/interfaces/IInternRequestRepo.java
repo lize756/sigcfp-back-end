@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface IInternRequestRepo extends JpaRepository<InternRequest, Long> {
 
+    @Query("select i from InternRequest i")
     @Override
     List<InternRequest> findAll();
 
@@ -19,7 +20,7 @@ public interface IInternRequestRepo extends JpaRepository<InternRequest, Long> {
     /**
      * Allow search the intern request associated with a companies
      *
-     * @param id
+     * @param compId
      * @return
      */
     // TODO: Reporte - Mostrar la cantidad de solitudes realizas por las empresas.
@@ -40,6 +41,10 @@ public interface IInternRequestRepo extends JpaRepository<InternRequest, Long> {
     // TODO: Obtener la cantidad de solicitudes realizas por las empresas
     @Query(value = "SELECT COUNT(IR.INTE_REQU_NUMBER) FROM INTERN_REQUEST IR INNER JOIN COMPANY C2 on C2.COMP_ID = IR.COMPANY_COMP_ID WHERE C2.COMP_ID = ?1", nativeQuery = true)
     List<InternRequest> findInternRequestsByCompanyCompId(long compId);
+
+
+    @Query(value = "SELECT ir FROM InternRequest ir INNER JOIN ir.careers care  WHERE care.careId = ?1 ORDER BY care.careName ASC", nativeQuery = false)
+    List<InternRequest> findInternRequestsByCareId(long careId);
 
 
 }

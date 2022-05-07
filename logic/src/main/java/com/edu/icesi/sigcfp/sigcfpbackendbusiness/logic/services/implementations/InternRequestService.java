@@ -80,5 +80,10 @@ public class InternRequestService implements IInternRequestService {
         return null;
     }
 
+    @Override
+    public List<InternRequest> findInternRequestsByCareId(long careId) {
+        return iInternRequestRepo.findInternRequestsByCareId(careId);
+    }
+
 
 }

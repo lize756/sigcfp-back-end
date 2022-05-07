@@ -31,7 +31,7 @@ public class Career implements Serializable {
     private String careName;
 
     @ManyToOne
-    @JoinColumn(name = "PERSON_PERS_ID", nullable = true)
+    @JoinColumn(name = "PERSON_PERS_ID")
     private Person person;
 
     //bi-directional many-to-one association to Faculty
