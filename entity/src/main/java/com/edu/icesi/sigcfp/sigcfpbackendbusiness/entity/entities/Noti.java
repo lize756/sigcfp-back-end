@@ -26,28 +26,28 @@ public class Noti implements Serializable {
     private long notiId;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "NOTI_DATE")
+    @Column(name = "NOTI_DATE", nullable = true)
     private Date notiDate;
 
-    @Column(name = "NOTI_DESCRIPTION", length = 1000)
+    @Column(name = "NOTI_DESCRIPTION", length = 1000, nullable = true)
     private String notiDescription;
 
-    @Column(name = "NOTI_EMAIL_DESTINATION", length = 255)
+    @Column(name = "NOTI_EMAIL_DESTINATION", length = 255, nullable = true)
     private String notiEmailDestination;
 
-    @Column(name = "NOTI_EMAIL_SOURCE", length = 255)
+    @Column(name = "NOTI_EMAIL_SOURCE", length = 255, nullable = true)
     private String notiEmailSource;
 
-    @Column(name = "NOTI_LOGICALOPERAND", length = 1)
+    @Column(name = "NOTI_LOGICALOPERAND", length = 1, nullable = true)
     private String notiLogicaloperand;
 
-    @Column(name = "NOTI_SUBJECT", length = 255)
+    @Column(name = "NOTI_SUBJECT", length = 255, nullable = true)
     private String notiSubject;
 
-    @Column(name = "NOTI_START_DATE")
+    @Column(name = "NOTI_START_DATE", nullable = true)
     private Date notiStartDate;
 
-    @Column(name = "NOTI_END_DATE")
+    @Column(name = "NOTI_END_DATE", nullable = true)
     private Date notiEndDate;
 
     //bi-directional many-to-many association to Company

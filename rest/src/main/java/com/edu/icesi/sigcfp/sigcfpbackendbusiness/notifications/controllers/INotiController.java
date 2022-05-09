@@ -22,6 +22,12 @@ public interface INotiController {
 
     ResponseEntity<?> sendManualEndNotificationsToContacts();
 
+     ResponseEntity<?> configureManualNotificationsForAllContacts(Noti noti);
+
+    ResponseEntity<?> sendManualNotificationToOneContact(Noti noti, long contId);
+
+
+
 
 
 

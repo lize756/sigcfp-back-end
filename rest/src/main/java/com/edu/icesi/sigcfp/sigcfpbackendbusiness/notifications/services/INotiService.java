@@ -22,11 +22,5 @@ public interface INotiService {
 
     public void configureManualNotificationsForAllContacts(Noti noti);
 
-    public void configureManualNotificationsForAllContacts();
-
-    public void sendAutomaticNotificationsToContacts();
-
-
-
-
+    void sendManualNotificationToOneContact(Noti noti, long contId);
 }

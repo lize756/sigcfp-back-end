@@ -4,10 +4,12 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Company;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Contact;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Noti;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.ICompanyService;
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.IContactRepo;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.interfaces.INotiRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -35,11 +37,14 @@ public class NotiService implements INotiService {
     private ICompanyService iCompanyService;
     @Autowired
     private INotiRepo iNotiRepo;
+    @Autowired
+    private IContactRepo iContactRepo;
 
     private Noti noti;
 
     private MimeMessage mimeMessage;
     private MimeMessageHelper helper;
+
 
     public NotiService(ICompanyService iCompanyService,
                        INotiRepo iNotiRepo,
@@ -170,19 +175,27 @@ public class NotiService implements INotiService {
                 ex.printStackTrace();
             }
         }
-
-
     }
+
 
     @Override
-    public void configureManualNotificationsForAllContacts() {
-        LOGGER.info("Sending automatic notifications to contacts");
+    public void sendManualNotificationToOneContact(Noti noti, long contId) {
+        Noti notiCreated = iNotiRepo.save(noti);
+        Contact contact = iContactRepo.getById(contId);
+        if (notiCreated != null && contact != null) {
+            try {
+                helper.setTo(contact.getContEmail());
+                helper.setText(noti.getNotiDescription(), true);
+                helper.setSubject(noti.getNotiSubject());
+                mailSender.send(mimeMessage);
+                LOGGER.warn("Sending manual notification to one contact");
+            } catch (MessagingException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 
-    @Override
-    public void sendAutomaticNotificationsToContacts() {
 
-    }
 
 
 }
