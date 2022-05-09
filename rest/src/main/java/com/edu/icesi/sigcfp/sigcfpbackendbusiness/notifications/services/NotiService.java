@@ -41,7 +41,9 @@ public class NotiService implements INotiService {
     private MimeMessage mimeMessage;
     private MimeMessageHelper helper;
 
-    public NotiService(ICompanyService iCompanyService, INotiRepo iNotiRepo, JavaMailSender mailSender) {
+    public NotiService(ICompanyService iCompanyService,
+                       INotiRepo iNotiRepo,
+                       JavaMailSender mailSender) {
         this.iCompanyService = iCompanyService;
         this.iNotiRepo = iNotiRepo;
         this.mailSender = mailSender;
@@ -97,19 +99,20 @@ public class NotiService implements INotiService {
     }
 
     @Override
-    //@Scheduled()
+    @Scheduled(cron = "* 36 18 8 5 *", zone = TIME_ZONE)
     public void sendManualStartNotificationsToContacts() {
-        LOGGER.info("Sending manual start notifications to contacts");
+        LOGGER.warn("Sending manual start notifications to contacts");
         noti = iNotiRepo.getById(START_PERIOD);
         try {
             if (iCompanyService.companies() != null) {
                 for (Company company : iCompanyService.companies()) {
                     if (company.getContacts() != null) {
                         for (Contact contact : company.getContacts()) {
-                            helper.setTo(noti.getNotiEmailDestination());
+                            helper.setTo(contact.getContEmail());
                             helper.setText(noti.getNotiDescription(), true);
                             helper.setSubject(noti.getNotiSubject());
                             mailSender.send(mimeMessage);
+                            LOGGER.warn("Notification sent to " + contact.getContEmail());
                         }
                     }
                 }
@@ -120,18 +123,20 @@ public class NotiService implements INotiService {
     }
 
     @Override
+    @Scheduled(cron = "* 0 19 9 5 *", zone = TIME_ZONE)
     public void sendManualEndNotificationsToContacts() {
-        LOGGER.info("Sending manual end notifications to contacts");
+        LOGGER.warn("Sending manual end notifications to contacts");
         noti = iNotiRepo.getById(END_PERIOD);
         try {
             if (iCompanyService.companies() != null) {
                 for (Company company : iCompanyService.companies()) {
                     if (company.getContacts() != null) {
                         for (Contact contact : company.getContacts()) {
-                            helper.setTo(noti.getNotiEmailDestination());
+                            helper.setTo(contact.getContEmail());
                             helper.setText(noti.getNotiDescription(), true);
                             helper.setSubject(noti.getNotiSubject());
                             mailSender.send(mimeMessage);
+                            LOGGER.warn("Notification sent to " + contact.getContEmail());
                         }
                     }
                 }
@@ -144,7 +149,7 @@ public class NotiService implements INotiService {
 
     @Override
     //@Scheduled(cron= "0/30 * * * * ?" , zone = TIME_ZONE)    //@Scheduled(cron = "0 0 0 * * *")
-    public void configureAutomaticNotificationsForAllContacts(Noti noti) {
+    public void configureManualNotificationsForAllContacts(Noti noti) {
         Noti notiCreated = iNotiRepo.save(noti);
         if (notiCreated != null) {
             try {
@@ -156,7 +161,7 @@ public class NotiService implements INotiService {
                                 helper.setText(noti.getNotiDescription(), true);
                                 helper.setSubject(noti.getNotiSubject());
                                 mailSender.send(mimeMessage);
-                                LOGGER.info("Sending automatic notifications to contacts");
+                                LOGGER.warn("Sending manual notifications to contacts");
                             }
                         }
                     }
@@ -166,6 +171,16 @@ public class NotiService implements INotiService {
             }
         }
 
+
+    }
+
+    @Override
+    public void configureManualNotificationsForAllContacts() {
+        LOGGER.info("Sending automatic notifications to contacts");
+    }
+
+    @Override
+    public void sendAutomaticNotificationsToContacts() {
 
     }
 

@@ -4,7 +4,6 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Noti;
 
 import java.util.List;
 
-
 public interface INotiService {
 
     Noti addNoti(Noti noti);
@@ -21,7 +20,12 @@ public interface INotiService {
 
     public void sendManualEndNotificationsToContacts();
 
-    public void configureAutomaticNotificationsForAllContacts(Noti noti);
+    public void configureManualNotificationsForAllContacts(Noti noti);
+
+    public void configureManualNotificationsForAllContacts();
+
+    public void sendAutomaticNotificationsToContacts();
+
 
 
 
