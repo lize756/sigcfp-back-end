@@ -64,6 +64,9 @@ public class PersonController implements IPersonController {
 			if (personOptional.isPresent()) {
 				Person previousPerson = personOptional.get();
 				//Elements to partially update
+				person.setLanguages(previousPerson.getLanguages());
+				person.setCurriculum(previousPerson.getCurriculum());
+				person.setCareers(previousPerson.getCareers());
 				person.setEthnicgroups(previousPerson.getEthnicgroups());
 				return new ResponseEntity<>(iPersonService.updatePerson(person), HttpStatus.OK);
 			} else {
