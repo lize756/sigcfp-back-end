@@ -13,4 +13,8 @@ public interface IAllReportsService {
 
     ReportDTO generateAllCompaniesReport(Map<String, Object> params) throws SQLException, JRException, IOException;
 
+    ReportDTO generateCompanyInternRequestsReport(Map<String, Object> params) throws SQLException, JRException, IOException;
+
+    ReportDTO generateInternRequestsPersonGroupingByCareerReport(Map<String, Object> params) throws SQLException, JRException, IOException;
+
 }
