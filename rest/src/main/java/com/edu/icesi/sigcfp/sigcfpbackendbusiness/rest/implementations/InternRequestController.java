@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.edu.icesi.sigcfp.sigcfpbackendbusiness.config.HelpClassMethod;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Career;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Company;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.InternRequest;
