@@ -162,7 +162,7 @@ public class NotiService implements INotiService {
                     for (Company company : iCompanyService.companies()) {
                         if (company.getContacts() != null) {
                             for (Contact contact : company.getContacts()) {
-                                helper.setTo(noti.getNotiEmailDestination());
+                                helper.setTo(contact.getContEmail());
                                 helper.setText(noti.getNotiDescription(), true);
                                 helper.setSubject(noti.getNotiSubject());
                                 mailSender.send(mimeMessage);
