@@ -15,9 +15,11 @@
     <packaging>jar</packaging>
     <name>rest</name>
     <description>rest</description>
-    <properties>
-        <java.version>11</java.version>
-    </properties>
+    <!--
+     <properties>
+         <java.version>11</java.version>
+     </properties>
+     -->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -20,9 +20,11 @@
     <description>sigcfp-back-end-business</description>
 
     <!-- Properties -->
+    <!--
     <properties>
         <java.version>11</java.version>
     </properties>
+    -->
 
     <!-- Management of dependencies (modules) -->
     <dependencyManagement>

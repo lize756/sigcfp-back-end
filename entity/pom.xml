@@ -15,9 +15,11 @@
     <packaging>jar</packaging>
     <name>entity</name>
     <description>entity</description>
+    <!--
     <properties>
         <java.version>11</java.version>
     </properties>
+    -->
 
     <dependencies>
         <dependency>
