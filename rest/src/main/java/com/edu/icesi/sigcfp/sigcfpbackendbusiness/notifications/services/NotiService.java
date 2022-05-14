@@ -104,7 +104,7 @@ public class NotiService implements INotiService {
     }
 
     @Override
-    @Scheduled(cron = "* 36 18 8 5 *", zone = TIME_ZONE)
+    @Scheduled(cron = "${cron.startExpression}", zone = TIME_ZONE)
     public void sendManualStartNotificationsToContacts() {
         LOGGER.warn("Sending manual start notifications to contacts");
         noti = iNotiRepo.getById(START_PERIOD);
@@ -128,7 +128,7 @@ public class NotiService implements INotiService {
     }
 
     @Override
-    @Scheduled(cron = "* 0 19 9 5 *", zone = TIME_ZONE)
+    @Scheduled(cron = "${cron.endExpression}", zone = TIME_ZONE)
     public void sendManualEndNotificationsToContacts() {
         LOGGER.warn("Sending manual end notifications to contacts");
         noti = iNotiRepo.getById(END_PERIOD);
