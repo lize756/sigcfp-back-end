@@ -69,4 +69,5 @@ public class NotiController implements INotiController{
         iNotiService.sendManualNotificationToOneContact(noti,contId);
         return new ResponseEntity<>("Se ha enviado un correo a un usuario",HttpStatus.OK);
     }
+
 }
