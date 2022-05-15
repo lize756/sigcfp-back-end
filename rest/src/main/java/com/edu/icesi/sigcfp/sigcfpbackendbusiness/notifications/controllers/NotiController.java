@@ -63,7 +63,7 @@ public class NotiController implements INotiController {
      */
 
     @Override
-    @PutMapping("/manualNotificationToContacts")
+    @PostMapping("/manualNotificationToContacts")
     public ResponseEntity<?> configureManualNotificationsForAllContacts(@RequestBody Noti noti) {
         iNotiService.configureManualNotificationsForAllContacts(noti);
         return new ResponseEntity<>("Se ha enviado un correo a todos los usuarios", HttpStatus.OK);
