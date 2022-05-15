@@ -11,63 +11,68 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
 @RequestMapping("/api/notis")
-public class NotiController implements INotiController{
+public class NotiController implements INotiController {
 
-    @Autowired INotiService iNotiService;
+    @Autowired
+    INotiService iNotiService;
 
     @Override
-
-    public  ResponseEntity<Noti> addNoti(@RequestBody Noti noti) {
+    @PostMapping("/add")
+    public ResponseEntity<Noti> addNoti(@RequestBody Noti noti) {
         return new ResponseEntity<>(iNotiService.addNoti(noti), HttpStatus.CREATED);
     }
 
     @Override
+    @PutMapping("/update/{notiId}")
     public ResponseEntity<Noti> updateNoti(@PathVariable long notiId, @RequestBody Noti noti) {
         return new ResponseEntity<>(iNotiService.updateNoti(noti), HttpStatus.OK);
     }
 
     @Override
+    @GetMapping("/{notiId}")
     public ResponseEntity<Noti> getNoti(@PathVariable long notiId) {
         return new ResponseEntity<>(iNotiService.searchNoti(notiId), HttpStatus.OK);
     }
 
     @Override
+    @DeleteMapping("/{notiId}")
     public ResponseEntity<HttpStatus> deleteNoti(long notiId) {
         iNotiService.deleteNoti(notiId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
+    @GetMapping()
     public ResponseEntity<List<Noti>> getNotis() {
         return new ResponseEntity<>(iNotiService.notis(), HttpStatus.OK);
     }
 
+    /*
     @Override
     @PutMapping("/automaticStartNotificationToContacts")
     public ResponseEntity<?> sendManualStartNotificationsToContacts() {
        iNotiService.sendManualStartNotificationsToContacts();
         return new ResponseEntity<>("Correo de apertura enviado a los contactos exitosamente",HttpStatus.OK);
     }
-
     @Override
     @PutMapping("/automaticEndNotificationToContacts")
     public ResponseEntity<?> sendManualEndNotificationsToContacts() {
         iNotiService.sendManualEndNotificationsToContacts();
         return new ResponseEntity<>("Correo de cierre enviado a los contactos exitosamente",HttpStatus.OK);
     }
+     */
 
     @Override
     @PutMapping("/manualNotificationToContacts")
     public ResponseEntity<?> configureManualNotificationsForAllContacts(@RequestBody Noti noti) {
         iNotiService.configureManualNotificationsForAllContacts(noti);
-        return new ResponseEntity<>("Se ha enviado un correo a todos los usuarios",HttpStatus.OK);
+        return new ResponseEntity<>("Se ha enviado un correo a todos los usuarios", HttpStatus.OK);
     }
 
     @Override
     @PostMapping("/manualNotificationToOneContact/{contId}")
     public ResponseEntity<?> sendManualNotificationToOneContact(@RequestBody Noti noti, @PathVariable long contId) {
-        iNotiService.sendManualNotificationToOneContact(noti,contId);
-        return new ResponseEntity<>("Se ha enviado un correo a un usuario",HttpStatus.OK);
+        iNotiService.sendManualNotificationToOneContact(noti, contId);
+        return new ResponseEntity<>("Se ha enviado un correo a un usuario", HttpStatus.OK);
     }
-
 }

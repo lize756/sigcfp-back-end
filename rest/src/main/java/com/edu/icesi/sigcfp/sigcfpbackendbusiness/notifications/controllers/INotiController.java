@@ -18,17 +18,11 @@ public interface INotiController {
 
     ResponseEntity<List<Noti>> getNotis();
 
-     ResponseEntity<?> sendManualStartNotificationsToContacts();
+    // ResponseEntity<?> sendManualStartNotificationsToContacts();
+    // ResponseEntity<?> sendManualEndNotificationsToContacts();
 
-    ResponseEntity<?> sendManualEndNotificationsToContacts();
-
-     ResponseEntity<?> configureManualNotificationsForAllContacts(Noti noti);
+    ResponseEntity<?> configureManualNotificationsForAllContacts(Noti noti);
 
     ResponseEntity<?> sendManualNotificationToOneContact(Noti noti, long contId);
-
-
-
-
-
 
 }
