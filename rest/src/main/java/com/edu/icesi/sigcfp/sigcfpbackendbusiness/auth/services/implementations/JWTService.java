@@ -2,6 +2,7 @@ package com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.services.implementations
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.security.SimpleGrantedAuthorityMixin;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.auth.services.interfaces.IJWTService;
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Noti;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Userr;
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.logic.services.interfaces.IUserrService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -11,6 +12,8 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,10 +22,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Base64Utils;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.UUID;
 
 @Component
 public class JWTService implements IJWTService {
@@ -35,6 +41,12 @@ public class JWTService implements IJWTService {
     private IUserrService userService;
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JavaMailSender mailSender;
+
+    private MimeMessage mimeMessage;
+    private MimeMessageHelper helper;
 
     @Override
     /**
@@ -149,6 +161,37 @@ public class JWTService implements IJWTService {
         if (userr != null) {
             userr.setUserPassword(passwordEncoder.encode(password));
             userService.updateUserr(userr);
+        }
+    }
+
+
+    @Override
+    public void sendEmailToTemporalPassword(String userName) {
+
+        Userr userr = userService.findUserrByUserName(userName);
+
+        String temporalPass = UUID.randomUUID().toString();
+        String emailSubject = "Cambio de contraseña";
+        String emailMessage = "<br/>Hola. " +
+                "<br/>Esta es su nueva contraseña temporal:" + temporalPass +
+                "<br/>Por favor, cámbiela una vez acceda a la plataforma" +
+                "<br/> <br/>Equipo SIGCFP"
+                ;
+        String passEncoded = passwordEncoder.encode(temporalPass).toString();
+
+        if (userr != null) {
+
+            userr.setUserPassword(passEncoded);
+            userService.updateUserr(userr);
+
+            try {
+                helper.setTo(userr.getUserName());
+                helper.setText(emailMessage, true);
+                helper.setSubject(emailSubject);
+                mailSender.send(mimeMessage);
+            } catch (MessagingException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 

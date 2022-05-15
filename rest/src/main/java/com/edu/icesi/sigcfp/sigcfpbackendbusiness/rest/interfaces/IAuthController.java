@@ -18,6 +18,8 @@ public interface IAuthController {
     public ResponseEntity<?> recoveryPassword(String username, String password);
 
     public ResponseEntity<?> changePassword(ChangeUserPassword changeUserPassword);
+
+    public ResponseEntity<?> sendEmailToTemporalPassword(String userName);
 }
 
 

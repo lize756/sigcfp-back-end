@@ -25,6 +25,8 @@ public interface IJWTService {
 
     public Userr getUserr(String token);
 
+    void sendEmailToTemporalPassword(String userName);
+
     public Collection<? extends GrantedAuthority> getRoles(String token) throws IOException;
 
     public String resolve(String token);
@@ -36,5 +38,8 @@ public interface IJWTService {
     public boolean validatePassword(String token, String password);
 
     public void updatePassword(String token, String password);
+
+
+
 
 }
