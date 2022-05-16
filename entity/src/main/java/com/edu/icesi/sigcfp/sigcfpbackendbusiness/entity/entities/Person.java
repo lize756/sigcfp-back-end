@@ -27,19 +27,19 @@ public class Person implements Serializable {
     @Column(name = "PERS_ADDRESS", length = 255, nullable = true)
     private String persAddress;
 
-    @Column(name = "PERS_DOCUMENT", length = 20)
+    @Column(name = "PERS_DOCUMENT", length = 20, nullable = true)
     private String persDocument;
 
-    @Column(name = "PERS_EMAIL", length = 255)
+    @Column(name = "PERS_EMAIL", length = 255, unique = true)
     private String persEmail;
 
-    @Column(name = "PERS_FIRST_NAME", length = 255)
+    @Column(name = "PERS_FIRST_NAME", length = 255, nullable = true)
     private String persFirstName;
 
-    @Column(name = "PERS_GENRE", length = 4)
+    @Column(name = "PERS_GENRE", length = 4, nullable = true)
     private String persGenre;
 
-    @Column(name = "PERS_LAST_NAME", length = 255)
+    @Column(name = "PERS_LAST_NAME", length = 255, nullable = true)
     private String persLastName;
 
     //bi-directional many-to-one association to Curriculum

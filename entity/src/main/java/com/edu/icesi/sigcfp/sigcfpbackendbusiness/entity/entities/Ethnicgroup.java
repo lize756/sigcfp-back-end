@@ -23,15 +23,15 @@ public class Ethnicgroup implements Serializable {
     @Column(name = "ETGR_ID", unique = true, nullable = false, precision = 10)
     private long etgrId;
 
-    @Column(name = "ETGR_DESCRIPTION", length = 255)
+    @Column(name = "ETGR_DESCRIPTION", length = 255, nullable = true)
     private String etgrDescription;
 
-    @Column(name = "ETGR_NAME", length = 255)
+    @Column(name = "ETGR_NAME", length = 255, nullable = true)
     private String etgrName;
 
     //bi-directional many-to-one association to Person
     @ManyToOne
-    @JoinColumn(name = "PERSON_PERS_ID")
+    @JoinColumn(name = "PERSON_PERS_ID", nullable = true)
     @JsonIgnore
     private Person person;
 

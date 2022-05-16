@@ -24,10 +24,10 @@ public class Rolee implements Serializable {
     @Column(name = "ROLE_ID", unique = true, nullable = false, precision = 10)
     private long roleId;
 
-    @Column(name = "ROLE_DESCRIPTION", length = 1000)
+    @Column(name = "ROLE_DESCRIPTION", length = 1000, nullable = true)
     private String roleDescription;
 
-    @Column(name = "ROLE_NAME", length = 255)
+    @Column(name = "ROLE_NAME", length = 255, nullable = true)
     private String roleName;
 
     //bi-directional many-to-one association to Permmission

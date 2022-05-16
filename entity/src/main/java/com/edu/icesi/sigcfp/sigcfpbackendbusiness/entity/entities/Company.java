@@ -23,37 +23,37 @@ public class Company implements Serializable {
     @Column(name = "COMP_ID", unique = true, nullable = false, precision = 10)
     private long compId;
 
-    @Column(name = "COMP_ADDRESS", length = 255)
+    @Column(name = "COMP_ADDRESS", length = 255, nullable = true)
     private String compAddress;
 
-    @Column(name = "COMP_ECO_ACTIV", length = 255)
+    @Column(name = "COMP_ECO_ACTIV", length = 255, nullable = true)
     private String compEcoActiv;
 
-    @Column(name = "COMP_EMAIL", length = 100)
+    @Column(name = "COMP_EMAIL", length = 100, nullable = true)
     private String compEmail;
 
-    @Column(name = "COMP_ICESI_STUD", length = 1)
+    @Column(name = "COMP_ICESI_STUD", length = 1, nullable = true)
     private String compIcesiStud;
 
-    @Column(name = "COMP_NAME", length = 255)
+    @Column(name = "COMP_NAME", length = 255, nullable = true)
     private String compName;
 
-    @Column(name = "COMP_NIT", length = 255)
+    @Column(name = "COMP_NIT", length = 255, nullable = true)
     private String compNit;
 
-    @Column(name = "COMP_TELEPHONE", length = 20)
+    @Column(name = "COMP_TELEPHONE", length = 20, nullable = true)
     private String compTelephone;
 
-    @Column(name = "COMP_TYPE", length = 255)
+    @Column(name = "COMP_TYPE", length = 255, nullable = true)
     private String compType;
 
-    @Column(name = "COMP_URL_ADDRESS", length = 255)
+    @Column(name = "COMP_URL_ADDRESS", length = 255, nullable = true)
     private String compUrlAddress;
 
-    @Column(name = "COMP_COUNTRY_NAME")
+    @Column(name = "COMP_COUNTRY_NAME", nullable = true)
     private String compCountryName;
 
-    @Column(name = "COMP_CITY_NAME")
+    @Column(name = "COMP_CITY_NAME", nullable = true)
     private String compCityName;
 
     //bi-directional many-to-one association to Userr

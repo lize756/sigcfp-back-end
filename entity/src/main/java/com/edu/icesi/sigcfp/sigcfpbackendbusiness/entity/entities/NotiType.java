@@ -23,12 +23,12 @@ public class NotiType implements Serializable {
     @Column(name = "NOTI_TYPE_ID", unique = true, nullable = false, precision = 10)
     private long notiTypeId;
 
-    @Column(name = "NOTI_TYPE_NAME", length = 255)
+    @Column(name = "NOTI_TYPE_NAME", length = 255, nullable = true)
     private String notiTypeName;
 
     //bi-directional many-to-one association to Noti
     @ManyToOne
-    @JoinColumn(name = "NOTI_NOTI_ID")
+    @JoinColumn(name = "NOTI_NOTI_ID", nullable = true)
     @JsonIgnore
     private Noti noti;
 

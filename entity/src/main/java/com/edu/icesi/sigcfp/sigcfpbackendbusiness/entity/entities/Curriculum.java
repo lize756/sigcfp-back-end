@@ -27,13 +27,13 @@ public class Curriculum implements Serializable {
     private long currId;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "CURR_CREATE_DATE")
+    @Column(name = "CURR_CREATE_DATE", nullable = true)
     private Date currCreateDate;
 
-    @Column(name = "CURR_EXPERIENCE", precision = 3)
+    @Column(name = "CURR_EXPERIENCE", precision = 3, nullable = true)
     private BigDecimal currExperience;
 
-    @Column(name = "CURR_SALARY", precision = 9)
+    @Column(name = "CURR_SALARY", precision = 9, nullable = true)
     private BigDecimal currSalary;
 
     //bi-directional many-to-one association to Academicstudy
@@ -57,19 +57,19 @@ public class Curriculum implements Serializable {
 
     //bi-directional many-to-one association to Company
     @ManyToOne
-    @JoinColumn(name = "COMPANY_COMP_ID")
+    @JoinColumn(name = "COMPANY_COMP_ID", nullable = true)
     @JsonIgnore
     private Company company;
 
     //bi-directional many-to-one association to CurriculumPdf
     @ManyToOne
-    @JoinColumn(name = "CURRICULUM_PDF_CU_PDF_ID")
+    @JoinColumn(name = "CURRICULUM_PDF_CU_PDF_ID", nullable = true)
     @JsonIgnore
     private CurriculumPdf curriculumPdf;
 
     //bi-directional many-to-one association to Person
     @ManyToOne
-    @JoinColumn(name = "PERSON_PERS_ID")
+    @JoinColumn(name = "PERSON_PERS_ID", nullable = true)
     @JsonIgnore
     private Person person;
 

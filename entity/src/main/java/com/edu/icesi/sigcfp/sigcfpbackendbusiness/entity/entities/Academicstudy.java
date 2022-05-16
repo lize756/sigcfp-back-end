@@ -25,34 +25,34 @@ public class Academicstudy implements Serializable {
     private long acadStudId;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "ACAD_STUD_END_DATE")
+    @Column(name = "ACAD_STUD_END_DATE", nullable = true)
     private Date acadStudEndDate;
 
-    @Column(name = "ACAD_STUD_INSTI", length = 255)
+    @Column(name = "ACAD_STUD_INSTI", length = 255, nullable = true)
     private String acadStudInsti;
 
-    @Column(name = "ACAD_STUD_LEVEL", length = 255)
+    @Column(name = "ACAD_STUD_LEVEL", length = 255, nullable = true)
     private String acadStudLevel;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "ACAD_STUD_START_DATE")
+    @Column(name = "ACAD_STUD_START_DATE", nullable = true)
     private Date acadStudStartDate;
 
-    @Column(name = "ACAD_STUD_STATUS", length = 10)
+    @Column(name = "ACAD_STUD_STATUS", length = 10, nullable = true)
     private String acadStudStatus;
 
-    @Column(name = "ACAD_STUD_TITULE", length = 255)
+    @Column(name = "ACAD_STUD_TITULE", length = 255, nullable = true)
     private String acadStudTitule;
 
 
     //bi-directional many-to-one association to Curriculum
     @ManyToOne
-    @JoinColumn(name = "CURRICULUM_CURR_ID")
+    @JoinColumn(name = "CURRICULUM_CURR_ID", nullable = true)
     @JsonIgnore
     private Curriculum curriculum;
-    @Column(name = "ACAD_COUNTRY_NAME")
+    @Column(name = "ACAD_COUNTRY_NAME", nullable = true)
     private String acadCountryName;
-    @Column(name = "ACAD_CITY_NAME")
+    @Column(name = "ACAD_CITY_NAME", nullable = true)
     private String acadCityName;
 
     public Academicstudy() {

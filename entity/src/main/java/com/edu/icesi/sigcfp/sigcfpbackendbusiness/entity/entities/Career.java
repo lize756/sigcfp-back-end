@@ -24,25 +24,25 @@ public class Career implements Serializable {
     @Column(name = "CARE_ID", unique = true, nullable = false, precision = 10)
     private long careId;
 
-    @Column(name = "CARE_DESCRIPTION", length = 1000)
+    @Column(name = "CARE_DESCRIPTION", length = 1000, nullable = true)
     private String careDescription;
 
-    @Column(name = "CARE_NAME", length = 255)
+    @Column(name = "CARE_NAME", length = 255, nullable = true)
     private String careName;
 
     @ManyToOne
-    @JoinColumn(name = "PERSON_PERS_ID")
+    @JoinColumn(name = "PERSON_PERS_ID", nullable = true)
     private Person person;
 
     //bi-directional many-to-one association to Faculty
     @ManyToOne
-    @JoinColumn(name = "FACULTY_FACU_ID")
+    @JoinColumn(name = "FACULTY_FACU_ID", nullable = true)
     //@JsonIgnore
     private Faculty faculty;
 
     //bi-directional many-to-one association to InternRequest
     @ManyToOne
-    @JoinColumn(name = "INTERN_REQUEST_INTE_REQU_ID")
+    @JoinColumn(name = "INTERN_REQUEST_INTE_REQU_ID", nullable = true)
     @JsonIgnore
     private InternRequest internRequest;
 

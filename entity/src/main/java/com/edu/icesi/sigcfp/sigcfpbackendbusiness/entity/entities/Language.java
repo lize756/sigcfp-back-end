@@ -23,15 +23,15 @@ public class Language implements Serializable {
     @Column(name = "LANGU_ID", unique = true, nullable = false, precision = 19)
     private long languId;
 
-    @Column(name = "LANGU_LEVEL", nullable = false, length = 255)
+    @Column(name = "LANGU_LEVEL", nullable = true, length = 255)
     private String languLevel;
 
-    @Column(name = "LANGU_NAME", nullable = false, length = 255)
+    @Column(name = "LANGU_NAME", nullable = true, length = 255)
     private String languName;
 
     //bi-directional many-to-one association to Person
     @ManyToOne
-    @JoinColumn(name = "PERSON_PERS_ID")
+    @JoinColumn(name = "PERSON_PERS_ID", nullable = true)
     @JsonIgnore
     private Person person;
 

@@ -26,14 +26,14 @@ public class Userr implements Serializable {
     @Column(name = "USER_NAME", length = 255, unique = true)
     private String userName;
 
-    @Column(name = "USER_PASSWORD", length = 1000)
+    @Column(name = "USER_PASSWORD", length = 1000, nullable = true)
     private String userPassword;
 
-    @Column(name = "ISENABLE", length = 2)
+    @Column(name = "ISENABLE", length = 2, nullable = true)
     private boolean isEnable;
 
     @OneToOne(optional = true)
-    @JoinColumn(name = "PERSON_PERS_ID")
+    @JoinColumn(name = "PERSON_PERS_ID", nullable = true)
     @NotFound(action = NotFoundAction.IGNORE)
     //@JsonIgnore
     private Person person;
@@ -43,13 +43,13 @@ public class Userr implements Serializable {
     //@JsonIgnore
     //private List<Rolee> rolees;
     @ManyToOne
-    @JoinColumn(name = "ROLE_ROLEE_ID")
+    @JoinColumn(name = "ROLE_ROLEE_ID", nullable = true)
     private Rolee rolee;
 
     //bi-directional many-to-one association to Company
     //@ManyToOne(fetch = FetchType.LAZY)
     @OneToOne()
-    @JoinColumn(name = "COMPANY_COMP_ID")
+    @JoinColumn(name = "COMPANY_COMP_ID", nullable = true)
     //@JsonIgnore
     private Company company;
 

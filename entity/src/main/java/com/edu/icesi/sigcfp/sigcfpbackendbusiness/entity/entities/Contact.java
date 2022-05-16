@@ -22,7 +22,7 @@ public class Contact implements Serializable {
     @Column(name = "CONT_ID", unique = true, nullable = false, precision = 10)
     private long contId;
 
-    @Column(name = "CONT_EMAIL", length = 255)
+    @Column(name = "CONT_EMAIL", length = 255, unique = true)
     private String contEmail;
 
     @Column(name = "CONT_NAME", length = 255)

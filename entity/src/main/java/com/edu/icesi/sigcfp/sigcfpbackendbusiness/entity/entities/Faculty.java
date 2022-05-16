@@ -24,10 +24,10 @@ public class Faculty implements Serializable {
     @Column(name = "FACU_ID", unique = true, nullable = false, precision = 10)
     private long facuId;
 
-    @Column(name = "FACU_DESCRIPTION", length = 1000)
+    @Column(name = "FACU_DESCRIPTION", length = 1000, nullable = true)
     private String facuDescription;
 
-    @Column(name = "FACU_NAME", length = 255)
+    @Column(name = "FACU_NAME", length = 255, nullable = true)
     private String facuName;
 
     //bi-directional many-to-one association to Career

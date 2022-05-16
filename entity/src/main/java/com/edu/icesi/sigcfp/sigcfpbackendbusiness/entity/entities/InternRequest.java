@@ -29,46 +29,46 @@ public class InternRequest implements Serializable {
     @Column(name = "INTE_REQU_ID", unique = true, nullable = false, precision = 10)
     private long inteRequId;
 
-    @Column(name = "INTE_REQU_BONDING_TYPE", length = 50)
+    @Column(name = "INTE_REQU_BONDING_TYPE", length = 50, nullable = true)
     private String inteRequBondingType;
 
     private String inteRequDetails;
-    @Column(name = "INTE_REQU_COMPETENCIES", length = 1000)
+    @Column(name = "INTE_REQU_COMPETENCIES", length = 1000, nullable = true)
     private String inteRequCompetencies;
 
 	//@Temporal(TemporalType.DATE)
     //@JsonFormat(pattern="dd/MM/yy")
-	@Column(name="INTE_REQU_CREATE")
+	@Column(name="INTE_REQU_CREATE", nullable = true)
 	private Date inteRequCreate;
 
-    @Column(name = "INTE_REQU_DEPARTMENT", length = 50)
+    @Column(name = "INTE_REQU_DEPARTMENT", length = 50, nullable = true)
     private String inteRequDepartment;
 
 
-    @Column(name = "INTE_REQU_DURATION", length = 15)
+    @Column(name = "INTE_REQU_DURATION", length = 15, nullable = true)
     private String inteRequDuration;
 
-    @Column(name = "INTE_REQU_FUNCTIONS", length = 1000)
+    @Column(name = "INTE_REQU_FUNCTIONS", length = 1000, nullable = true)
     private String inteRequFunctions;
 
-    @Column(name = "INTE_REQU_ISINPROCESS", length = 1)
+    @Column(name = "INTE_REQU_ISINPROCESS", length = 1, nullable = true)
     private String inteRequIsinprocess;
 
-    @Column(name = "INTE_REQU_NAME", nullable = false, length = 255)
+    @Column(name = "INTE_REQU_NAME", nullable = true, length = 255)
     private String inteRequName;
 
-    @Column(name = "INTE_REQU_NUMBER", precision = 5)
+    @Column(name = "INTE_REQU_NUMBER", precision = 5, nullable = true)
     private BigDecimal inteRequNumber;
 
-    @Column(name = "INTE_REQU_OTHER_BENEFITS", length = 1000)
+    @Column(name = "INTE_REQU_OTHER_BENEFITS", length = 1000, nullable = true)
     private String inteRequOtherBenefits;
 
-    @Column(name = "INTE_REQU_SALARY", precision = 9)
+    @Column(name = "INTE_REQU_SALARY", precision = 9,nullable = true)
     private BigDecimal inteRequSalary;
 
 	//@Temporal(TemporalType.DATE)
    // @JsonFormat(pattern="dd/MM/yy")
-	@Column(name="INTE_REQU_ST_DATE")
+	@Column(name="INTE_REQU_ST_DATE", nullable = true)
 	private Date inteRequStDate;
 
     //bi-directional many-to-many association to Career
@@ -87,7 +87,7 @@ public class InternRequest implements Serializable {
 
     //bi-directional many-to-one association to Company
     @ManyToOne
-    @JoinColumn(name = "COMPANY_COMP_ID")
+    @JoinColumn(name = "COMPANY_COMP_ID", nullable = true)
     //@JsonIgnore
     private Company company;
 
