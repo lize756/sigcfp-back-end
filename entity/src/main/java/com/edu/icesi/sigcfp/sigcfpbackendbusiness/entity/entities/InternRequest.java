@@ -1,11 +1,8 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -62,6 +59,12 @@ public class InternRequest implements Serializable {
 
     @Column(name = "INTE_REQU_OTHER_BENEFITS", length = 1000, nullable = true)
     private String inteRequOtherBenefits;
+    
+    @Column(name = "INTE_REQU_STATUS", length = 20, nullable = true)
+    private String inteRequStatus;
+
+    @Column(name = "INTE_REQU_LOCATION", length = 20, nullable = true)
+    private String inteRequLocation;
 
     @Column(name = "INTE_REQU_SALARY", precision = 9,nullable = true)
     private BigDecimal inteRequSalary;
@@ -234,5 +237,21 @@ public class InternRequest implements Serializable {
     public void setCompany(Company company) {
         this.company = company;
     }
+
+	public String getInteRequStatus() {
+		return inteRequStatus;
+	}
+
+	public void setInteRequStatus(String inteRequStatus) {
+		this.inteRequStatus = inteRequStatus;
+	}
+
+	public String getInteRequLocation() {
+		return inteRequLocation;
+	}
+
+	public void setInteRequLocation(String inteRequLocation) {
+		this.inteRequLocation = inteRequLocation;
+	}
 
 }

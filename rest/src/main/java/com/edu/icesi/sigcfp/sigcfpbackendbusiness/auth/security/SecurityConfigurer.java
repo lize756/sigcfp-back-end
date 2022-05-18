@@ -129,7 +129,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 // Accesos a las rutas de las solicitudes de practicantes
                 .antMatchers(HttpMethod.POST, "/api/internRequests/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), TypesOfRolees.ROLEE_COMPANY.toString()) // Solicitudes de practicante
                 .antMatchers(HttpMethod.GET, "/api/internRequests/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), TypesOfRolees.ROLEE_COMPANY.toString(), TypesOfRolees.ROLEE_DIRECTOR.toString(), TypesOfRolees.ROLEE_PROMOTION_COORDINATOR.toString()) // Solicitudes de practicante
-                .antMatchers(HttpMethod.PUT, "/api/internRequests/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), TypesOfRolees.ROLEE_COMPANY.toString()) // Solicitudes de practicante
+                .antMatchers(HttpMethod.PUT, "/api/internRequests/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), TypesOfRolees.ROLEE_COMPANY.toString(),TypesOfRolees.ROLEE_PROMOTION_COORDINATOR.toString()) // Solicitudes de practicante
                 .antMatchers(HttpMethod.DELETE, "/api/internRequests/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), TypesOfRolees.ROLEE_COMPANY.toString()) // Solicitudes de practicante
 
                 // Accesos a las rutas de los lenguajes
