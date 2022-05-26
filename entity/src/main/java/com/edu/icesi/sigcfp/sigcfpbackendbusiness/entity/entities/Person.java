@@ -1,8 +1,6 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -54,16 +52,15 @@ public class Person implements Serializable {
 	@Column(name = "PERS_DATE_OF_BIRTH", nullable = true)
 	private Date persDateOfBirth;
 
-	// bi-directional many-to-one association to Curriculum
-	@OneToMany(mappedBy = "person")
-	// @JsonIgnore
-	private List<Curriculum> curriculums;
 
-	// bi-directional many-to-one association to Curriculum
-	@ManyToOne
-	@JoinColumn(name = "CURRICULUM_CURR_ID")
-	@JsonIgnore
+	
+	 // bi-directional many-to-one association to Curriculum
+	@OneToOne()
+	@JoinColumn(name = "CURRICULUM_CURR_ID", nullable = true)
+	//@JsonIgnore
 	private Curriculum curriculum;
+	
+	
 
 	// bi-directional many-to-many association to Language
 	@ManyToMany
@@ -154,29 +151,7 @@ public class Person implements Serializable {
 	public void setPersLastName(String persLastName) {
 		this.persLastName = persLastName;
 	}
-
-	public List<Curriculum> getCurriculums() {
-		return this.curriculums;
-	}
-
-	public void setCurriculums(List<Curriculum> curriculums) {
-		this.curriculums = curriculums;
-	}
-
-	public Curriculum addCurriculum(Curriculum curriculum) {
-		getCurriculums().add(curriculum);
-		curriculum.setPerson(this);
-
-		return curriculum;
-	}
-
-	public Curriculum removeCurriculum(Curriculum curriculum) {
-		getCurriculums().remove(curriculum);
-		curriculum.setPerson(null);
-
-		return curriculum;
-	}
-
+	
 	public List<Career> getCareers() {
 		return careers;
 	}
