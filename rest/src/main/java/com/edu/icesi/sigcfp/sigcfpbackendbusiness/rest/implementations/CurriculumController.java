@@ -70,6 +70,7 @@ public class CurriculumController implements ICurriculumController {
     }
 
     @Override
+    @GetMapping()
     public ResponseEntity<List<Curriculum>> getCurriculums() {
         try {
             List<Curriculum> curriculumList = iCurriculumService.Curriculums();

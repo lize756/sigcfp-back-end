@@ -37,8 +37,8 @@ public class Curriculum implements Serializable {
     private String currIsLaborMobility;
     
     
-    @Column(name = "CURR_SALARY", precision = 9, nullable = true)
-    private BigDecimal currSalary;
+    @Column(name = "CURR_SALARY", length = 20, nullable = true)
+    private String currSalary;
     
     @Column(name="CURR_DESCRIPTION", length = 2000, nullable = true)
     private String currDescription;
@@ -60,7 +60,7 @@ public class Curriculum implements Serializable {
             @JoinColumn(name = "CAREER_CARE_ID", nullable = false)
     }
     )
-    @JsonIgnore
+    //@JsonIgnore
     private List<Career> careers;
 
     //bi-directional many-to-one association to Company
@@ -72,7 +72,7 @@ public class Curriculum implements Serializable {
     //bi-directional many-to-one association to CurriculumPdf
     @ManyToOne
     @JoinColumn(name = "CURRICULUM_PDF_CU_PDF_ID", nullable = true)
-    @JsonIgnore
+    //@JsonIgnore
     private CurriculumPdf curriculumPdf;
 
     //bi-directional many-to-one association to Person
@@ -83,7 +83,7 @@ public class Curriculum implements Serializable {
 
     //bi-directional many-to-one association to CurriculumPdf
     @OneToMany(mappedBy = "curriculum")
-    @JsonIgnore
+    //@JsonIgnore
     private List<CurriculumPdf> curriculumPdfs;
 
     //bi-directional many-to-one association to Person
@@ -118,11 +118,11 @@ public class Curriculum implements Serializable {
         this.currExperience = currExperience;
     }
 
-    public BigDecimal getCurrSalary() {
+    public String getCurrSalary() {
         return this.currSalary;
     }
 
-    public void setCurrSalary(BigDecimal currSalary) {
+    public void setCurrSalary(String currSalary) {
         this.currSalary = currSalary;
     }
 
