@@ -28,19 +28,9 @@ public class PersonController implements IPersonController {
 
 	@Override
 	@PostMapping("/add")
-	public ResponseEntity<Person> addPerson(@RequestBody Person person,
-			@RequestParam("img") MultipartFile multipartFile) {
+	public ResponseEntity<Person> addPerson(@RequestBody Person person) {
 		try {
 			Person _person = iPersonService.addPerson(person);
-			if (!multipartFile.isEmpty()) {
-				// String route = "/empleos/img-vacantes/"; // Linux/MAC
-				String route = "c:/empleos/img-vacantes/"; // Windows
-				String imgName = FileUtility.saveFile(multipartFile, route);
-				if (imgName != null) { // The image was upload
-					// Procesamos la variable nombreImagen
-					// vacante.setImagen(nombreImagen);
-				}
-			}
 			return new ResponseEntity<Person>(_person, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

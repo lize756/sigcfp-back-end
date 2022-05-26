@@ -74,7 +74,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
                 // Accesos a las rutas de las carreras
                 .antMatchers(HttpMethod.POST, "/api/careers/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Carreras
-                .antMatchers(HttpMethod.GET, "/api/careers/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), TypesOfRolees.ROLEE_COMPANY.toString()) // Carreras
+                .antMatchers(HttpMethod.GET, "/api/careers/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), TypesOfRolees.ROLEE_COMPANY.toString(), TypesOfRolees.ROLEE_GRADUATE.toString()) // Carreras
                 .antMatchers(HttpMethod.PUT, "/api/careers/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Carreras
                 .antMatchers(HttpMethod.DELETE, "/api/careers/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Carreras
 

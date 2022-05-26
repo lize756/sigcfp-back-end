@@ -17,7 +17,7 @@ public interface IPersonController {
 	 * @return a responseEntity that represent the whole HTTP response: status code,
 	 *         headers, and body.
 	 */
-	ResponseEntity<Person> addPerson(Person person, MultipartFile multipartFile);
+	ResponseEntity<Person> addPerson(Person person);
 
 	/**
 	 * Allow update a person.
