@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
-
 
 /**
  * The persistent class for the PERSON database table.
@@ -14,217 +14,279 @@ import java.util.List;
 @Entity
 @Table(name = "PERSON")
 @NamedQuery(name = "Person.findAll", query = "SELECT p FROM Person p")
-@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class Person implements Serializable {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @SequenceGenerator(name = "PERSON_PERSID_GENERATOR", allocationSize = 1, sequenceName = "PERSON_SEQ")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PERSON_PERSID_GENERATOR")
-    @Column(name = "PERS_ID", unique = true, nullable = false, precision = 10)
-    private long persId;
+	@Id
+	@SequenceGenerator(name = "PERSON_PERSID_GENERATOR", allocationSize = 1, sequenceName = "PERSON_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PERSON_PERSID_GENERATOR")
+	@Column(name = "PERS_ID", unique = true, nullable = false, precision = 10)
+	private long persId;
 
-    @Column(name = "PERS_ADDRESS", length = 255, nullable = true)
-    private String persAddress;
+	@Column(name = "PERS_ADDRESS", length = 255, nullable = true)
+	private String persAddress;
 
-    @Column(name = "PERS_DOCUMENT", length = 20, nullable = true)
-    private String persDocument;
+	@Column(name = "PERS_DOCUMENT_TYPE", length = 20, nullable = true)
+	private String persDocumentType;
 
-    @Column(name = "PERS_EMAIL", length = 255, unique = true)
-    private String persEmail;
+	@Column(name = "PERS_DOCUMENT", length = 20, nullable = true)
+	private String persDocument;
 
-    @Column(name = "PERS_FIRST_NAME", length = 255, nullable = true)
-    private String persFirstName;
+	@Column(name = "PERS_MARITAL_STATUS", length = 20, nullable = true)
+	private String persMaritalStatus;
 
-    @Column(name = "PERS_GENRE", length = 4, nullable = true)
-    private String persGenre;
+	@Column(name = "PERS_EMAIL", length = 255, unique = true)
+	private String persEmail;
 
-    @Column(name = "PERS_LAST_NAME", length = 255, nullable = true)
-    private String persLastName;
+	@Column(name = "PERS_FIRST_NAME", length = 255, nullable = true)
+	private String persFirstName;
 
-    //bi-directional many-to-one association to Curriculum
-    @OneToMany(mappedBy = "person")
-    //@JsonIgnore
-    private List<Curriculum> curriculums;
+	@Column(name = "PERS_GENRE", length = 4, nullable = true)
+	private String persGenre;
 
-    //bi-directional many-to-one association to Curriculum
-    @ManyToOne
-    @JoinColumn(name = "CURRICULUM_CURR_ID")
-    @JsonIgnore
-    private Curriculum curriculum;
+	@Column(name = "PERS_LAST_NAME", length = 255, nullable = true)
+	private String persLastName;
 
-    //bi-directional many-to-many association to Language
-    @ManyToMany
-    @JoinTable(
-            name = "PERS_LANGUAGE"
-            , joinColumns = {
-            @JoinColumn(name = "PERSON_PERS_ID", nullable = false)
-    }
-            , inverseJoinColumns = {
-            @JoinColumn(name = "LANGUAGE_LANGU_ID", nullable = false)
-    }
-    )
-    //@JsonIgnore
-    private List<Language> languages;
+	@Column(name = "PERS_PHONE", nullable = true)
+	private String persPhone;
 
+	@Column(name = "PERS_DATE_OF_BIRTH", nullable = true)
+	private Date persDateOfBirth;
 
-    @Column(name = "PERS_COUNTRY_NAME")
-    private String persCountryName;
+	// bi-directional many-to-one association to Curriculum
+	@OneToMany(mappedBy = "person")
+	// @JsonIgnore
+	private List<Curriculum> curriculums;
 
-    @Column(name = "PERS_CITY_NAME")
-    private String persCityName;
+	// bi-directional many-to-one association to Curriculum
+	@ManyToOne
+	@JoinColumn(name = "CURRICULUM_CURR_ID")
+	@JsonIgnore
+	private Curriculum curriculum;
 
-    //@OneToMany(mappedBy = "person")
-    @ManyToMany
-    @JoinTable(
-            name = "PERS_CAREER"
-            , joinColumns = {
-            @JoinColumn(name = "PERSON_PERS_ID", nullable = false)
-    }
-            , inverseJoinColumns = {
-            @JoinColumn(name = "CAREER_CARE_ID", nullable = false)
-    }
-    )
-    //@JsonIgnore
-    private List<Career> careers;
+	// bi-directional many-to-many association to Language
+	@ManyToMany
+	@JoinTable(name = "PERS_LANGUAGE", joinColumns = {
+			@JoinColumn(name = "PERSON_PERS_ID", nullable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "LANGUAGE_LANGU_ID", nullable = false) })
+	// @JsonIgnore
+	private List<Language> languages;
 
+	@Column(name = "PERS_AGE", length = 5, nullable = true)
+	private String persAge;
 
-    public Person() {
-    }
+	@Column(name = "PERS_ETHNIC_GROUP", length = 50, nullable = true)
+	private String persEthnicGroup;
 
-    public long getPersId() {
-        return this.persId;
-    }
+	@Column(name = "PERS_IS_DISABILITY", length = 5, nullable = true)
+	private String persIsDisability;
 
-    public void setPersId(long persId) {
-        this.persId = persId;
-    }
+	@Column(name = "PERS_COUNTRY_NAME")
+	private String persCountryName;
 
-    public String getPersAddress() {
-        return this.persAddress;
-    }
+	@Column(name = "PERS_CITY_NAME")
+	private String persCityName;
 
-    public void setPersAddress(String persAddress) {
-        this.persAddress = persAddress;
-    }
+	// @OneToMany(mappedBy = "person")
+	@ManyToMany
+	@JoinTable(name = "PERS_CAREER", joinColumns = {
+			@JoinColumn(name = "PERSON_PERS_ID", nullable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "CAREER_CARE_ID", nullable = false) })
+	// @JsonIgnore
+	private List<Career> careers;
 
-    public String getPersDocument() {
-        return this.persDocument;
-    }
+	public Person() {
+	}
 
-    public void setPersDocument(String persDocument) {
-        this.persDocument = persDocument;
-    }
+	public long getPersId() {
+		return this.persId;
+	}
 
-    public String getPersEmail() {
-        return this.persEmail;
-    }
+	public void setPersId(long persId) {
+		this.persId = persId;
+	}
 
-    public void setPersEmail(String persEmail) {
-        this.persEmail = persEmail;
-    }
+	public String getPersAddress() {
+		return this.persAddress;
+	}
 
-    public String getPersFirstName() {
-        return this.persFirstName;
-    }
+	public void setPersAddress(String persAddress) {
+		this.persAddress = persAddress;
+	}
 
-    public void setPersFirstName(String persFirstName) {
-        this.persFirstName = persFirstName;
-    }
+	public String getPersDocument() {
+		return this.persDocument;
+	}
 
-    public String getPersGenre() {
-        return this.persGenre;
-    }
+	public void setPersDocument(String persDocument) {
+		this.persDocument = persDocument;
+	}
 
-    public void setPersGenre(String persGenre) {
-        this.persGenre = persGenre;
-    }
+	public String getPersEmail() {
+		return this.persEmail;
+	}
 
-    public String getPersLastName() {
-        return this.persLastName;
-    }
+	public void setPersEmail(String persEmail) {
+		this.persEmail = persEmail;
+	}
 
-    public void setPersLastName(String persLastName) {
-        this.persLastName = persLastName;
-    }
+	public String getPersFirstName() {
+		return this.persFirstName;
+	}
 
-    public List<Curriculum> getCurriculums() {
-        return this.curriculums;
-    }
+	public void setPersFirstName(String persFirstName) {
+		this.persFirstName = persFirstName;
+	}
 
-    public void setCurriculums(List<Curriculum> curriculums) {
-        this.curriculums = curriculums;
-    }
+	public String getPersGenre() {
+		return this.persGenre;
+	}
 
-    public Curriculum addCurriculum(Curriculum curriculum) {
-        getCurriculums().add(curriculum);
-        curriculum.setPerson(this);
+	public void setPersGenre(String persGenre) {
+		this.persGenre = persGenre;
+	}
 
-        return curriculum;
-    }
+	public String getPersLastName() {
+		return this.persLastName;
+	}
 
-    public Curriculum removeCurriculum(Curriculum curriculum) {
-        getCurriculums().remove(curriculum);
-        curriculum.setPerson(null);
+	public void setPersLastName(String persLastName) {
+		this.persLastName = persLastName;
+	}
 
-        return curriculum;
-    }
+	public List<Curriculum> getCurriculums() {
+		return this.curriculums;
+	}
 
-    public List<Career> getCareers() {
-        return careers;
-    }
+	public void setCurriculums(List<Curriculum> curriculums) {
+		this.curriculums = curriculums;
+	}
 
-    public void setCareers(List<Career> careers) {
-        this.careers = careers;
-    }
+	public Curriculum addCurriculum(Curriculum curriculum) {
+		getCurriculums().add(curriculum);
+		curriculum.setPerson(this);
 
+		return curriculum;
+	}
 
-    public Career addCareer(Career career) {
-        getCareers().add(career);
-        career.setPerson(this);
-        return career;
-    }
+	public Curriculum removeCurriculum(Curriculum curriculum) {
+		getCurriculums().remove(curriculum);
+		curriculum.setPerson(null);
 
-    public Career removeCareer(Career career) {
-        getCareers().remove(career);
-        career.setPerson(null);
-        return career;
-    }
+		return curriculum;
+	}
 
+	public List<Career> getCareers() {
+		return careers;
+	}
 
-    public Curriculum getCurriculum() {
-        return curriculum;
-    }
+	public void setCareers(List<Career> careers) {
+		this.careers = careers;
+	}
 
-    public void setCurriculum(Curriculum curriculum) {
-        this.curriculum = curriculum;
-    }
+	public Career addCareer(Career career) {
+		getCareers().add(career);
+		career.setPerson(this);
+		return career;
+	}
 
-    public List<Language> getLanguages() {
-        return languages;
-    }
+	public Career removeCareer(Career career) {
+		getCareers().remove(career);
+		career.setPerson(null);
+		return career;
+	}
 
-    public void setLanguages(List<Language> languages) {
-        this.languages = languages;
-    }
+	public Curriculum getCurriculum() {
+		return curriculum;
+	}
 
-    public String getPersCountryName() {
-        return persCountryName;
-    }
+	public void setCurriculum(Curriculum curriculum) {
+		this.curriculum = curriculum;
+	}
 
-    public void setPersCountryName(String persCountryName) {
-        this.persCountryName = persCountryName;
-    }
+	public List<Language> getLanguages() {
+		return languages;
+	}
 
-    public String getPersCityName() {
-        return persCityName;
-    }
+	public void setLanguages(List<Language> languages) {
+		this.languages = languages;
+	}
 
-    public void setPersCityName(String persCityName) {
-        this.persCityName = persCityName;
-    }
+	public String getPersCountryName() {
+		return persCountryName;
+	}
 
+	public void setPersCountryName(String persCountryName) {
+		this.persCountryName = persCountryName;
+	}
 
+	public String getPersCityName() {
+		return persCityName;
+	}
 
+	public void setPersCityName(String persCityName) {
+		this.persCityName = persCityName;
+	}
+
+	public String getPersAge() {
+		return persAge;
+	}
+
+	public void setPersAge(String persAge) {
+		this.persAge = persAge;
+	}
+
+	public String isPersIsDisability() {
+		return persIsDisability;
+	}
+
+	public void setPersIsDisability(String persIsDisability) {
+		this.persIsDisability = persIsDisability;
+	}
+
+	public String getPersEthnicGroup() {
+		return persEthnicGroup;
+	}
+
+	public void setPersEthnicGroup(String persEthnicGroup) {
+		this.persEthnicGroup = persEthnicGroup;
+	}
+
+	public String getPersPhone() {
+		return persPhone;
+	}
+
+	public Date getPersDateOfBirth() {
+		return persDateOfBirth;
+	}
+
+	public String getPersIsDisability() {
+		return persIsDisability;
+	}
+
+	public void setPersPhone(String persPhone) {
+		this.persPhone = persPhone;
+	}
+
+	public void setPersDateOfBirth(Date persDateOfBirth) {
+		this.persDateOfBirth = persDateOfBirth;
+	}
+
+	public String getPersDocumentType() {
+		return persDocumentType;
+	}
+
+	public String getPersMaritalStatus() {
+		return persMaritalStatus;
+	}
+
+	public void setPersDocumentType(String persDocumentType) {
+		this.persDocumentType = persDocumentType;
+	}
+
+	public void setPersMaritalStatus(String persMaritalStatus) {
+		this.persMaritalStatus = persMaritalStatus;
+	}
 
 }

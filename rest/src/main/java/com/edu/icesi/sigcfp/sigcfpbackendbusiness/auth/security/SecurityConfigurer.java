@@ -140,7 +140,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
                 // Accesos a las rutas de las personas
                 .antMatchers(HttpMethod.POST, "/api/persons/**").permitAll() // Personas
-                .antMatchers(HttpMethod.GET, "/api/persons/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), TypesOfRolees.ROLEE_PROMOTION_COORDINATOR.toString(), TypesOfRolees.ROLEE_DIRECTOR.toString()) // Personas
+                .antMatchers(HttpMethod.GET, "/api/persons/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), TypesOfRolees.ROLEE_PROMOTION_COORDINATOR.toString(), TypesOfRolees.ROLEE_DIRECTOR.toString(), TypesOfRolees.ROLEE_GRADUATE.toString()) // Personas
                 .antMatchers(HttpMethod.PUT, "/api/persons/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), TypesOfRolees.ROLEE_DIRECTOR.toString(), TypesOfRolees.ROLEE_PROMOTION_COORDINATOR.toString(), TypesOfRolees.ROLEE_GRADUATE.toString()) // Personas
                 .antMatchers(HttpMethod.DELETE, "/api/persons/**").hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Personas
 
