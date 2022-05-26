@@ -98,7 +98,6 @@ public class PersonController implements IPersonController {
 				person.setLanguages(previousPerson.getLanguages());
 				person.setCurriculum(previousPerson.getCurriculum());
 				person.setCareers(previousPerson.getCareers());
-				person.setEthnicgroups(previousPerson.getEthnicgroups());
 				return new ResponseEntity<>(iPersonService.updatePerson(person), HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);

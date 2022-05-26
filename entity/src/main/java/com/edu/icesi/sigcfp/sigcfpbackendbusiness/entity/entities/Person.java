@@ -47,12 +47,6 @@ public class Person implements Serializable {
     //@JsonIgnore
     private List<Curriculum> curriculums;
 
-    //bi-directional many-to-one association to Ethnicgroup
-    @OneToMany(mappedBy = "person")
-    //@JsonIgnore
-    private List<Ethnicgroup> ethnicgroups;
-
-
     //bi-directional many-to-one association to Curriculum
     @ManyToOne
     @JoinColumn(name = "CURRICULUM_CURR_ID")
@@ -174,28 +168,6 @@ public class Person implements Serializable {
         curriculum.setPerson(null);
 
         return curriculum;
-    }
-
-    public List<Ethnicgroup> getEthnicgroups() {
-        return this.ethnicgroups;
-    }
-
-    public void setEthnicgroups(List<Ethnicgroup> ethnicgroups) {
-        this.ethnicgroups = ethnicgroups;
-    }
-
-    public Ethnicgroup addEthnicgroup(Ethnicgroup ethnicgroup) {
-        getEthnicgroups().add(ethnicgroup);
-        ethnicgroup.setPerson(this);
-
-        return ethnicgroup;
-    }
-
-    public Ethnicgroup removeEthnicgroup(Ethnicgroup ethnicgroup) {
-        getEthnicgroups().remove(ethnicgroup);
-        ethnicgroup.setPerson(null);
-
-        return ethnicgroup;
     }
 
     public List<Career> getCareers() {
