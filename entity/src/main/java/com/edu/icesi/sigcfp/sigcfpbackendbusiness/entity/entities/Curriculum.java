@@ -33,8 +33,16 @@ public class Curriculum implements Serializable {
     @Column(name = "CURR_EXPERIENCE", precision = 3, nullable = true)
     private BigDecimal currExperience;
 
+	@Column(name = "CURR_IS_LABOR_MOBILITY", length = 5, nullable = true)
+    private String currIsLaborMobility;
+    
+    
     @Column(name = "CURR_SALARY", precision = 9, nullable = true)
     private BigDecimal currSalary;
+    
+    @Column(name="CURR_DESCRIPTION", length = 2000, nullable = true)
+    private String currDescription;
+    
 
     //bi-directional many-to-one association to Academicstudy
     @OneToMany(mappedBy = "curriculum")
@@ -172,7 +180,23 @@ public class Curriculum implements Serializable {
         this.person = person;
     }
 
-    public List<CurriculumPdf> getCurriculumPdfs() {
+    public String getCurrDescription() {
+		return currDescription;
+	}
+
+	public void setCurrDescription(String currDescription) {
+		this.currDescription = currDescription;
+	}
+
+	public String getCurrIsLaborMobility() {
+		return currIsLaborMobility;
+	}
+
+	public void setCurrIsLaborMobility(String currIsLaborMobility) {
+		this.currIsLaborMobility = currIsLaborMobility;
+	}
+
+	public List<CurriculumPdf> getCurriculumPdfs() {
         return this.curriculumPdfs;
     }
 
