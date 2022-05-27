@@ -63,4 +63,10 @@ public class AcademicstudyService implements IAcademicstudyService {
     }
 
 
+	@Override
+	public List<Academicstudy> addAcademicStudies(List<Academicstudy> academicstudies) {
+		return iAcademicstudyRepo.saveAll(academicstudies);
+	}
+
+
 }

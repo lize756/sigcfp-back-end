@@ -1,8 +1,11 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.rest.interfaces;
 
 import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Academicstudy;
+import com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities.Contact;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -17,6 +20,14 @@ public interface IAcademicstudyController {
      */
     ResponseEntity<Academicstudy> addAcademicstudy(Academicstudy academicstudy);
 
+    /**
+     * Allows to added various elements to the database.
+     *
+     * @return a responseEntity that represent the whole HTTP response: status code,
+     * headers, and body.
+     */
+    ResponseEntity<List<Academicstudy>> addAcademicStudies(List<Academicstudy> academicstudies);
+    
     /**
      * Allow update an academy study.
      *
@@ -47,5 +58,8 @@ public interface IAcademicstudyController {
      * @return a responseEntity that represent the whole HTTP response: status code, headers, and body.
      */
     ResponseEntity<List<Academicstudy>> getAcademicstudies();
+    
+    
+    
 
 }

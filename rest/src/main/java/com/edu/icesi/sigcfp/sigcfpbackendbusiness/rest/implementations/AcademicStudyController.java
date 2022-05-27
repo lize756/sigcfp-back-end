@@ -11,79 +11,90 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-
 @RestController()
 @RequestMapping("/api/academicStudies")
 @CrossOrigin(origins = "*")
 //@PreAuthorize("")
 public class AcademicStudyController implements IAcademicstudyController {
 
-    private IAcademicstudyService iAcademicstudyService;
+	private IAcademicstudyService iAcademicstudyService;
 
-    @Autowired
-    public AcademicStudyController(IAcademicstudyService iAcademicstudyService) {
-        this.iAcademicstudyService = iAcademicstudyService;
-    }
+	@Autowired
+	public AcademicStudyController(IAcademicstudyService iAcademicstudyService) {
+		this.iAcademicstudyService = iAcademicstudyService;
+	}
 
-    @Override
-    @PostMapping("/add")
-    public ResponseEntity<Academicstudy> addAcademicstudy(@RequestBody Academicstudy academicstudy) {
-        try {
-            Academicstudy _acAcademicstudy = iAcademicstudyService.addAcademicstudy(academicstudy);
-            return new ResponseEntity<Academicstudy>(_acAcademicstudy, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+	@Override
+	@PostMapping("/add")
+	public ResponseEntity<Academicstudy> addAcademicstudy(@RequestBody Academicstudy academicstudy) {
+		try {
+			Academicstudy _acAcademicstudy = iAcademicstudyService.addAcademicstudy(academicstudy);
+			return new ResponseEntity<Academicstudy>(_acAcademicstudy, HttpStatus.CREATED);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
-    @Override
-    @PutMapping("/update/{acadStudId}")
-    public ResponseEntity<Academicstudy> updateAcademicstudy(@PathVariable("acadStudId") long acadStudId,
-                                                             @RequestBody Academicstudy academicstudy) {
-        Optional<Academicstudy> academicstudyOpt = Optional.of(iAcademicstudyService.searchAcademicstudy(acadStudId));
-        if (academicstudyOpt.isPresent()) {
-            return new ResponseEntity<>(iAcademicstudyService.updateAcademicstudy(academicstudy), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+	@Override
+	@PostMapping("/addAcademicStudies")
+	public ResponseEntity<List<Academicstudy>> addAcademicStudies(@RequestBody List<Academicstudy> academicstudies) {
+		try {
+			List<Academicstudy> _academicstudies = iAcademicstudyService.addAcademicStudies(academicstudies);
+			return new ResponseEntity<List<Academicstudy>>(_academicstudies, HttpStatus.CREATED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
-    @Override
-    @GetMapping("/{acadStudId}")
-    public ResponseEntity<Academicstudy> getAcademicstudy(@PathVariable("acadStudId") long acadStudId) {
+	@Override
+	@PutMapping("/update/{acadStudId}")
+	public ResponseEntity<Academicstudy> updateAcademicstudy(@PathVariable("acadStudId") long acadStudId,
+			@RequestBody Academicstudy academicstudy) {
+		Optional<Academicstudy> academicstudyOpt = Optional.of(iAcademicstudyService.searchAcademicstudy(acadStudId));
+		if (academicstudyOpt.isPresent()) {
+			return new ResponseEntity<>(iAcademicstudyService.updateAcademicstudy(academicstudy), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 
-        Optional<Academicstudy> academicstudyOpt = Optional.of(iAcademicstudyService.searchAcademicstudy(acadStudId));
-        if (academicstudyOpt.isPresent()) {
-            return new ResponseEntity<>(academicstudyOpt.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+	@Override
+	@GetMapping("/{acadStudId}")
+	public ResponseEntity<Academicstudy> getAcademicstudy(@PathVariable("acadStudId") long acadStudId) {
 
-    @Override
-    @DeleteMapping("/{acadStudId}")
-    public ResponseEntity<HttpStatus> deleteAcademicstudy(@PathVariable("acadStudId") long acadStudId) {
-        try {
-            iAcademicstudyService.deleteAcademicstudy(acadStudId);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+		Optional<Academicstudy> academicstudyOpt = Optional.of(iAcademicstudyService.searchAcademicstudy(acadStudId));
+		if (academicstudyOpt.isPresent()) {
+			return new ResponseEntity<>(academicstudyOpt.get(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 
-    @Override
-    @GetMapping()
-    public ResponseEntity<List<Academicstudy>> getAcademicstudies() {
-        try {
-            List<Academicstudy> academicstudies = iAcademicstudyService.academicstudies();
-            if (academicstudies.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<>(academicstudies, HttpStatus.OK);
+	@Override
+	@DeleteMapping("/{acadStudId}")
+	public ResponseEntity<HttpStatus> deleteAcademicstudy(@PathVariable("acadStudId") long acadStudId) {
+		try {
+			iAcademicstudyService.deleteAcademicstudy(acadStudId);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+	@Override
+	@GetMapping()
+	public ResponseEntity<List<Academicstudy>> getAcademicstudies() {
+		try {
+			List<Academicstudy> academicstudies = iAcademicstudyService.academicstudies();
+			if (academicstudies.isEmpty()) {
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
+			return new ResponseEntity<>(academicstudies, HttpStatus.OK);
+
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
 }
