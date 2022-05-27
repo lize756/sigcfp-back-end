@@ -62,7 +62,11 @@ public interface IPersonController {
      */
     ResponseEntity<List<Person>> getPersons();
 
-
+    /**
+     * This method allow upload a file in the system and save the file name in the database
+     * @param multipartFile correspond to file uploaded
+     * @return respond 
+     */
     ResponseEntity<String> uploadFile(MultipartFile multipartFile);
 
 }

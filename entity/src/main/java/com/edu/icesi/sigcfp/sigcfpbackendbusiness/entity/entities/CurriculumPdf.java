@@ -24,8 +24,8 @@ public class CurriculumPdf implements Serializable {
     @Column(name = "CU_PDF_ID", unique = true, nullable = false, precision = 10)
     private long cuPdfId;
 
-    @Column(name = "CU_PDF_FILE", length = 1000)
-    private String cuPdfFile;
+    @Column(name = "CU_PDF_NAME", length = 1000)
+    private String cuPdfName;
 
     //bi-directional many-to-one association to Curriculum
     @OneToMany(mappedBy = "curriculumPdf")
@@ -49,13 +49,6 @@ public class CurriculumPdf implements Serializable {
         this.cuPdfId = cuPdfId;
     }
 
-    public String getCuPdfFile() {
-        return this.cuPdfFile;
-    }
-
-    public void setCuPdfFile(String cuPdfFile) {
-        this.cuPdfFile = cuPdfFile;
-    }
 
     public List<Curriculum> getCurriculums() {
         return this.curriculums;
@@ -75,11 +68,18 @@ public class CurriculumPdf implements Serializable {
     public Curriculum removeCurriculum(Curriculum curriculum) {
         getCurriculums().remove(curriculum);
         curriculum.setCurriculumPdf(null);
-
         return curriculum;
     }
 
-    public Curriculum getCurriculum() {
+    public String getCuPdfName() {
+		return cuPdfName;
+	}
+
+	public void setCuPdfName(String cuPdfName) {
+		this.cuPdfName = cuPdfName;
+	}
+
+	public Curriculum getCurriculum() {
         return this.curriculum;
     }
 

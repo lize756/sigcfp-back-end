@@ -80,7 +80,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
                 // Accesos a las rutas de los estudios
                 .antMatchers(HttpMethod.POST, "/api/academicStudies/**")
-                .hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Estudios
+                .hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(),TypesOfRolees.ROLEE_GRADUATE.toString()) // Estudios
                 .antMatchers(HttpMethod.GET, "/api/academicStudies/**").permitAll() // Estudios
                 .antMatchers(HttpMethod.PUT, "/api/academicStudies/**")
                 .hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Estudios
@@ -123,7 +123,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
                 // Accesos a las rutas de los curriculums
                 .antMatchers(HttpMethod.POST, "/api/curriculums/**")
-                .hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), "ROLEE_GRADUATE") // Curriculums
+                .hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), TypesOfRolees.ROLEE_GRADUATE.toString()) // Curriculums
                 .antMatchers(HttpMethod.GET, "/api/curriculums/**")
                 .hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), TypesOfRolees.ROLEE_COMPANY.toString(), TypesOfRolees.ROLEE_GRADUATE.toString()) // Curriculums
                 .antMatchers(HttpMethod.PUT, "/api/curriculums/**")
@@ -134,27 +134,19 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
                 // Accesos a las rutas de los PDFs de los curriculums
                 .antMatchers(HttpMethod.POST, "/api/curriculumPdfs/**")
-                .hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), "ROLEE_GRADUATE") // PDF de
+                .hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), TypesOfRolees.ROLEE_GRADUATE.toString()) // PDF de
                 // curriculums
                 .antMatchers(HttpMethod.GET, "/api/curriculumPdfs/**")
-                .hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), "ROLEE_GRADUATE") // PDF de
+                .hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), TypesOfRolees.ROLEE_GRADUATE.toString()) // PDF de
                 // curriculums
                 .antMatchers(HttpMethod.PUT, "/api/curriculumPdfs/**")
-                .hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), "ROLEE_GRADUATE") // PDF de
+                .hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), TypesOfRolees.ROLEE_GRADUATE.toString()) // PDF de
                 // curriculums
                 .antMatchers(HttpMethod.DELETE, "/api/curriculumPdfs/**")
-                .hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), "ROLEE_GRADUATE") // PDF de
+                .hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(), TypesOfRolees.ROLEE_GRADUATE.toString()) // PDF de
                 // curriculums
 
-                // Accesos a las rutas de los grupos étnicos
-                .antMatchers(HttpMethod.POST, "/api/ethnicGroups/**")
-                .hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Grupos étnicos
-                .antMatchers(HttpMethod.GET, "/api/ethnicGroups/**")
-                .hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Grupos étnicos
-                .antMatchers(HttpMethod.PUT, "/api/ethnicGroups/**")
-                .hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Grupos étnicos
-                .antMatchers(HttpMethod.DELETE, "/api/ethnicGroups/**")
-                .hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Grupos étnicos
+    
 
                 // Accesos a las rutas de las facultades
                 .antMatchers(HttpMethod.POST, "/api/faculties/**")
@@ -185,7 +177,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
                 // Accesos a las rutas de los lenguajes
                 .antMatchers(HttpMethod.POST, "/api/languages/**")
-                .hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Lenguajes
+                .hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString(),TypesOfRolees.ROLEE_GRADUATE.toString()) // Lenguajes
                 .antMatchers(HttpMethod.GET, "/api/languages/**")
                 .hasAnyAuthority(TypesOfRolees.ROLEE_LOCATION_COORDINATOR.toString()) // Lenguajes
                 .antMatchers(HttpMethod.PUT, "/api/languages/**")
