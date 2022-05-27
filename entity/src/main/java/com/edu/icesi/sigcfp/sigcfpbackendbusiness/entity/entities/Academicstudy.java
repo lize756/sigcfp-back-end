@@ -48,7 +48,7 @@ public class Academicstudy implements Serializable {
     //bi-directional many-to-one association to Curriculum
     @ManyToOne
     @JoinColumn(name = "CURRICULUM_CURR_ID", nullable = true)
-    //@JsonIgnore
+    @JsonIgnore
     private Curriculum curriculum;
     @Column(name = "ACAD_COUNTRY_NAME", nullable = true)
     private String acadCountryName;
