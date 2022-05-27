@@ -50,7 +50,7 @@ class CurriculumServiceTest {
 
         Curriculum curriculum = new Curriculum();
         curriculum.setCurrId(CURR_ID);
-        curriculum.setCurrSalary(new BigDecimal(1200000));
+        curriculum.setCurrSalary(String.valueOf(new BigDecimal(1200000)));
         curriculum.setCurrExperience(new BigDecimal(2));
 
         Mockito.when(iCurriculumRepo.save(curriculum)).thenReturn(curriculum);
@@ -68,7 +68,7 @@ class CurriculumServiceTest {
 
         Curriculum curriculum = new Curriculum();
         curriculum.setCurrId(CURR_ID);
-        curriculum.setCurrSalary(new BigDecimal(1200000));
+        curriculum.setCurrSalary(String.valueOf(new BigDecimal(1200000)));
         curriculum.setCurrExperience(new BigDecimal(2));
 
         Mockito.when(iCurriculumRepo.getById(CURR_ID)).thenReturn(curriculum);
@@ -90,7 +90,7 @@ class CurriculumServiceTest {
 
         Curriculum curriculum = new Curriculum();
         curriculum.setCurrId(CURR_ID);
-        curriculum.setCurrSalary(new BigDecimal(1200000));
+        curriculum.setCurrSalary(String.valueOf(new BigDecimal(1200000)));
         curriculum.setCurrExperience(new BigDecimal(2));
 
         Mockito.when(iCurriculumRepo.existsById(CURR_ID)).thenReturn(true);
@@ -109,7 +109,7 @@ class CurriculumServiceTest {
 
         Curriculum curriculum = new Curriculum();
         curriculum.setCurrId(CURR_ID);
-        curriculum.setCurrSalary(new BigDecimal(1200000));
+        curriculum.setCurrSalary(String.valueOf(new BigDecimal(1200000)));
         curriculum.setCurrExperience(new BigDecimal(2));
 
         Mockito.when(iCurriculumRepo.getById(CURR_ID)).thenReturn(curriculum);
@@ -125,12 +125,12 @@ class CurriculumServiceTest {
 
         Curriculum curriculum1 = new Curriculum();
         curriculum1.setCurrId(859);
-        curriculum1.setCurrSalary(new BigDecimal(1200000));
+        curriculum1.setCurrSalary(String.valueOf(new BigDecimal(1200000)));
         curriculum1.setCurrExperience(new BigDecimal(2));
 
         Curriculum curriculum2 = new Curriculum();
         curriculum2.setCurrId(969);
-        curriculum2.setCurrSalary(new BigDecimal(1200000));
+        curriculum2.setCurrSalary(String.valueOf(new BigDecimal(1200000)));
         curriculum2.setCurrExperience(new BigDecimal(2));
 
         List<Curriculum> curriculumList = new ArrayList<>();
