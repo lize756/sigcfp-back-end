@@ -63,4 +63,10 @@ public class LanguageService implements ILanguageService {
     public List<Language> languages() {
         return iLanguageRepo.findAll();
     }
+
+	@Override
+	@Transactional
+	public List<Language> addLanguages(List<Language> languages) {
+		return iLanguageRepo.saveAll(languages);
+	}
 }

@@ -15,4 +15,7 @@ public interface ILanguageService {
     Language deleteLanguage(long languId);
 
     List<Language> languages();
+   
+	List<Language> addLanguages( List<Language> languages);
+
 }

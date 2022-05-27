@@ -16,6 +16,17 @@ public interface ILanguageController {
      */
     ResponseEntity<Language> addLanguage(Language language);
 
+    
+    /**
+     * Allows to added various elements to the database.
+     *
+     * @return a responseEntity that represent the whole HTTP response: status code,
+     * headers, and body.
+     */
+    ResponseEntity<List<Language>> addLanguages(List<Language> languages);
+    
+    
+    
     /**
      * Allow update a language.
      *
