@@ -9,7 +9,6 @@ import com.edu.icesi.sigcfp.sigcfpbackendbusiness.persistence.repositories.inter
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -24,13 +23,11 @@ import java.util.List;
 @Service
 public class NotiService implements INotiService {
 
+    public final static long START_PERIOD = 1L;
+    public final static long END_PERIOD = 2L;
     private static final Logger LOGGER = LoggerFactory.getLogger(NotiService.class);
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final String TIME_ZONE = "America/Bogota";
-
-    public final static long START_PERIOD = 1L;
-    public final static long END_PERIOD = 2L;
-
     @Autowired
     private JavaMailSender mailSender;
     @Autowired
@@ -194,8 +191,6 @@ public class NotiService implements INotiService {
             }
         }
     }
-
-
 
 
 }

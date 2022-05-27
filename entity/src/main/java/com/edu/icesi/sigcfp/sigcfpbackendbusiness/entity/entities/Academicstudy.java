@@ -115,10 +115,6 @@ public class Academicstudy implements Serializable {
         this.acadStudTitule = acadStudTitule;
     }
 
-    public void setAcadCountryName(String acadCountryName) {
-        this.acadCountryName = acadCountryName;
-    }
-
     public String getAcadCityName() {
         return acadCityName;
     }
@@ -135,9 +131,12 @@ public class Academicstudy implements Serializable {
         this.curriculum = curriculum;
     }
 
+    public String getAcadCountryName() {
+        return acadCountryName;
+    }
 
-	public String getAcadCountryName() {
-		return acadCountryName;
-	}
+    public void setAcadCountryName(String acadCountryName) {
+        this.acadCountryName = acadCountryName;
+    }
 
 }
