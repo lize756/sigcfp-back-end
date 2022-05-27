@@ -142,7 +142,6 @@ public class JWTService implements IJWTService {
         return false;
     }
 
-
     @Override
     public void updatePassword(String userName, String password) {
         Userr userr = userService.findUserrByUserName(userName);
