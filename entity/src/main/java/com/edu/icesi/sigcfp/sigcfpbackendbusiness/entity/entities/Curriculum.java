@@ -1,9 +1,7 @@
 package com.edu.icesi.sigcfp.sigcfpbackendbusiness.entity.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -45,7 +43,7 @@ public class Curriculum implements Serializable {
 
 	// bi-directional many-to-one association to Academicstudy
 	@OneToMany(mappedBy = "curriculum")
-	@JsonIgnore
+	//@JsonIgnore
 	private List<Academicstudy> academicstudies;
 
 	// bi-directional many-to-many association to Career
@@ -63,15 +61,10 @@ public class Curriculum implements Serializable {
 	private Company company;
 
 	// bi-directional many-to-one association to CurriculumPdf
-	@ManyToOne
+	@OneToOne(optional = true)
 	@JoinColumn(name = "CURRICULUM_PDF_CU_PDF_ID", nullable = true)
 	// @JsonIgnore
 	private CurriculumPdf curriculumPdf;
-
-	// bi-directional many-to-one association to CurriculumPdf
-	@OneToMany(mappedBy = "curriculum")
-	// @JsonIgnore
-	private List<CurriculumPdf> curriculumPdfs;
 
 	public Curriculum() {
 	}
@@ -168,28 +161,6 @@ public class Curriculum implements Serializable {
 
 	public void setCurrIsLaborMobility(String currIsLaborMobility) {
 		this.currIsLaborMobility = currIsLaborMobility;
-	}
-
-	public List<CurriculumPdf> getCurriculumPdfs() {
-		return this.curriculumPdfs;
-	}
-
-	public void setCurriculumPdfs(List<CurriculumPdf> curriculumPdfs) {
-		this.curriculumPdfs = curriculumPdfs;
-	}
-
-	public CurriculumPdf addCurriculumPdf(CurriculumPdf curriculumPdf) {
-		getCurriculumPdfs().add(curriculumPdf);
-		curriculumPdf.setCurriculum(this);
-
-		return curriculumPdf;
-	}
-
-	public CurriculumPdf removeCurriculumPdf(CurriculumPdf curriculumPdf) {
-		getCurriculumPdfs().remove(curriculumPdf);
-		curriculumPdf.setCurriculum(null);
-
-		return curriculumPdf;
 	}
 
 }
