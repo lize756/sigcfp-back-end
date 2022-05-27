@@ -43,8 +43,13 @@ public class Curriculum implements Serializable {
 
 	// bi-directional many-to-one association to Academicstudy
 	@OneToMany(mappedBy = "curriculum")
-	//@JsonIgnore
+	// @JsonIgnore
 	private List<Academicstudy> academicstudies;
+
+	// bi-directional many-to-one association to Curriculum
+	@OneToMany(mappedBy = "curriculum")
+	// @JsonIgnore
+	private List<Language> languages;
 
 	// bi-directional many-to-many association to Career
 	@ManyToMany
@@ -161,6 +166,14 @@ public class Curriculum implements Serializable {
 
 	public void setCurrIsLaborMobility(String currIsLaborMobility) {
 		this.currIsLaborMobility = currIsLaborMobility;
+	}
+
+	public List<Language> getLanguages() {
+		return languages;
+	}
+
+	public void setLanguages(List<Language> languages) {
+		this.languages = languages;
 	}
 
 }

@@ -49,6 +49,8 @@ public class Academicstudy implements Serializable {
 	@JsonIgnore
 	private Curriculum curriculum;
 
+	
+
 	public Academicstudy() {
 	}
 
